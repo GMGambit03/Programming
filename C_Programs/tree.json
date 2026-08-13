@@ -1,0 +1,596 @@
+{
+    "text": "Is it a mammal?",
+    "is_question": true,
+    "yes_child": {
+        "text": "Does it have stripes",
+        "is_question": true,
+        "yes_child": {
+            "text": "Is it a predator",
+            "is_question": true,
+            "yes_child": {
+                "text": "Is your animal less then 50lbs",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Raccoon",
+                    "is_question": false
+                },
+                "no_child": {
+                    "text": "Tiger",
+                    "is_question": false
+                }
+            },
+            "no_child": {
+                "text": "Does your animal live in trees",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Sloth",
+                    "is_question": false
+                },
+                "no_child": {
+                    "text": "Zebra",
+                    "is_question": false
+                }
+            }
+        },
+        "no_child": {
+            "text": "Is your animal considered wild",
+            "is_question": true,
+            "yes_child": {
+                "text": "Is it part of the feline family",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Does your animal live in a pride",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Lion",
+                        "is_question": false
+                    },
+                    "no_child": {
+                        "text": "Is your animal less then 50lbs",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Bob Cat",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Panther",
+                            "is_question": false
+                        }
+                    }
+                },
+                "no_child": {
+                    "text": "Does your animal have a shell?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Armadillo",
+                        "is_question": false
+                    },
+                    "no_child": {
+                        "text": "Does your animal have a long neck?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Giraffe",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Is your animal less then 50lbs",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Is your animal a type of rodent",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Rat",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Does it have a bushy tail?",
+                                    "is_question": true,
+                                    "yes_child": {
+                                        "text": "Is your animal known for eating ants and termites",
+                                        "is_question": true,
+                                        "yes_child": {
+                                            "text": "Anteater",
+                                            "is_question": false
+                                        },
+                                        "no_child": {
+                                            "text": "squirrel",
+                                            "is_question": false
+                                        }
+                                    },
+                                    "no_child": {
+                                        "text": "Is your animal from phineas and ferb",
+                                        "is_question": true,
+                                        "yes_child": {
+                                            "text": "Platypus",
+                                            "is_question": false
+                                        },
+                                        "no_child": {
+                                            "text": "Are you related to this animal",
+                                            "is_question": true,
+                                            "yes_child": {
+                                                "text": "Chimpanzee",
+                                                "is_question": false
+                                            },
+                                            "no_child": {
+                                                "text": "Koala",
+                                                "is_question": false
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "no_child": {
+                                "text": "Is your animal a omnivore",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Does your animal live in a jungle",
+                                    "is_question": true,
+                                    "yes_child": {
+                                        "text": "Gorilla",
+                                        "is_question": false
+                                    },
+                                    "no_child": {
+                                        "text": "Panda",
+                                        "is_question": false
+                                    }
+                                },
+                                "no_child": {
+                                    "text": "Is your animal semi-aquatic",
+                                    "is_question": true,
+                                    "yes_child": {
+                                        "text": "Hippo",
+                                        "is_question": false
+                                    },
+                                    "no_child": {
+                                        "text": "Does your animal have horns",
+                                        "is_question": true,
+                                        "yes_child": {
+                                            "text": "Does your animal live in a herd",
+                                            "is_question": true,
+                                            "yes_child": {
+                                                "text": "Bison",
+                                                "is_question": false
+                                            },
+                                            "no_child": {
+                                                "text": "Rhino",
+                                                "is_question": false
+                                            }
+                                        },
+                                        "no_child": {
+                                            "text": "Is your animal live in the water",
+                                            "is_question": true,
+                                            "yes_child": {
+                                                "text": "Blue Whale",
+                                                "is_question": false
+                                            },
+                                            "no_child": {
+                                                "text": "Elephant",
+                                                "is_question": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "no_child": {
+                "text": "Would your animal live in the house",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Is your animal a natural predator",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Australian Shepherd",
+                        "is_question": false
+                    },
+                    "no_child": {
+                        "text": "Do most people like your animal",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Rabbit",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Rat",
+                            "is_question": false
+                        }
+                    }
+                },
+                "no_child": {
+                    "text": "Does your animal live on a farm",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Does your animal have a wool coat",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Sheep",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Is your animal known for playing in the mud",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Pig",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Cow",
+                                "is_question": false
+                            }
+                        }
+                    },
+                    "no_child": {
+                        "text": "Camel",
+                        "is_question": false
+                    }
+                }
+            }
+        }
+    },
+    "no_child": {
+        "text": "Does it have legs",
+        "is_question": true,
+        "yes_child": {
+            "text": "Does it live in the water",
+            "is_question": true,
+            "yes_child": {
+                "text": "Does your animal swim",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Does your animal live in freshwater",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Is your animal endangered",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Axolotl",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Mudpuppy Salamander",
+                            "is_question": false
+                        }
+                    },
+                    "no_child": {
+                        "text": "Sea Turtle",
+                        "is_question": false
+                    }
+                },
+                "no_child": {
+                    "text": "Crab",
+                    "is_question": false
+                }
+            },
+            "no_child": {
+                "text": "does it have a shell?",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Is it an insect",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Beetle",
+                        "is_question": false
+                    },
+                    "no_child": {
+                        "text": "Is it an anthropod?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Is your animal venomous",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Centipede",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Millipede",
+                                "is_question": false
+                            }
+                        },
+                        "no_child": {
+                            "text": "turtle",
+                            "is_question": false
+                        }
+                    }
+                },
+                "no_child": {
+                    "text": "Is your animal an amphibian",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Is your animal poisoness",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Is it a type of toad",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "American Toad",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Poison Dart Frog",
+                                "is_question": false
+                            }
+                        },
+                        "no_child": {
+                            "text": "Does it have a tail as an adult",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Salamander",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Tree Frog",
+                                "is_question": false
+                            }
+                        }
+                    },
+                    "no_child": {
+                        "text": "Can your animal fly",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Is your animal considered small",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Is your animal a insect",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Does your animal have a stinger",
+                                    "is_question": true,
+                                    "yes_child": {
+                                        "text": "Can your animal use its stinger multiple times",
+                                        "is_question": true,
+                                        "yes_child": {
+                                            "text": "Is your animal considered agressive",
+                                            "is_question": true,
+                                            "yes_child": {
+                                                "text": "Yellow Jacket",
+                                                "is_question": false
+                                            },
+                                            "no_child": {
+                                                "text": "Paper Wasp",
+                                                "is_question": false
+                                            }
+                                        },
+                                        "no_child": {
+                                            "text": "Bee",
+                                            "is_question": false
+                                        }
+                                    },
+                                    "no_child": {
+                                        "text": "does it have more than two wings?",
+                                        "is_question": true,
+                                        "yes_child": {
+                                            "text": "Dragonfly",
+                                            "is_question": false
+                                        },
+                                        "no_child": {
+                                            "text": "Is your animal known for carrying diseases",
+                                            "is_question": true,
+                                            "yes_child": {
+                                                "text": "Mosquito",
+                                                "is_question": false
+                                            },
+                                            "no_child": {
+                                                "text": "Fly",
+                                                "is_question": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "no_child": {
+                                    "text": "Does your animal eat insects",
+                                    "is_question": true,
+                                    "yes_child": {
+                                        "text": "Is it considered the rats of the sky?",
+                                        "is_question": true,
+                                        "yes_child": {
+                                            "text": "Pigeon",
+                                            "is_question": false
+                                        },
+                                        "no_child": {
+                                            "text": "Mocking Bird",
+                                            "is_question": false
+                                        }
+                                    },
+                                    "no_child": {
+                                        "text": "Does your animal have blue feet and boobies?",
+                                        "is_question": true,
+                                        "yes_child": {
+                                            "text": "Blue Footed Booby",
+                                            "is_question": false
+                                        },
+                                        "no_child": {
+                                            "text": "Does your animal fly very far?",
+                                            "is_question": true,
+                                            "yes_child": {
+                                                "text": "Albitross",
+                                                "is_question": false
+                                            },
+                                            "no_child": {
+                                                "text": "Humming Bird",
+                                                "is_question": false
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "no_child": {
+                                "text": "Is your animal a type of hawk",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Bald Eagle",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Is your animal known for mimicking sounds",
+                                    "is_question": true,
+                                    "yes_child": {
+                                        "text": "Macaw",
+                                        "is_question": false
+                                    },
+                                    "no_child": {
+                                        "text": "Does your animal spend most of its time in or near the water",
+                                        "is_question": true,
+                                        "yes_child": {
+                                            "text": "Flamingo",
+                                            "is_question": false
+                                        },
+                                        "no_child": {
+                                            "text": "Gret Horned Owl",
+                                            "is_question": false
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "no_child": {
+                            "text": "Is your animal a insect",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Bullet Ant",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Is your animal a type of reptile",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Gecko",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Is your animal the largest bird in the world",
+                                    "is_question": true,
+                                    "yes_child": {
+                                        "text": "Ostrich",
+                                        "is_question": false
+                                    },
+                                    "no_child": {
+                                        "text": "Is your animal commonly eaten",
+                                        "is_question": true,
+                                        "yes_child": {
+                                            "text": "Chicken",
+                                            "is_question": false
+                                        },
+                                        "no_child": {
+                                            "text": "Does your animal have more than two legs?",
+                                            "is_question": true,
+                                            "yes_child": {
+                                                "text": "Black Widow",
+                                                "is_question": false
+                                            },
+                                            "no_child": {
+                                                "text": "Emu",
+                                                "is_question": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "no_child": {
+            "text": "Does your animal live in the ground",
+            "is_question": true,
+            "yes_child": {
+                "text": "Is your animal a predator",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Worm Snake",
+                    "is_question": false
+                },
+                "no_child": {
+                    "text": "Worm",
+                    "is_question": false
+                }
+            },
+            "no_child": {
+                "text": "Does your animal live in water?",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Is your animal a type of fish?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Does your animal look like a snake",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Eel",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Is your animal a carnivor",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Sting Ray",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Is your animal considered ugly",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Blob Fish",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Clownfish",
+                                    "is_question": false
+                                }
+                            }
+                        }
+                    },
+                    "no_child": {
+                        "text": "Does your animal have bones",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Sea Snake",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Is your animal spongebobs favorite thing to catch",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Jelly Fish",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Octopus",
+                                "is_question": false
+                            }
+                        }
+                    }
+                },
+                "no_child": {
+                    "text": "Is your animal venomous",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Is your animal known for dancing to flute music",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "King Cobra",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Rattle Snake",
+                            "is_question": false
+                        }
+                    },
+                    "no_child": {
+                        "text": "Is your animal usually kept as a pet",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Boa Constrictor",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Anaconda",
+                            "is_question": false
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

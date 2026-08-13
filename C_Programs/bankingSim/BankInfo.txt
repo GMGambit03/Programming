@@ -1,0 +1,8 @@
+User: 1 - Checkings Balance: 805.84 - Savings Balance: 1010.35
+User: 2 - Checkings Balance: 150.00 - Savings Balance: 100.50
+User: 3 - Checkings Balance: 0.00 - Savings Balance: 0.00
+User: 4 - Checkings Balance: 0.25 - Savings Balance: 2500.20
+User: 5 - Checkings Balance: 14999.48 - Savings Balance: 15000.50
+User: 6 - Checkings Balance: 0.00 - Savings Balance: 0.00
+User: 7 - Checkings Balance: 8409327459106816.00 - Savings Balance: 0.00
+User: 8 - Checkings Balance: 0.00 - Savings Balance: 0.00

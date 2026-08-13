@@ -1,0 +1,10 @@
+{
+    "label": "Auto GCC Compile",
+    "type": "shell",
+    "command": "echo ${file} | entr -r gcc ${file} -o ${fileBasenameNoExtension}",
+    "isBackground": true,
+    "problemMatcher": ["$gcc"],
+    "options": {
+        "cwd": "${fileDirname}"
+    }
+}
