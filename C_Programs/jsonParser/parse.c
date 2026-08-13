@@ -177,7 +177,7 @@ double parseNumber(Parser *parser, int *placeMent){
 JsonValue parseValue(Parser *parser){
     parser->token = lexer(&parser->file, &parser->cursor);
 
-    JsonValue value;
+    JsonValue value = {0};
 
     switch(parser->token){
         case '"':
@@ -194,7 +194,7 @@ JsonValue parseValue(Parser *parser){
         break;
         default:
             value.type = NUMBER;
-            value.data.number = parseNumber(parser, &value.data.placeMent);
+            value.data.number = parseNumber(parser, &value.placeMent);
         break;
     }
 

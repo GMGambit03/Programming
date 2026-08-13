@@ -1,7 +1,6 @@
 #include "Headers/getFile.h"
 #include "Headers/jsonChecker.h"
 #include "Headers/parser.h"
-#include "Headers/structs.h"
 
 int main(int argc, char *argv[]){
 

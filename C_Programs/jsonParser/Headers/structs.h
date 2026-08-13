@@ -19,10 +19,10 @@ typedef enum {
 
 typedef struct JsonValue{
     JsonType type;
+    int placeMent;
 
     union{
         bool boolean;
-        int placeMent;
         double number;
         char *string;
     }data;

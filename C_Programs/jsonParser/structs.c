@@ -29,7 +29,7 @@ void printValue(JsonValue value){
             }
         break;
         case NUMBER:
-            printf("%*.lf", value.data.placeMent, value.data.number);
+            printf("%.*lf", value.placeMent, value.data.number);
         break;
         default:
         break;
