@@ -6,18 +6,13 @@
 #include <string.h>
 #include <stdio.h>
 
+#include "../include/jsonParser.h"
+
 typedef struct JsonValue JsonValue;
 typedef struct Node Node;
 typedef struct Object Object;
 
-typedef enum {
-    BOOL,
-    NUMBER,
-    STRING,
-    ARRAY
-}JsonType;
-
-typedef struct JsonValue{
+struct JsonValue{
     JsonType type;
     int placeMent;
 
@@ -26,34 +21,34 @@ typedef struct JsonValue{
         double number;
         char *string;
     }data;
-}JsonValue;
+};
 
-typedef struct{
+struct ObjectArray{
     int size;
     Object **objects;
-}ObjectArray;
+};
 
-typedef struct Object{
+struct Object{
     char *objName;
     Node *subObjs;
 
-}Object;
+};
 
-typedef struct Node{
+struct Node{
     char *key;
     JsonValue value;
     struct Node *next;
-}Node;
+};
 
-typedef struct{
+struct Member{
     char *key;
     JsonValue value;
-}Member;
+};
 
 Object *createObj();
-Node *createNode(char *key, JsonValue value, Node *next);
-Object *getObject(ObjectArray *objArray, char *objName);
-Member *getMember(ObjectArray *objArray, char *objcName, char *key);
+Node *createNode(const char *key, JsonValue value, Node *next);
+Object *getObject(ObjectArray *objArray, const char *objName);
+Member *getMember(ObjectArray *objArray, const char *objcName, const char *key);
 void freeObj(Object *object);
 
 void printObj(Object *object);

@@ -1,7 +1,4 @@
-#include "Headers/structs.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "structs.h"
 
 Object *createObj(){
     Object *object = malloc(sizeof(Node));
@@ -10,7 +7,7 @@ Object *createObj(){
     return object;
 }
 
-Node *createNode(char *key, JsonValue value, Node *next){
+Node *createNode(const char *key, JsonValue value, Node *next){
     Node *node = malloc(sizeof(Node));
     node->key = strdup(key);
     node->value = value;
@@ -19,7 +16,7 @@ Node *createNode(char *key, JsonValue value, Node *next){
     return node;
 }
 
-Member *getMember(ObjectArray *objArray, char *objcName, char *key){
+Member *getMember(ObjectArray *objArray, const char *objcName, const char *key){
     Member *member = malloc(sizeof(Member));
 
     Object *object = getObject(objArray, objcName);
@@ -45,7 +42,7 @@ Member *getMember(ObjectArray *objArray, char *objcName, char *key){
     return member;
 }
 
-Object *getObject(ObjectArray *objArray, char *objName){
+Object *getObject(ObjectArray *objArray, const char *objName){
     int objLength = objArray->size;
 
     for(int i = 0; i < objLength; i++){
@@ -73,17 +70,17 @@ void freeObj(Object *object){
 
 void printValue(JsonValue value){
     switch (value.type){
-        case STRING:
+        case JSON_STRING:
             printf("%s", value.data.string);
         break;
-        case BOOL:
+        case JSON_BOOL:
             if(value.data.boolean == 0){
                 printf("False");
             }else{
                 printf("True");
             }
         break;
-        case NUMBER:
+        case JSON_NUMBER:
             printf("%.*lf", value.placeMent, value.data.number);
         break;
         default:
