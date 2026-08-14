@@ -18,11 +18,12 @@ typedef struct{
 }Dice;
 
 typedef struct{
-    DiceType diceType;
-    double multipl
-}
+        DiceType diceType;
+        double multiplier;
+        int rolls;
+}Roll;
 
-double rollDice(DiceType diceType, double mulitplier, int rolls);
+double rollDice(Roll roll);
 Dice createDice(DiceType diceType);
 
 #endif

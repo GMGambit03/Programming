@@ -29,19 +29,19 @@ Dice createDice(DiceType diceType){
     return dice;
 }
 
-double rollDice(DiceType diceType, double multiplier, int rolls){
+double rollDice(Roll roll){
 
     srand(time(NULL));
 
-    Dice dice = createDice(diceType);
+    Dice dice = createDice(roll.diceType);
     double sum = 0;
 
-    for(int i = 0; i < rolls; i++){
+    for(int i = 0; i < roll.rolls; i++){
         double roll = rand() % (dice.diceSides + 1);
         sum += roll;
     }
 
-    sum *= multiplier;
+    sum *= roll.multiplier;
 
     return sum;
 }

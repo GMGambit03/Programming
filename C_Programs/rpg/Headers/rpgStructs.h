@@ -20,17 +20,17 @@ typedef struct{
 
     item *inventory;
 
-    float maxHealth;
-    float health;
+    double maxHealth;
+    double health;
 
-    float maxStrength;
-    float strength;
+    double maxStrength;
+    double strength;
 
-    int speed;
-    int maxSpeed;
+    double speed;
+    double maxSpeed;
 
-    float mana;
-    float maxMana;
+    double mana;
+    double maxMana;
 
 
 }Player;
