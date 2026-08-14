@@ -1,8 +1,9 @@
 #include "Headers/gameLoop.h"
 #include "Headers/menus.h"
+#include <stdlib.h>
 
-Player newGameIntro(){
-    Player player;
+Player *newGameIntro(){
+    Player *player = malloc(sizeof(Player));
 
     char *dialogOptions[] = {"I'll go take a look", "What exactly is the \"seal?\"", "Why me?"};
     int optionsLength = sizeof(dialogOptions) / sizeof(dialogOptions[0]);
@@ -36,13 +37,10 @@ Player newGameIntro(){
                 printf("\n");
 
                 printf(" **Elder**: Good, before you go what's your name and class");
-                player.name = newSaveMenu();
-                
-
+                player->name = newSaveMenu();
+                classMenu(player);
+            break;
         }
-
-
-
 
     }
 }

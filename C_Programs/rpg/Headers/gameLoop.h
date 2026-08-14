@@ -6,6 +6,6 @@
 
 #include "menus.h"
 
-Player newGameIntro();
+Player *newGameIntro();
 
 #endif

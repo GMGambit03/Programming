@@ -1,8 +1,14 @@
-#include "Headers/menus.h"
-
+#include "Headers/gameLoop.h"
 int main(int argc, const char *argv[]){
 
-    Player player = startMenu();
+    int loadSave = startMenu();
+    Player *player;
+
+    switch(loadSave){
+        case 1:
+            player = newGameIntro();
+        break;
+    }
 
     return 0;
 }

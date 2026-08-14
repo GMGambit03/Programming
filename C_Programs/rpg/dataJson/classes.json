@@ -1,6 +1,7 @@
 {
     "Barbarian": {
         "Class": "Barbarian",
+        "Description": "Strength over subtlety. Hit first talk later",
         "hp": 11,
         "Strength": 9,
         "Speed": 3,
@@ -8,6 +9,7 @@
     },
     "Mage": {
         "Class": "Mage",
+        "Description": "Unstoppable at a distance and the universe at your fingertips",
         "hp": 3,
         "Strength": 4,
         "Speed": 6,
@@ -15,6 +17,7 @@
     },
     "Assassin": {
         "Class": "Assassin",
+        "Description": "Quick, Quiet, Deadly. Gone before anyone notice",
         "hp": 4,
         "Strength": 6,
         "Speed": 11,
