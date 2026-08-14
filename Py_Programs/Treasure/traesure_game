@@ -1,0 +1,64 @@
+import random
+
+def inventory_mng():
+    items_list = None
+    class Inventory:
+
+        def __init__(self, file_name, items_list):
+            self.items_list = items_list
+            self.file_name = file_name
+
+        def create_file(self):
+            with open(self.file_name, 'w') as inventory:
+                print("inventory created")
+
+    inventory = Inventory("inventory.txt", items_list)
+    inventory.create_file()
+    return inventory
+
+
+def find_treasure(inventory) -> list:
+    treas_file_name = "treasure.txt"
+
+    treasure = None
+
+    with open(treas_file_name, "r") as treas_file:
+        treas_lines = treas_file.readlines()
+    
+    treas_random = random.randint(0, len(treas_lines) - 1)
+
+    for i, line in enumerate(treas_lines):
+        if i == treas_random:
+            treasure = line
+            del treas_lines[i]
+            break
+
+    with open(treas_file_name, "w") as treas_file:
+        treas_file.writelines(treas_lines)
+    
+    with open(inventory.file_name, "r") as inven_file:
+        inventory.items_list = inven_file.readlines()
+
+    inventory.items_list.append(treasure)
+
+    with open(inventory.file_name, "w") as inven_file:
+        inven_file.writelines(inventory.items_list)
+
+    return inventory.items_list
+
+def main() -> bool:
+    inventory = inventory_mng()
+
+    while True:
+        print("\033[H\033[2J", end="")
+        print("---- Welcome to treasure island just press enter, but wants you leave everything is gone ----")
+        if input() == "":
+            print(find_treasure(inventory))
+            input()
+        else: 
+            break
+
+    print("Everything is good")
+
+if __name__ == "__main__":
+    main()

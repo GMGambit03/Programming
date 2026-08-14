@@ -1,0 +1,24 @@
+{
+    "Barbarian": {
+        "Class": "Barbarian",
+        "hp": 11,
+        "Strength": 9,
+        "Speed": 3,
+        "Mana": 2
+    },
+    "Mage": {
+        "Class": "Mage",
+        "hp": 3,
+        "Strength": 4,
+        "Speed": 6,
+        "Mana": 12
+    },
+    "Assassin": {
+        "Class": "Assassin",
+        "hp": 4,
+        "Strength": 6,
+        "Speed": 11,
+        "Mana": 4
+    }
+
+}

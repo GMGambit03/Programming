@@ -1,0 +1,1004 @@
+{
+    "text": "Is your animal a mammal?",
+    "is_question": true,
+    "yes_child": {
+        "text": "Does your animal hunt other animals for food?",
+        "is_question": true,
+        "yes_child": {
+            "text": "Is your animal part of the dog family?",
+            "is_question": true,
+            "yes_child": {
+                "text": "Would you consider your animal large, over 100 lbs?",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Does your animal split its time between land and water?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Newfoundland",
+                        "is_question": false
+                    },
+                    "no_child": {
+                        "text": "Is your animal known for having a powerful sense of smell?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Bloodhound",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Cane Corso",
+                            "is_question": false
+                        }
+                    }
+                },
+                "no_child": {
+                    "text": "Is your animal typically found in the wild?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Is your animal small, generally under 10 lbs?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Fox",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Wolf",
+                            "is_question": false
+                        }
+                    },
+                    "no_child": {
+                        "text": "Is your animal small, generally under 10 lbs?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Dachshund",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Is your animal known for being especially intelligent?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Border Collie",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Is your animal known for being loyal companions?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Dog",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Australian Shepherd",
+                                    "is_question": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "no_child": {
+                "text": "Is your animal part of the cat family?",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Would you consider your animal large, over 100 lbs?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Is your animal an apex predator with virtually no natural enemies?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Is your animal known for having stripes?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Tiger",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Lion",
+                                "is_question": false
+                            }
+                        },
+                        "no_child": {
+                            "text": "Panther",
+                            "is_question": false
+                        }
+                    },
+                    "no_child": {
+                        "text": "Is your animal small, generally under 10 lbs?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Is your animal typically found in the wild?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Bobcat",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Cat",
+                                "is_question": false
+                            }
+                        },
+                        "no_child": {
+                            "text": "Can your animal climb trees well?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Leopard",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Cheetah",
+                                "is_question": false
+                            }
+                        }
+                    }
+                },
+                "no_child": {
+                    "text": "Is your animal small, generally under 10 lbs?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Is your animal known for having stripes?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Raccoon",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Does your animal live in cold or arctic regions?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Wolverine",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Honey Badger",
+                                "is_question": false
+                            }
+                        }
+                    },
+                    "no_child": {
+                        "text": "Would you consider your animal large, over 100 lbs?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Is your animal an apex predator with virtually no natural enemies?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Polar Bear",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Bear",
+                                "is_question": false
+                            }
+                        },
+                        "no_child": {
+                            "text": "Does your animal mostly scavenge for food rather than hunt?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Hyena",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Dolphin",
+                                "is_question": false
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "no_child": {
+            "text": "Does your animal eat only plants?",
+            "is_question": true,
+            "yes_child": {
+                "text": "Would you consider your animal large, over 100 lbs?",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Is your animal typically found in the wild?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Does your animal have horns?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Does your animal usually live in groups?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Bison",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Rhino",
+                                "is_question": false
+                            }
+                        },
+                        "no_child": {
+                            "text": "Is your animal known for having spots?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Giraffe",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Does your animal have antlers?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Moose",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Does your animal have tusks?",
+                                    "is_question": true,
+                                    "yes_child": {
+                                        "text": "Elephant",
+                                        "is_question": false
+                                    },
+                                    "no_child": {
+                                        "text": "Hippo",
+                                        "is_question": false
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "no_child": {
+                        "text": "Does your animal typically live on a farm?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Does your animal have hooves?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Horse",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Cow",
+                                "is_question": false
+                            }
+                        },
+                        "no_child": {
+                            "text": "Camel",
+                            "is_question": false
+                        }
+                    }
+                },
+                "no_child": {
+                    "text": "Is your animal typically found in the wild?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Is your animal known for having stripes?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Zebra",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Does your animal have horns?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Alpine Ibex Goat",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Does your animal have antlers?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Deer",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Manatee",
+                                    "is_question": false
+                                }
+                            }
+                        }
+                    },
+                    "no_child": {
+                        "text": "Would you find your animal living inside someone's house?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Rabbit",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Does your animal have horns?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Goat",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Sheep",
+                                "is_question": false
+                            }
+                        }
+                    }
+                }
+            },
+            "no_child": {
+                "text": "Is your animal small, generally under 10 lbs?",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Can your animal climb trees well?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Is your animal known for having stripes?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Chipmunk",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Does your animal have a bushy tail?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Squirrel",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Koala",
+                                "is_question": false
+                            }
+                        }
+                    },
+                    "no_child": {
+                        "text": "Is your animal mostly active at night?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Does your animal have a hard protective shell?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Armadillo",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Is your animal covered in scales?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Black-Bellied Pangolin",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Vampire Bat",
+                                    "is_question": false
+                                }
+                            }
+                        },
+                        "no_child": {
+                            "text": "Is your animal typically found in the wild?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Does your animal have a wide, flat tail?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Beaver",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Sea Otter",
+                                    "is_question": false
+                                }
+                            },
+                            "no_child": {
+                                "text": "Rat",
+                                "is_question": false
+                            }
+                        }
+                    }
+                },
+                "no_child": {
+                    "text": "Does your animal eat both plants and meat?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Is your animal a primate?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Would you consider your animal large, over 100 lbs?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Gorilla",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Chimpanzee",
+                                "is_question": false
+                            }
+                        },
+                        "no_child": {
+                            "text": "Is your animal typically found in the wild?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Panda",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Pig",
+                                "is_question": false
+                            }
+                        }
+                    },
+                    "no_child": {
+                        "text": "Does your animal split its time between land and water?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Is your animal a type of rodent?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Capybara",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Platypus",
+                                "is_question": false
+                            }
+                        },
+                        "no_child": {
+                            "text": "Would you consider your animal large, over 100 lbs?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Kangaroo",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Is your animal massive, one of the largest of all animals?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Blue Whale",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Is your animal covered in scales?",
+                                    "is_question": true,
+                                    "yes_child": {
+                                        "text": "Giant Pangolin",
+                                        "is_question": false
+                                    },
+                                    "no_child": {
+                                        "text": "Does your animal have a bushy tail?",
+                                        "is_question": true,
+                                        "yes_child": {
+                                            "text": "Anteater",
+                                            "is_question": false
+                                        },
+                                        "no_child": {
+                                            "text": "Fruit Bat",
+                                            "is_question": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "no_child": {
+        "text": "Does your animal live entirely in the water?",
+        "is_question": true,
+        "yes_child": {
+            "text": "Does your animal live in the ocean?",
+            "is_question": true,
+            "yes_child": {
+                "text": "Is your animal a fish?",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Does your animal hunt other animals for food?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Stingray",
+                        "is_question": false
+                    },
+                    "no_child": {
+                        "text": "Is your animal an apex predator with virtually no natural enemies?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Great White Shark",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Is your animal small, generally under 10 lbs?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Clownfish",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Is your animal tiny, small enough to fit in your palm?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Seahorse",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Blob Fish",
+                                    "is_question": false
+                                }
+                            }
+                        }
+                    }
+                },
+                "no_child": {
+                    "text": "Is your animal a reptile?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Does your animal have a hard protective shell?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Sea Turtle",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Sea Snake",
+                            "is_question": false
+                        }
+                    },
+                    "no_child": {
+                        "text": "Is your animal a crustacean?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Is your animal tiny, small enough to fit in your palm?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Pistol Shrimp",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Yeti Crab",
+                                "is_question": false
+                            }
+                        },
+                        "no_child": {
+                            "text": "Does your animal sting?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Jellyfish",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Giant Pacific Octopus",
+                                "is_question": false
+                            }
+                        }
+                    }
+                }
+            },
+            "no_child": {
+                "text": "Is your animal considered endangered?",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Is your animal a reptile?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Does your animal have a hard protective shell?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Alligator Snapping Turtle",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Chinese Alligator",
+                            "is_question": false
+                        }
+                    },
+                    "no_child": {
+                        "text": "Would you find your animal living inside someone's house?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Axolotl",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Does your animal live in caves?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Olm",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Chinese Giant Salamander",
+                                "is_question": false
+                            }
+                        }
+                    }
+                },
+                "no_child": {
+                    "text": "Is your animal a reptile?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Does your animal hunt other animals for food?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Crocodile",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "American Alligator",
+                            "is_question": false
+                        }
+                    },
+                    "no_child": {
+                        "text": "Is your animal an amphibian?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Mudpuppy Salamander",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Does your animal hunt other animals for food?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Archer Fish",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Electric Eel",
+                                "is_question": false
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "no_child": {
+            "text": "Can your animal fly?",
+            "is_question": true,
+            "yes_child": {
+                "text": "Is your animal's wingspan smaller than a foot?",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Is your animal a bird?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Does your animal live in the ocean?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Blue Footed Booby",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Can your animal mimic sounds it hears?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Mockingbird",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Does your animal migrate extremely long distances?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Blackpoll Warbler",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Pigeon",
+                                    "is_question": false
+                                }
+                            }
+                        }
+                    },
+                    "no_child": {
+                        "text": "Does your animal have a stinger?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Is your animal considered aggressive?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Yellow Jacket",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Can your animal only sting once before it dies?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Bee",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Paper Wasp",
+                                    "is_question": false
+                                }
+                            }
+                        },
+                        "no_child": {
+                            "text": "Does your animal have four wings?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Is your animal known for bright or colorful markings?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Monarch Butterfly",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Dragonfly",
+                                    "is_question": false
+                                }
+                            },
+                            "no_child": {
+                                "text": "Does your animal feed on blood?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Mosquito",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Fly",
+                                    "is_question": false
+                                }
+                            }
+                        }
+                    }
+                },
+                "no_child": {
+                    "text": "Does your animal hunt other animals for food?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Is your animal mostly active at night?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Great Horned Owl",
+                            "is_question": false
+                        },
+                        "no_child": {
+                            "text": "Does your animal live on the savanna?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Secretary Bird",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Does your animal have a very large wingspan?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Bald Eagle",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Shoebill Stork",
+                                    "is_question": false
+                                }
+                            }
+                        }
+                    },
+                    "no_child": {
+                        "text": "Is your animal known for bright or colorful markings?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Can your animal mimic sounds it hears?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Macaw",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Toucan",
+                                "is_question": false
+                            }
+                        },
+                        "no_child": {
+                            "text": "Is your animal tiny, small enough to fit in your palm?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Hummingbird",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Flamingo",
+                                "is_question": false
+                            }
+                        }
+                    }
+                }
+            },
+            "no_child": {
+                "text": "Is your animal a reptile?",
+                "is_question": true,
+                "yes_child": {
+                    "text": "Does your animal have no legs at all?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Is your animal venomous?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Does your animal live in the desert?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Rattlesnake",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "King Cobra",
+                                "is_question": false
+                            }
+                        },
+                        "no_child": {
+                            "text": "Is your animal typically found in the wild?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Is your animal tiny, small enough to fit in your palm?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Worm Snake",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Anaconda",
+                                    "is_question": false
+                                }
+                            },
+                            "no_child": {
+                                "text": "Boa Constrictor",
+                                "is_question": false
+                            }
+                        }
+                    },
+                    "no_child": {
+                        "text": "Would you find your animal living inside someone's house?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Is your animal typically found in the wild?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Gecko",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Bearded Dragon",
+                                "is_question": false
+                            }
+                        },
+                        "no_child": {
+                            "text": "Is your animal an apex predator with virtually no natural enemies?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Komodo Dragon",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Is your animal small, generally under 10 lbs?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Horned Lizard",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Marine Iguana",
+                                    "is_question": false
+                                }
+                            }
+                        }
+                    }
+                },
+                "no_child": {
+                    "text": "Is your animal a bird?",
+                    "is_question": true,
+                    "yes_child": {
+                        "text": "Is your animal a bird that cannot fly?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Is your animal known for swimming well?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Emperor Penguin",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Does your animal live on the savanna?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Ostrich",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Emu",
+                                    "is_question": false
+                                }
+                            }
+                        },
+                        "no_child": {
+                            "text": "Is your animal typically found in the wild?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Peacock",
+                                "is_question": false
+                            },
+                            "no_child": {
+                                "text": "Chicken",
+                                "is_question": false
+                            }
+                        }
+                    },
+                    "no_child": {
+                        "text": "Is your animal an amphibian?",
+                        "is_question": true,
+                        "yes_child": {
+                            "text": "Is your animal poisonous to touch or eat?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Is your animal tiny, small enough to fit in your palm?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Poison Dart Frog",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "American Toad",
+                                    "is_question": false
+                                }
+                            },
+                            "no_child": {
+                                "text": "Does your animal live in freshwater rather than the ocean?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "American Bullfrog",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Can your animal climb trees well?",
+                                    "is_question": true,
+                                    "yes_child": {
+                                        "text": "Tree Frog",
+                                        "is_question": false
+                                    },
+                                    "no_child": {
+                                        "text": "Salamander",
+                                        "is_question": false
+                                    }
+                                }
+                            }
+                        },
+                        "no_child": {
+                            "text": "Does your animal have a hard protective shell?",
+                            "is_question": true,
+                            "yes_child": {
+                                "text": "Is your animal an insect?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Beetle",
+                                    "is_question": false
+                                },
+                                "no_child": {
+                                    "text": "Is your animal venomous?",
+                                    "is_question": true,
+                                    "yes_child": {
+                                        "text": "Centipede",
+                                        "is_question": false
+                                    },
+                                    "no_child": {
+                                        "text": "Millipede",
+                                        "is_question": false
+                                    }
+                                }
+                            },
+                            "no_child": {
+                                "text": "Is your animal an arachnid, like a spider?",
+                                "is_question": true,
+                                "yes_child": {
+                                    "text": "Is your animal venomous?",
+                                    "is_question": true,
+                                    "yes_child": {
+                                        "text": "Black Widow",
+                                        "is_question": false
+                                    },
+                                    "no_child": {
+                                        "text": "Goliath Bird-Eater",
+                                        "is_question": false
+                                    }
+                                },
+                                "no_child": {
+                                    "text": "Is your animal an insect?",
+                                    "is_question": true,
+                                    "yes_child": {
+                                        "text": "Bullet Ant",
+                                        "is_question": false
+                                    },
+                                    "no_child": {
+                                        "text": "Worm",
+                                        "is_question": false
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
