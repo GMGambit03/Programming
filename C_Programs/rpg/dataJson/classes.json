@@ -1,30 +1,51 @@
 {
     "Barbarian": {
-        "ID": 1,
+        "ID": 11,
         "Class": "Barbarian",
         "Description": "Strength over subtlety. Hit first talk later",
-        "hp": 11,
+        "Hp": 11,
         "Strength": 9,
         "Speed": 3,
-        "Mana": 2
+        "Mana": 2,
+
+        "Inventory": {
+            "WEAPON": 1003,
+            "ARMOR": 2003,
+            "HPPOTION": 3001,
+            "UTILITY": 4001
+        }
     },
     "Mage": {
-        "ID": 2,
+        "ID": 12,
         "Class": "Mage",
         "Description": "Unstoppable at a distance and the universe at your fingertips",
-        "hp": 3,
+        "Hp": 3,
         "Strength": 4,
         "Speed": 6,
-        "Mana": 12
+        "Mana": 12,
+
+        "Inventory": {
+            "WEAPON": 1004,
+            "ARMOR": 2001,
+            "HPPOTION": 3001,
+            "MANAPOTION": 3003
+        }
     },
     "Assassin": {
-        "ID": 3,
+        "ID": 13,
         "Class": "Assassin",
         "Description": "Quick, Quiet, Deadly. Gone before anyone notice",
-        "hp": 4,
+        "Hp": 4,
         "Strength": 6,
         "Speed": 11,
-        "Mana": 4
+        "Mana": 4,
+
+        "Inventory": {
+            "WEAPON": 1005,
+            "ARMOR": 2002,
+            "HPOTION": 3001,
+            "UTILITY": 4002
+        }
     }
 
 }

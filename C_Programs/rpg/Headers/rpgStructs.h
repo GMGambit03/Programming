@@ -6,10 +6,35 @@
 #include "jsonHeaders/structs.h"
 #include "dice.h"
 
+typedef enum{
+    WEAPON,
+    ARMOR,
+    POTION,
+    UTILITY
+}ITEMTYPE;
+
+typedef enum{
+    NOEFFECT,
+    HEAL,
+    RESTOREMANA,
+    STRINCREASE,
+    DAMAGE,
+    DEFENSE,
+    RUN
+}EFFECTTYPE;
+
 typedef struct{
     int itemId;
     char *itemName;
-}item;
+
+    EFFECTTYPE effectType;
+    ITEMTYPE itemIype;
+
+    bool stackable;
+    double weight;
+    double value;
+    double effect;
+}Item;
 
 typedef struct{
     char *name;
@@ -18,7 +43,7 @@ typedef struct{
     int level;
     int gold;
 
-    item *inventory;
+    Item *inventory;
 
     double maxHealth;
     double health;
