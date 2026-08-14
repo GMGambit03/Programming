@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+#include "jsonHeaders/structs.h"
+
 typedef struct{
     int itemId;
     char *itemName;
@@ -31,5 +33,7 @@ typedef struct{
 
 
 }Player;
+
+Player *assignBaseInfo(Object *classData);
 
 #endif

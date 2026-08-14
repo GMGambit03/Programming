@@ -58,6 +58,7 @@ void classMenu(Player *player){
     Object *assassin = getObject(classData, "Assassin");
     while(true){
         char userInput[3];
+        int chosenClass;
 
         clearScreen();
         printf("\n");
@@ -74,6 +75,19 @@ void classMenu(Player *player){
         }
         switch(*userInput){
             case '1':
+                chosenClass = displayClassInfo(barabarian);
+            break;
+            case '2':
+                chosenClass = displayClassInfo(mage);
+            break;
+            case '3':
+                chosenClass = displayClassInfo(assassin);
+            break;
+        }
+
+        switch (chosenClass) {
+            case '1':
+                printf(" Good choice");
                 
         }
 
@@ -81,16 +95,23 @@ void classMenu(Player *player){
     }
 }
 
-void displayClassInfo(Object *classObj){
+int displayClassInfo(Object *classObj){
     clearScreen();
+
+    Member *hp = getMember(classObj, "hp");
+    Member *str = getMember(classObj, "Strength");
+    Member *speed = getMember(classObj, "Speed");
+    Member *mana = getMember(classObj, "Mana");
+    Member *desc = getMember(classObj, "Description");
+
     printf("\n");
     printf("\n");
     printf(" [ %s ]\n", classObj->objName);
     printf("\n");
-    printf(" [ Health ]: %d", getMember(ObjectArray *objArray, char *objcName, char *key))
-    printf(" [ Health ]: %d")
-    printf(" [ Health ]: %d")
-    printf(" [ Health ]: %d")
+    printf(" [ Health ]: %.*lf",hp->value.placeMent ,hp->value.data.number);
+    printf(" [ Strength ]: %.*lf",str->value.placeMent ,str->value.data.number);
+    printf(" [ Speed ]: %.*lf", speed->value.placeMent, speed->value.data.number);
+    printf(" [ Mana ]: %.*lf", mana->value.placeMent, mana->value.data.number);
     printf("\n");
-    printf(" [ Health ]: %d")
+    printf(" [ Description ]: %s", desc->value.data.string);
 }

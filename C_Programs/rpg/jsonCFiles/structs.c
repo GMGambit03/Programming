@@ -19,15 +19,10 @@ Node *createNode(char *key, JsonValue value, Node *next){
     return node;
 }
 
-Member *getMemberObjArray(ObjectArray *objArray, char *objcName, char *key){
+Member *getMemberObjArray(Object *obj, char *key){
     Member *member = malloc(sizeof(Member));
 
-    Object *object = getObject(objArray, objcName);
-    if(object == NULL){
-        return NULL;
-    }
-
-    Node *tmpNode = object->subObjs;
+    Node *tmpNode = obj->subObjs;
     while(tmpNode != NULL){
         if(strcmp(tmpNode->key, key) == 0){
             member->key = tmpNode->key;
@@ -44,8 +39,6 @@ Member *getMemberObjArray(ObjectArray *objArray, char *objcName, char *key){
     }
     return member;
 }
-
-Member getValue
 
 Object *getObject(ObjectArray *objArray, char *objName){
     int objLength = objArray->size;

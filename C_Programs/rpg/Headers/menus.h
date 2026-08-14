@@ -9,6 +9,6 @@
 int startMenu();
 char *newSaveMenu();
 void classMenu(Player *player);
-void displayClassInfo(Object *classObj);
+int displayClassInfo(Object *classObj);
 
 #endif

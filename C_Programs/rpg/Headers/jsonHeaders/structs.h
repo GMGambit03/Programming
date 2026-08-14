@@ -52,7 +52,7 @@ typedef struct{
 Object *createObj();
 Node *createNode(char *key, JsonValue value, Node *next);
 Object *getObject(ObjectArray *objArray, char *objName);
-Member *getMember(ObjectArray *objArray, char *objcName, char *key);
+Member *getMember(Object *obj, char *key);
 void freeObj(Object *object);
 
 void printObj(Object *object);
