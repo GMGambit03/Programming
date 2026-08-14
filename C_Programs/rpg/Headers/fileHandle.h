@@ -5,7 +5,7 @@
 #include "jsonHeaders/getFile.h"
 #include "jsonHeaders/parser.h"
 
-#include "structs.h"
+#include "rpgStructs.h"
 
 void getPlayerData(Player *playerData);
 ObjectArray *classDataBase();

@@ -51,11 +51,15 @@ char *newSaveMenu(){
     }
 }
 
-void classMenu(Player *player){
+Player *classMenu(){
+    Player *player = malloc(sizeof(Player));
+
     ObjectArray *classData = classDataBase();
-    Object *barabarian = getObject(classData, "Barbarian");
+    Object *barbarian = getObject(classData, "Barbarian");
+    getId(&barbarian);
     Object *mage = getObject(classData, "Mage");
     Object *assassin = getObject(classData, "Assassin");
+
     while(true){
         char userInput[3];
         int chosenClass;
@@ -75,7 +79,7 @@ void classMenu(Player *player){
         }
         switch(*userInput){
             case '1':
-                chosenClass = displayClassInfo(barabarian);
+                chosenClass = displayClassInfo(barbarian);
             break;
             case '2':
                 chosenClass = displayClassInfo(mage);
@@ -87,11 +91,22 @@ void classMenu(Player *player){
 
         switch (chosenClass) {
             case '1':
-                printf(" Good choice");
-                
+                if(*userInput == '1'){
+                    player = assignBaseInfo(barbarian);
+                }
+                else if(*userInput == '2'){
+                    player = assignBaseInfo(mage);
+                }else{
+                    player = assignBaseInfo(assassin);
+                }
+            break;
+            default:
+            break;
         }
 
-
+        if(chosenClass == 1){
+            return player;
+        }
     }
 }
 

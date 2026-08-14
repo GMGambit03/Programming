@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #include "jsonHeaders/structs.h"
+#include "dice.h"
 
 typedef struct{
     int itemId;

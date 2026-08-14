@@ -1,0 +1,28 @@
+#ifndef DICE
+#define DICE
+
+#include <time.h>
+
+typedef enum{
+    D4,
+    D6,
+    D8,
+    D10,
+    D12,
+    D20
+}DiceType;
+
+typedef struct{
+    DiceType diceType;
+    int diceSides;
+}Dice;
+
+typedef struct{
+    DiceType diceType;
+    double multipl
+}
+
+double rollDice(DiceType diceType, double mulitplier, int rolls);
+Dice createDice(DiceType diceType);
+
+#endif

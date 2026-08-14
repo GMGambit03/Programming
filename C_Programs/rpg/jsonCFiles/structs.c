@@ -19,7 +19,7 @@ Node *createNode(char *key, JsonValue value, Node *next){
     return node;
 }
 
-Member *getMemberObjArray(Object *obj, char *key){
+Member *getMember(Object *obj, char *key){
     Member *member = malloc(sizeof(Member));
 
     Node *tmpNode = obj->subObjs;
@@ -38,6 +38,12 @@ Member *getMemberObjArray(Object *obj, char *key){
         return NULL;
     }
     return member;
+}
+
+void getID(Object **obj){
+    Member *member = getMember(*obj, "ID");
+
+    (*obj)->id = member->value.data.number;
 }
 
 Object *getObject(ObjectArray *objArray, char *objName){

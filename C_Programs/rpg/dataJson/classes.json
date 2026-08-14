@@ -1,5 +1,6 @@
 {
     "Barbarian": {
+        "ID": 1,
         "Class": "Barbarian",
         "Description": "Strength over subtlety. Hit first talk later",
         "hp": 11,
@@ -8,6 +9,7 @@
         "Mana": 2
     },
     "Mage": {
+        "ID": 2,
         "Class": "Mage",
         "Description": "Unstoppable at a distance and the universe at your fingertips",
         "hp": 3,
@@ -16,6 +18,7 @@
         "Mana": 12
     },
     "Assassin": {
+        "ID": 3,
         "Class": "Assassin",
         "Description": "Quick, Quiet, Deadly. Gone before anyone notice",
         "hp": 4,

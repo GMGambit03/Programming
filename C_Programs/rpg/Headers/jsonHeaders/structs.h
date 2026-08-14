@@ -34,6 +34,7 @@ typedef struct{
 }ObjectArray;
 
 typedef struct Object{
+    int id;
     char *objName;
     Node *subObjs;
 }Object;
@@ -53,6 +54,7 @@ Object *createObj();
 Node *createNode(char *key, JsonValue value, Node *next);
 Object *getObject(ObjectArray *objArray, char *objName);
 Member *getMember(Object *obj, char *key);
+void getId(Object **obj);
 void freeObj(Object *object);
 
 void printObj(Object *object);
