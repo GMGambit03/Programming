@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/jsonParser",
-            "args": ["items.json"],
+            "args": ["classes.json"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

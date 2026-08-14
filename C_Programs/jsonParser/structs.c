@@ -1,4 +1,6 @@
 #include "Headers/structs.h"
+#include <stdio.h>
+#include <string.h>
 
 Object *createObj(){
     Object *object = malloc(sizeof(Node));
@@ -14,6 +16,47 @@ Node *createNode(char *key, JsonValue value, Node *next){
     node->next = next;
 
     return node;
+}
+
+Member *getMember(ObjectArray *objArray, char *objcName, char *key){
+    Member *member = malloc(sizeof(Member));
+
+    Object *object = getObject(objArray, objcName);
+    if(object == NULL){
+        return NULL;
+    }
+
+    Node *tmpNode = object->subObjs;
+    while(tmpNode != NULL){
+        if(strcmp(tmpNode->key, key) == 0){
+            member->key = tmpNode->key;
+            member->value = tmpNode->value;
+            return member;
+        }
+        else{
+            tmpNode = tmpNode->next;
+        }
+    }
+    if(tmpNode == NULL){
+        free(member);
+        return NULL;
+    }
+    return member;
+}
+
+Object *getObject(ObjectArray *objArray, char *objName){
+    int objLength = objArray->size;
+
+    for(int i = 0; i < objLength; i++){
+        Object *currObj = objArray->objects[i];
+        char *currObjName = currObj->objName;
+        int compare = strcmp(currObjName, objName);
+
+        if(compare == 0){
+            return currObj;
+        }
+    }
+    return NULL;
 }
 
 void printValue(JsonValue value){

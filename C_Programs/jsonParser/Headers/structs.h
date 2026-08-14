@@ -45,8 +45,15 @@ typedef struct Node{
     struct Node *next;
 }Node;
 
+typedef struct{
+    char *key;
+    JsonValue value;
+}Member;
+
 Object *createObj();
 Node *createNode(char *key, JsonValue value, Node *next);
+Object *getObject(ObjectArray *objArray, char *objName);
+Member *getMember(ObjectArray *objArray, char *objcName, char *key);
 
 void printObj(Object *object);
 void printValue(JsonValue value);
