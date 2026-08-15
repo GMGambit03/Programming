@@ -204,6 +204,8 @@ double parseNumber(Parser *parser, int *placeMent){
     // When we use strtod end points to one more of where the last number was
     // so we subtract the memaddr of end and placePtr and - 1 to account for ends one more and we get the postion of the '.' to use for the display
     *placeMent = placePtr != NULL ? (int)(end - placePtr - 1) : 0;
+
+    free(strNum);
     
     return value;
 }
@@ -223,10 +225,17 @@ JsonValue parseValue(Parser *parser){
             value.data.string = parseString(parser);
         break;
         case 'f':
+            // This is temporary asoon as you feel like please replce this with a better validation/cursor increase
+            //Asssonsnso as s sposssibleelel change
+            // This sucks but im lazy
+            parser->cursor += 4;
             value.type = BOOL;
             value.data.boolean = false;
         break;
         case 't':
+            // This is temporary asoon as you feel like please replce this with a better validation/cursor increase
+            // Change thissssisissisi
+            parser->cursor += 3;
             value.type = BOOL;
             value.data.boolean = true;
         break;
