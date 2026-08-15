@@ -132,7 +132,7 @@ int displayClassInfo(Class *classData){
         printf("\n");
         printf("\n");
         printf(" [ 1 ] Choose the %s Class        [ 2 ] Exit", classData->className);
-        printf("\n: ")
+        printf("\n: ");
     
         fgets(userInput, sizeof(userInput), stdin);
         if(!clearBuffer((int)sizeof(userInput),userInput)){
