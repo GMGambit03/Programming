@@ -1,7 +1,21 @@
 #include "Headers/dungeons.h"
-#include "Headers/dungeonMenus.h"
-#include "Headers/stringHelpers.h"
-#include <stdlib.h>
+#include "Headers/jsonHeaders/structs.h"
+
+Dungeon *createDungeon(Object *dungeonData){
+    Dungeon *dungeonStruct = malloc(sizeof(Dungeon));
+
+    dungeonStruct->dungeonId = getMember(dungeonData, "iD")->value.data.number;
+    dungeonStruct->dungeonName = getMember(dungeonData, "Name")->value.data.string;
+    dungeonStruct->description = getMember(dungeonData, "Description")->value.data.string;
+    // After making all the easy stuff we're going to go and add parsingArrays to the parser
+    // dungeonStruct->possibleEnimies = getMember(dungeonData, "PossibleEnemies")->value.data.number;
+    dungeonStruct->minEnemyCnt = getMember(dungeonData, "MinEnemyCount")->value.data.number;
+    dungeonStruct->maxEnemyCnt = getMember(dungeonData, "MaxEnemyCount")->value.data.number;
+    dungeonStruct->dungeonBossId = getMember(dungeonData, "BossId")->value.data.number;
+
+    return dungeonStruct;
+
+}
 
 DungeonReturns dungeonEntrance(GameState **gameState, int dungeonId){
     Dungeon *dungeon = loadDungeon(dungeonId);

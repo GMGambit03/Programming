@@ -1,0 +1,30 @@
+{
+    "The UnderDark": {
+        "iD": 1001,
+        "Name": "The UnderDark",
+        "Description": "It looks like a wound — jagged stone peeled back on itself, edges still faintly warm to the touch.",
+
+        "PossibleEnemies": [
+            1001,
+            1002,
+            1003
+        ],
+
+        "BossId": 1100,
+
+        "MinRooms": 5,
+        "MaxRooms": 9,
+
+        "MinEnemyCount": 1,
+        "MaxEnemyCount": 3,
+
+        "CompletionRewards": {
+            "Gold": 150,
+            "Items": [
+                3001,
+                3001,
+                4003
+            ]
+        }
+    }
+}

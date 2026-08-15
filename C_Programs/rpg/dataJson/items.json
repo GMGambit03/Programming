@@ -197,9 +197,9 @@
         "effect": 0
     },
 
-    "The Anchor": {
+    "Warden's Heart Fragment": {
         "itemId": 5001,
-        "itemName": "The Anchor",
+        "itemName": "Warden's Heart Fragment",
         "type": "ARTIFACT",
         "effectType": "NONE",
         "stackable": false,

@@ -4,12 +4,19 @@
 #include "dungeonMenus.h"
 #include "entityStructs.h"
 
+typedef struct Dungeon Dungeon;
+
 typedef enum{
     EXIT,
     RAN,
     DIED,
     BOSSDEFEATED
 }DungeonReturns;
+
+typedef struct{
+    Dungeon **dungeons;
+    int size;
+}DungeonDatabase;
 
 typedef struct DungeonNode{
     EnemyArray *enemies;
@@ -26,20 +33,25 @@ typedef struct DungeonNode{
     int utilityRequ;
 }DungeonNode;
 
-typedef struct{
+typedef struct Dungeon{
     int dungeonId;
     char *dungeonName;
+    char *description;
 
     DungeonNode *entrance;
     DungeonNode *bossRoom;
 
     int *possibleEnimies;
     int possEnemyCount;
+
+    int minEnemyCnt;
+    int maxEnemyCnt;
     int dungeonBossId;
 }Dungeon;
 
 DungeonReturns dungeonEntrance(GameState **gameState, int dungeonId);
 DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dungeonNode);
+Dungeon *createDungeon(Object *dungeonData);
 Dungeon *loadDungeon(int dungeonId);
 
 #endif

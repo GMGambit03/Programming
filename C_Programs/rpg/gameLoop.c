@@ -6,6 +6,7 @@ GameState *newGameIntro(){
     // Loading assets, eventuallly turn this into a single function
     ClassDatabase *classDataBase = createClassDataBase();
     ItemDatabase *itemDataBase = createItemDatabase();
+    DungeonDataBase *dungeonDataBase = createDungeonDatabase();
     GameState *gameState = malloc(sizeof(GameState));
 
     char *dialogOptions[] = {"I'll go take a look", "What exactly is the \"seal?\"", "Why me?"};
