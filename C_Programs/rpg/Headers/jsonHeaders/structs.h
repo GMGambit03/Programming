@@ -14,6 +14,7 @@ typedef enum {
     BOOL,
     NUMBER,
     STRING,
+    OBJECT,
     ARRAY
 }JsonType;
 
@@ -25,6 +26,7 @@ typedef struct JsonValue{
         bool boolean;
         double number;
         char *string;
+        Object *obj;
     }data;
 }JsonValue;
 
@@ -53,7 +55,8 @@ typedef struct{
 Object *createObj();
 Node *createNode(char *key, JsonValue value, Node *next);
 Object *getObject(ObjectArray *objArray, char *objName);
-Member *getMember(Object *obj, char *key);
+Member *getObjArrayMember(ObjectArray *objArray, char *objName, char *key);
+Member *getMember(Object *object, char *key);
 void getId(Object **obj);
 void freeObj(Object *object);
 

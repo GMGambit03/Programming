@@ -1,7 +1,4 @@
 #include "Headers/parser.h"
-#include "Headers/structs.h"
-#include <stdlib.h>
-
 
 ObjectArray *searchMode(Parser *parser){
 

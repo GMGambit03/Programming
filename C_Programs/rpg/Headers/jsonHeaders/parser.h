@@ -11,6 +11,7 @@ enum STATE{
 };
 
 typedef struct{
+    int prev;
     int cursor;
     char *file;
     char token;
