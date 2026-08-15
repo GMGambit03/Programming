@@ -23,5 +23,7 @@ Node *subObjMode(Parser *parser);
 char *parseString(Parser *parser);
 double parseNumber(Parser *parser, int *placeMent);
 JsonValue parseValue(Parser *parser);
+JsonArray *arrayMode(Parser *parser);
+int getStrArrCnt(Parser *parser);
 
 #endif

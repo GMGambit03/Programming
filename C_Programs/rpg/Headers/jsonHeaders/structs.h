@@ -1,5 +1,5 @@
-#ifndef JSONSTRUCTS
-#define JSONSTRUCTS
+#ifndef STRUCTS
+#define STRUCTS
 
 #include <stdbool.h>
 #include <stdlib.h>
@@ -9,6 +9,7 @@
 typedef struct JsonValue JsonValue;
 typedef struct Node Node;
 typedef struct Object Object;
+typedef struct JsonArray JsonArray;
 
 typedef enum {
     BOOL,
@@ -27,8 +28,15 @@ typedef struct JsonValue{
         double number;
         char *string;
         Object *obj;
+        JsonArray *array;
     }data;
 }JsonValue;
+
+typedef struct JsonArray{
+    JsonValue *values;
+    int count;
+    int capacity;
+}JsonArray;
 
 typedef struct{
     int size;
@@ -36,9 +44,9 @@ typedef struct{
 }ObjectArray;
 
 typedef struct Object{
-    int id;
     char *objName;
     Node *subObjs;
+
 }Object;
 
 typedef struct Node{
@@ -55,10 +63,9 @@ typedef struct{
 Object *createObj();
 Node *createNode(char *key, JsonValue value, Node *next);
 Object *getObject(ObjectArray *objArray, char *objName);
-int getObjectCount(ObjectArray *objArray);
 Member *getObjArrayMember(ObjectArray *objArray, char *objName, char *key);
 Member *getMember(Object *object, char *key);
-void getId(Object **obj);
+int *getIntArr(JsonArray *jsonArray, int *count);
 void freeObj(Object *object);
 
 void printObj(Object *object);

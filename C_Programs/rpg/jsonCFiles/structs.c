@@ -19,10 +19,15 @@ Node *createNode(char *key, JsonValue value, Node *next){
     return node;
 }
 
-Member *getMember(Object *obj, char *key){
+Member *getObjArrayMember(ObjectArray *objArray, char *objName, char *key){
     Member *member = malloc(sizeof(Member));
 
-    Node *tmpNode = obj->subObjs;
+    Object *object = getObject(objArray, objName);
+    if(object == NULL){
+        return NULL;
+    }
+
+    Node *tmpNode = object->subObjs;
     while(tmpNode != NULL){
         if(strcmp(tmpNode->key, key) == 0){
             member->key = tmpNode->key;
@@ -40,12 +45,25 @@ Member *getMember(Object *obj, char *key){
     return member;
 }
 
-int getObjectCount(ObjectArray *objArray){
-    int count = 0;
-    for(int i = 0; i < objArray->size; i++){
-        count++;
+Member *getMember(Object *object, char *key){
+    Member *member = malloc(sizeof(Member));
+
+    Node *tmpNode = object->subObjs;
+    while(tmpNode != NULL){
+        if(strcmp(tmpNode->key, key) == 0){
+            member->key = tmpNode->key;
+            member->value = tmpNode->value;
+            return member;
+        }
+        else{
+            tmpNode = tmpNode->next;
+        }
     }
-    return count;
+    if(tmpNode == NULL){
+        free(member);
+        return NULL;
+    }
+    return member;
 }
 
 Object *getObject(ObjectArray *objArray, char *objName){
@@ -61,6 +79,21 @@ Object *getObject(ObjectArray *objArray, char *objName){
         }
     }
     return NULL;
+}
+
+int *getIntArr(JsonArray *jsonArray, int *count){
+    int *array = malloc(sizeof(int) * jsonArray->count);
+
+    for(int i = 0; i < jsonArray->count; i++){
+        if(jsonArray->values[i].type != NUMBER){
+            continue;
+        }
+        int currInt = jsonArray->values[i].data.number;
+        array[i] = currInt;
+        *count += 1;
+    }
+
+    return array;
 }
 
 void freeObj(Object *object){
