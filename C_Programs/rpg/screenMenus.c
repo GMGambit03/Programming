@@ -1,5 +1,4 @@
-#include "Headers/menus.h"
-#include <stdio.h>
+#include "Headers/screenMenus.h"
 
 int startMenu(){
     while(true){

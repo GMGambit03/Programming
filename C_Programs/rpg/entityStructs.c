@@ -1,4 +1,4 @@
-#include "Headers/rpgStructs.h"
+#include "Headers/entityStructs.h"
 
 Class *createClass(Object *classData){
     Class *classStruct = malloc(sizeof(Class));
@@ -27,8 +27,17 @@ Class *createClass(Object *classData){
     }
 
     classStruct->inventory = inventory;
-
+    
     return classStruct;
+}
+
+Class *findClass(ClassDatabase *classDataBase, int classId){
+    for(int i = 0; i < classDataBase->count; i++){
+        if(classId == classDataBase->classes[i]->iD){
+            return classDataBase->classes[i];
+        }
+    }
+    return NULL;
 }
 
 Player *newPlayerInfo(Class *classData){
@@ -70,13 +79,4 @@ Player *newPlayerInfo(Class *classData){
 
     return player;
     
-}
-
-Class *findClass(ClassDatabase *classDataBase, int classId){
-    for(int i = 0; i < classDataBase->count; i++){
-        if(classId == classDataBase->classes[i]->iD){
-            return classDataBase->classes[i];
-        }
-    }
-    return NULL;
 }

@@ -1,13 +1,12 @@
 #include "Headers/gameLoop.h"
+// Entity Structs are included from gameLoop
 int main(){
 
     int loadSave = startMenu();
-    Player *player;
 
-    switch(loadSave){
-        case 1:
-            player = newGameIntro();
-        break;
+    if(loadSave == 1){
+        GameState *gameState = newGameIntro();
+
     }
 
     return 0;

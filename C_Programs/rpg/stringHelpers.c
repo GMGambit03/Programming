@@ -57,3 +57,24 @@ bool checkName(int s, char userInput[s]){
     }
     return true;
 }
+
+char *toUpper(char *string){
+    int strLength = strlen(string);
+    char *upperStr = malloc(sizeof(char) * strLength);
+
+    for(int i = 0; i < strLength; i++){
+        char currChar = string[i];
+        if(currChar >= 'a' || currChar <= 'z'){
+            upperStr[i] = currChar - 32;
+        }else{
+            upperStr[i] = currChar;
+        }
+    }
+    return upperStr;
+}
+
+void charFiller(int length, char charc){
+    for(int i = 0; i <= length; i++){
+        printf("%c", charc);
+    }
+}

@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "menus.h"
+#include "screenMenus.h"
 
-Player *newGameIntro();
+GameState *newGameIntro();
 
 #endif

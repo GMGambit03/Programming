@@ -195,5 +195,16 @@
         "weight": 2.5,
         "value": 10,
         "effect": 0
+    },
+
+    "The Anchor": {
+        "itemId": 5001,
+        "itemName": "The Anchor",
+        "type": "ARTIFACT",
+        "effectType": "NONE",
+        "stackable": false,
+        "weight": 20,
+        "value": 100,
+        "effect": 0
     }
 }

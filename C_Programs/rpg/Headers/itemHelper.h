@@ -1,5 +1,5 @@
-#ifndef INVENHELPER
-#define INVENHELPER
+#ifndef ITEMHELPER
+#define ITEMHELPER
 
 #include "jsonHeaders/structs.h"
 

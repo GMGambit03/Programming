@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 #include "fileHandle.h"
-#include "rpgStructs.h"
+// "entity Strcutcs is included from filehandle  
 #include "stringHelpers.h"
 
 int startMenu();

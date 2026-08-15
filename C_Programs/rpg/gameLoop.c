@@ -1,10 +1,12 @@
 #include "Headers/gameLoop.h"
-#include "Headers/stringHelpers.h"
+#include "Headers/dialogue.h"
+#include "Headers/dungeons.h"
 
-Player *newGameIntro(){
+GameState *newGameIntro(){
     // Loading assets, eventuallly turn this into a single function
     ClassDatabase *classDataBase = createClassDataBase();
     ItemDatabase *itemDataBase = createItemDatabase();
+    GameState *gameState = malloc(sizeof(GameState));
 
     char *dialogOptions[] = {"I'll go take a look", "What exactly is the \"seal?\"", "Why me?"};
     int optionsLength = sizeof(dialogOptions) / sizeof(dialogOptions[0]);
@@ -42,6 +44,8 @@ Player *newGameIntro(){
                 Player *player = classMenu(classDataBase);
                 player->name = newSaveMenu();
 
+                gameState->player = player;
+
                 printf(" **Elder**: Nice to have you stand and cure our village.\n");
                 printf(" **Elder**: Lets head to the first dungeon.\n");
             break;
@@ -73,5 +77,59 @@ Player *newGameIntro(){
             break;
         }
 
+        if(gameState->player != NULL){
+            gameState->locoUnlockedSize = 4;
+            gameState->locationsUnlocked = malloc(sizeof(int)*gameState->locoUnlockedSize);
+            gameState->locationsUnlocked[0] = 1001;
+            gameState->currLocation = gameState->locationsUnlocked[0];
+
+            while(true){
+                clearScreen();
+                DungeonReturns dungeonReturn = dungeonEntrance(&gameState, 1001);
+    
+                switch(dungeonReturn){
+                    case EXIT:
+                        createDialogue("Elder", "Adventurer don't be scared you are mighty hero, here to save us all");
+                        printf("\n");
+                        enterContinue();
+                        getchar();
+                    break;
+                    case RAN:
+                        createDialogue("Elder", "Them damn fiegns almost killed you.");
+                        createDialogue("Elder", "Lets go to the villiage and get you some better equipment.");
+                        enterContinue();
+                        getchar();
+                    break;
+                    case DIED:
+                        createDialogue("Elder", "Truly hero we thank you for risking your life.");
+                        createDialogue("Elder", "Maybe you can get the next time.");
+                        createDialogue("Elder", "Lets go to the villiage and get you some better equipment.");
+                    break;
+                    case BOSSDEFEATED:
+                        createDialogue("Elder", "I knew you were the one to call on.");
+                        createDialogue("Elder", "On behalf the entire village we thank you.");
+                        createDialogue("Elder", "Lets go to the villiage and get you some better equipment for the next dungeon");
+                        enterContinue();
+                        getchar();
+                    break;
+                }
+                if(dungeonReturn == EXIT){
+                    continue;
+                }else{
+                    break;
+                }
+            }
+
+            return gameState;
+        }
+
     }
+
+
+}
+
+void mainLoop(GameState gameState){
+    Player *player = gameState.player;
+
+
 }

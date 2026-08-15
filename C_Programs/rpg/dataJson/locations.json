@@ -1,0 +1,26 @@
+{
+    "Ashvale":{
+        "ID": 1001,
+        "Name": "Ashvale",
+        "Type": "VILLIAGE",
+
+        "NextLocation": 1002,
+
+        "Content": {
+            "Shops": [
+                1001
+            ],
+
+            "Dungeons": [
+                1001, 1002, 1003
+            ]
+        },
+
+        "Requirements": {
+            "DungeonsCompleted": 0,
+            "MainQuestsCompleted": 0,
+            "QuestsCompleted": 0,
+            "RequiredItem": 0
+        }
+    }
+}
