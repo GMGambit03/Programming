@@ -81,6 +81,21 @@ Object *getObject(ObjectArray *objArray, char *objName){
     return NULL;
 }
 
+int *getIntArr(JsonArray *jsonArray, int *count){
+    int *array = malloc(sizeof(int) * jsonArray->count);
+
+    for(int i = 0; i < jsonArray->count; i++){
+        if(jsonArray->values[i].type != NUMBER){
+            continue;
+        }
+        int currInt = jsonArray->values[i].data.number;
+        array[i] = currInt;
+        *count += 1;
+    }
+
+    return array;
+}
+
 void freeObj(Object *object){
 
     while(object->subObjs != NULL){

@@ -12,7 +12,13 @@ int main(){
     ObjectArray *myObj = searchMode(&parser);
     Object *barbarian = getObject(myObj, "Barbarian");
 
-    Member *inv = getMember(barbarian, "Inventory");
+    Member *enemies = getMember(barbarian, "PossibleEnemies");
+    
+    JsonArray *array = enemies->value.data.array;
+    int arrayCount = 0;
+    int *intArr = getIntArr(array, &arrayCount);
+    printf("%d", arrayCount);
+    
 
-    printObj(inv->value.data.obj);
+    
 }

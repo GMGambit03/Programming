@@ -9,6 +9,7 @@
 typedef struct JsonValue JsonValue;
 typedef struct Node Node;
 typedef struct Object Object;
+typedef struct JsonArray JsonArray;
 
 typedef enum {
     BOOL,
@@ -27,8 +28,15 @@ typedef struct JsonValue{
         double number;
         char *string;
         Object *obj;
+        JsonArray *array;
     }data;
 }JsonValue;
+
+typedef struct JsonArray{
+    JsonValue *values;
+    int count;
+    int capacity;
+}JsonArray;
 
 typedef struct{
     int size;
@@ -57,6 +65,7 @@ Node *createNode(char *key, JsonValue value, Node *next);
 Object *getObject(ObjectArray *objArray, char *objName);
 Member *getObjArrayMember(ObjectArray *objArray, char *objName, char *key);
 Member *getMember(Object *object, char *key);
+int *getIntArr(JsonArray *jsonArray, int *count);
 void freeObj(Object *object);
 
 void printObj(Object *object);

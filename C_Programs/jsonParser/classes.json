@@ -13,7 +13,19 @@
             "ARMOR": 2003,
             "HPPOTION": 3001,
             "UTILITY": 4001
-        }
+        },
+
+        "PossibleEnemies": [
+            1001,
+            1002,
+            1003
+        ],
+
+        "random": [
+            "hello",
+            "good",
+            "morning"
+        ]
     },
     "Mage": {
         "ID": 12,
@@ -29,22 +41,6 @@
             "ARMOR": 2001,
             "HPPOTION": 3001,
             "MANAPOTION": 3003
-        }
-    },
-    "Assassin": {
-        "ID": 13,
-        "Class": "Assassin",
-        "Description": "Quick, Quiet, Deadly. Gone before anyone notice",
-        "Hp": 4,
-        "Strength": 6,
-        "Speed": 11,
-        "Mana": 4,
-
-        "Inventory": {
-            "WEAPON": 1005,
-            "ARMOR": 2002,
-            "HPOTION": 3001,
-            "UTILITY": 4002
         }
     }
 

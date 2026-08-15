@@ -208,6 +208,7 @@ double parseNumber(Parser *parser, int *placeMent){
 }
 
 JsonValue parseValue(Parser *parser){
+
     // bypass spaces and non inportant chars
     parser->token = lexer(&parser->file, &parser->cursor);
 
@@ -236,6 +237,10 @@ JsonValue parseValue(Parser *parser){
             value.type = BOOL;
             value.data.boolean = true;
         break;
+        case '[':
+            value.type = ARRAY;
+            value.data.array = arrayMode(parser);
+        break;
         // This is one of the main reasons for prev
         // Now if we run into a object within another object we want to go back to the first quotations 
         // we can then give the new basically subobject a name and go through the entire process
@@ -252,5 +257,35 @@ JsonValue parseValue(Parser *parser){
         break;
     }
 
+    parser->token = parser->file[parser->cursor];
     return value;
+}
+
+JsonArray *arrayMode(Parser *parser){
+
+    JsonArray *array = malloc(sizeof(JsonArray));
+    array->count = 0;
+    array->capacity = 8;
+    array->values = malloc(sizeof(JsonValue) * array->capacity);
+
+    // We're going to declare subValues which is going to be each value in the array
+    JsonValue subValue = {0};
+
+    // Were going to call jsonvalue again and the value of each object and go in a loop
+    while(parser->token != ']'){
+        subValue = parseValue(parser);
+
+        if(array->count == array->capacity){
+            array->capacity *= 2;
+            JsonValue *tmp = realloc(array->values, sizeof(JsonArray) * array->capacity);
+            if(tmp != NULL){
+                array->values = tmp;
+            }
+        }
+
+        array->values[array->count] = subValue;
+        array->count++;
+    }
+    array->count--;
+    return array;
 }
