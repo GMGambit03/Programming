@@ -1,4 +1,4 @@
-#include "Headers/lexer.h"
+#include "../Headers/jsonHeaders/lexer.h"
 
 char lexer(char **file, int *cursor){
 

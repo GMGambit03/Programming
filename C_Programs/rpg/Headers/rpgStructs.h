@@ -3,38 +3,24 @@
 
 #include <stdio.h>
 
-#include "jsonHeaders/structs.h"
+#include "inventoryHelper.h"
 #include "dice.h"
 
-typedef enum{
-    WEAPON,
-    ARMOR,
-    POTION,
-    UTILITY
-}ITEMTYPE;
-
-typedef enum{
-    NOEFFECT,
-    HEAL,
-    RESTOREMANA,
-    STRINCREASE,
-    DAMAGE,
-    DEFENSE,
-    RUN
-}EFFECTTYPE;
+typedef struct{
+    int iD;
+    char *className;
+    char *description;
+    double hP;
+    double strength;
+    double speed;
+    double mana;
+    Inventory *inventory;
+}Class;
 
 typedef struct{
-    int itemId;
-    char *itemName;
-
-    EFFECTTYPE effectType;
-    ITEMTYPE itemIype;
-
-    bool stackable;
-    double weight;
-    double value;
-    double effect;
-}Item;
+    Class **classes;
+    int count;
+}ClassDatabase;
 
 typedef struct{
     char *name;
@@ -43,7 +29,7 @@ typedef struct{
     int level;
     int gold;
 
-    Item *inventory;
+    Inventory *inventory;
 
     double maxHealth;
     double health;
@@ -60,6 +46,10 @@ typedef struct{
 
 }Player;
 
-Player *assignBaseInfo(Object *classData);
+Player *newPlayerInfo(Class *classData);
+// Inventory *getBaseInventory(Object *Items);
+
+Class *createClass(Object *classData);
+Class *findClass(ClassDatabase *classDataBase, int classId);
 
 #endif

@@ -55,6 +55,7 @@ typedef struct{
 Object *createObj();
 Node *createNode(char *key, JsonValue value, Node *next);
 Object *getObject(ObjectArray *objArray, char *objName);
+int getObjectCount(ObjectArray *objArray);
 Member *getObjArrayMember(ObjectArray *objArray, char *objName, char *key);
 Member *getMember(Object *object, char *key);
 void getId(Object **obj);

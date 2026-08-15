@@ -11,10 +11,10 @@ bool clearBuffer(int s ,char userInput[s]){
         validInput = false;
         printf("Please put in a valid input");
         getchar();
-    }
-    int ch;
-    while((ch = getchar()) != EOF){
-        continue;
+        int ch;
+        while((ch = getchar()) != '\n'){
+            continue;
+        }
     }
     return validInput;
 }
@@ -30,7 +30,9 @@ bool checkChars(char *userInput){
         else if(curr >= 'A' && curr <= 'Z'){
             continue;
         }
-        else{
+        else if(curr == '\n'){
+            continue;
+        }else{
             return false;
         }
     }

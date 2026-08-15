@@ -7,7 +7,7 @@ TARGET = rpg
 
 all: $(TARGET)
 
-SRC = main.c menus.c
+SRC = *.c jsonCFiles/*.c
 
 $(TARGET):
 	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)

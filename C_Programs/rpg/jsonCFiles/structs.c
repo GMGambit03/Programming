@@ -40,10 +40,12 @@ Member *getMember(Object *obj, char *key){
     return member;
 }
 
-void getID(Object **obj){
-    Member *member = getMember(*obj, "ID");
-
-    (*obj)->id = member->value.data.number;
+int getObjectCount(ObjectArray *objArray){
+    int count = 0;
+    for(int i = 0; i < objArray->size; i++){
+        count++;
+    }
+    return count;
 }
 
 Object *getObject(ObjectArray *objArray, char *objName){

@@ -2,6 +2,7 @@
 #define DICE
 
 #include <time.h>
+#include <stdlib.h>
 
 typedef enum{
     D4,

@@ -1,4 +1,4 @@
-#include "Headers/getFile.h"
+#include "../Headers/jsonHeaders/getFile.h"
 
 char *getJsonFile(char *fileName){
     FILE *file;
@@ -44,7 +44,7 @@ char *getJsonFile(char *fileName){
         return NULL;
     }
 
-    buffer[bytesRead + 1] = '\0';
+    buffer[bytesRead] = '\0';
 
     fclose(file);
     return buffer;

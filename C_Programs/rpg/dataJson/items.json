@@ -153,17 +153,6 @@
         "effect": 5
     },
 
-    "Weak Poison": {
-        "itemId": 3005,
-        "itemName": "Weak Poison",
-        "type": "POTION",
-        "effectType": "POISON",
-        "stackable": true,
-        "weight": 0.25,
-        "value": 30,
-        "effect": 4
-    },
-
     "Torch": {
         "itemId": 4001,
         "itemName": "Torch",

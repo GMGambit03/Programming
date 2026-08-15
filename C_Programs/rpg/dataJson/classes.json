@@ -7,6 +7,7 @@
         "Strength": 9,
         "Speed": 3,
         "Mana": 2,
+        "WeightCap": 135,
 
         "Inventory": {
             "WEAPON": 1003,
@@ -23,6 +24,7 @@
         "Strength": 4,
         "Speed": 6,
         "Mana": 12,
+        "WeightCap": 60,
 
         "Inventory": {
             "WEAPON": 1004,
@@ -39,6 +41,7 @@
         "Strength": 6,
         "Speed": 11,
         "Mana": 4,
+        "WeightCap": 90,
 
         "Inventory": {
             "WEAPON": 1005,

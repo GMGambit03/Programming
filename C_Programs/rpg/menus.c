@@ -1,22 +1,22 @@
 #include "Headers/menus.h"
-#include "Headers/fileHandle.h"
-#include "Headers/jsonHeaders/structs.h"
-#include "Headers/stringHelpers.h"
+#include <stdio.h>
 
-int startingMenu(){
+int startMenu(){
     while(true){
         char userInput[3];
         Player player;
 
         clearScreen();
 
-        printf("");
-        printf("");
+        printf("\n");
+        printf("\n");
 
         printf(" ==== Welcome to IDK at the moment ====");
         printf("\n");
         printf(" [ 1 ][ New Game ]");
+        printf("\n");
         printf(" [ 2 ][ Load Game ]");
+        printf("\n: ");
 
         fgets(userInput, sizeof(userInput), stdin);
         if(!clearBuffer((int)sizeof(userInput),userInput)){
@@ -39,11 +39,12 @@ char *newSaveMenu(){
         printf("\n");
         printf("\n");
         printf(" ==== IDK ====");
+        printf("\n");
         printf(" Player Name: ");
 
         fgets(userInput, sizeof(userInput), stdin);
 
-        if(!checkName((int)sizeof(userInput),userInput)){
+        if(!checkName((int)strlen(userInput) + 1,userInput)){
             continue;
         }
 
@@ -51,14 +52,12 @@ char *newSaveMenu(){
     }
 }
 
-Player *classMenu(){
+Player *classMenu(ClassDatabase *classDataBase){
     Player *player = malloc(sizeof(Player));
 
-    ObjectArray *classData = classDataBase();
-    Object *barbarian = getObject(classData, "Barbarian");
-    getId(&barbarian);
-    Object *mage = getObject(classData, "Mage");
-    Object *assassin = getObject(classData, "Assassin");
+    Class *barbarian = findClass(classDataBase, 11);
+    Class *mage = findClass(classDataBase, 12);
+    Class *assassin = findClass(classDataBase, 13);
 
     while(true){
         char userInput[3];
@@ -71,7 +70,8 @@ Player *classMenu(){
         printf("\n");
         printf("[1]Barbarian        [2]Mage        [3]Assassin");
         printf("\n");
-        printf(" Enter the coorosponding number to learn mmore about the class");
+        printf("\n");
+        printf(" Enter the coorosponding number to learn mmore about the class: ");
 
         fgets(userInput, sizeof(userInput), stdin);
         if(!clearBuffer((int)sizeof(userInput),userInput)){
@@ -92,12 +92,12 @@ Player *classMenu(){
         switch (chosenClass) {
             case '1':
                 if(*userInput == '1'){
-                    player = assignBaseInfo(barbarian);
+                    player = newPlayerInfo(barbarian);
                 }
                 else if(*userInput == '2'){
-                    player = assignBaseInfo(mage);
+                    player = newPlayerInfo(mage);
                 }else{
-                    player = assignBaseInfo(assassin);
+                    player = newPlayerInfo(assassin);
                 }
             break;
             default:
@@ -110,23 +110,45 @@ Player *classMenu(){
     }
 }
 
-int displayClassInfo(Object *classObj){
-    clearScreen();
-
-    Member *hp = getMember(classObj, "hp");
-    Member *str = getMember(classObj, "Strength");
-    Member *speed = getMember(classObj, "Speed");
-    Member *mana = getMember(classObj, "Mana");
-    Member *desc = getMember(classObj, "Description");
-
-    printf("\n");
-    printf("\n");
-    printf(" [ %s ]\n", classObj->objName);
-    printf("\n");
-    printf(" [ Health ]: %.*lf",hp->value.placeMent ,hp->value.data.number);
-    printf(" [ Strength ]: %.*lf",str->value.placeMent ,str->value.data.number);
-    printf(" [ Speed ]: %.*lf", speed->value.placeMent, speed->value.data.number);
-    printf(" [ Mana ]: %.*lf", mana->value.placeMent, mana->value.data.number);
-    printf("\n");
-    printf(" [ Description ]: %s", desc->value.data.string);
+int displayClassInfo(Class *classData){
+    while(true){
+        clearScreen();
+        char userInput[3];
+    
+        printf("\n");
+        printf("\n");
+        printf(" [ %s ]\n", classData->className);
+        printf("\n");
+        printf(" [ Health ]: %.2lf",classData->hP);
+        printf("\n");
+        printf(" [ Strength ]: %.2lf",classData->strength);
+        printf("\n");
+        printf(" [ Speed ]: %.2lf", classData->speed);
+        printf("\n");
+        printf(" [ Mana ]: %.2lf", classData->mana);
+        printf("\n");
+        printf("\n");
+        printf(" [ Description ]: %s", classData->description);
+        printf("\n");
+        printf("\n");
+        printf(" [ 1 ] Choose the %s Class        [ 2 ] Exit", classData->className);
+        printf("\n: ")
+    
+        fgets(userInput, sizeof(userInput), stdin);
+        if(!clearBuffer((int)sizeof(userInput),userInput)){
+            continue;
+        }
+        switch(*userInput){
+            case '1':
+                return 1;
+            break;
+            case '2':
+                return 2;
+            break;
+            default:
+                printf(" [ Please Enter valid number ]");
+                getchar();
+            break;
+        }
+    }
 }

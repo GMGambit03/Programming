@@ -4,11 +4,12 @@
 #include <stdlib.h>
 
 #include "fileHandle.h"
+#include "rpgStructs.h"
 #include "stringHelpers.h"
 
 int startMenu();
 char *newSaveMenu();
-void classMenu(Player *player);
-int displayClassInfo(Object *classObj);
+Player *classMenu(ClassDatabase *classDataBase);
+int displayClassInfo(Class *classData);
 
 #endif

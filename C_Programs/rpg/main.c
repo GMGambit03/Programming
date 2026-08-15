@@ -1,5 +1,5 @@
 #include "Headers/gameLoop.h"
-int main(int argc, const char *argv[]){
+int main(){
 
     int loadSave = startMenu();
     Player *player;
