@@ -4,6 +4,9 @@
 #include "dungeonMenus.h"
 #include "entityStructs.h"
 
+typedef struct DungeonDatabase DungeonDatabase;
+typedef struct Database Database;
+
 typedef struct Dungeon Dungeon;
 
 typedef enum{
@@ -14,21 +17,10 @@ typedef enum{
     NONE
 }Direction;
 
-typedef enum{
-    EXIT,
-    RAN,
-    DIED,
-    BOSSDEFEATED
-}DungeonReturns;
-
-typedef struct{
-    Dungeon **dungeons;
-    int size;
-}DungeonDatabase;
-
 typedef struct DungeonNode{
     EnemeyDataBase *enemies;
     int enemiesCount;
+    bool enemiesDead;
 
     char *description;
 
@@ -61,11 +53,13 @@ typedef struct Dungeon{
     int dungeonBossId;
 }Dungeon;
 
-DungeonReturns dungeonEntrance(GameState **gameState, DungeonDatabase **dungeonDatabase, int dungeonId);
-DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dungeonNode);
+DungeonReturns dungeonEntrance(GameState **gameState, Database **DB, int dungeonId);
+DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dungeonNode, Database **DB);
 Dungeon *createDungeon(Object *dungeonData);
-DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Direction parent);
-void getDungeonNodes(Dungeon **dungeon); 
-Dungeon *loadDungeon(DungeonDatabase **dungeonDatabase, int dungeonId);
+DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Direction parent, EnemeyDataBase **enemeyDatabase);
+void getDungeonNodes(Dungeon **dungeon, EnemeyDataBase **enemeyDatabase); 
+Dungeon *loadDungeon(Database **DB, int dungeonId);
+
+Direction getDirections(DungeonNode *dungeonNode);
 
 #endif

@@ -32,3 +32,26 @@ void printEnemies(int s, char *enimies[s]){
         printf(" : [ %s ]\n", currEnemy);
     }
 }
+
+char playerOptions(int optionsLength, char *options[optionsLength], DungeonReturns *retOptions){
+    while(true){
+        char userInput[3];
+
+        for(int i = 0; i < optionsLength; i++){
+            printf(" [%d] %s\n", (i + 1), options[i]);
+        }
+        printf("\n: ");
+
+        fgets(userInput, sizeof(userInput), stdin);
+        if(!clearBuffer((int)sizeof(userInput) ,userInput)){
+            continue;
+        }
+
+        int userInt = *userInput - '0';
+        return retOptions[userInt - 1];
+
+
+    }
+
+
+}

@@ -1,13 +1,9 @@
 #include "Headers/gameLoop.h"
-#include "Headers/dialogue.h"
-#include "Headers/dungeons.h"
+#include "Headers/dungeonMenus.h"
 
 GameState *newGameIntro(){
     // Loading assets, eventuallly turn this into a single function
-    ClassDatabase *classDataBase = createClassDB();
-    ItemDatabase *itemDataBase = createItemDB();
-    DungeonDatabase *dungeonDataBase = createDungeonDB();
-    EnemeyDataBase *enemeyDataBase = createEnemeyDB();
+    Database *DB = createDB();
     GameState *gameState = malloc(sizeof(GameState));
     gameState->player = NULL;
 
@@ -48,7 +44,7 @@ GameState *newGameIntro(){
                 enterContinue();
                 getchar();
 
-                Player *player = classMenu(classDataBase);
+                Player *player = classMenu(DB->classDB);
                 player->name = newSaveMenu();
 
                 gameState->player = player;
@@ -92,7 +88,7 @@ GameState *newGameIntro(){
 
             while(true){
                 clearScreen();
-                DungeonReturns dungeonReturn = dungeonEntrance(&gameState, &dungeonDataBase, 1001);
+                DungeonReturns dungeonReturn = dungeonEntrance(&gameState, &DB, 1001);
     
                 switch(dungeonReturn){
                     case EXIT:
@@ -101,7 +97,7 @@ GameState *newGameIntro(){
                         enterContinue();
                         getchar();
                     break;
-                    case RAN:
+                    case RUNAWAY:
                         createDialogue("Elder", "Them damn fiegns almost killed you.");
                         createDialogue("Elder", "Lets go to the villiage and get you some better equipment.");
                         enterContinue();
@@ -118,6 +114,8 @@ GameState *newGameIntro(){
                         createDialogue("Elder", "Lets go to the villiage and get you some better equipment for the next dungeon");
                         enterContinue();
                         getchar();
+                    break;
+                    default:
                     break;
                 }
                 if(dungeonReturn == EXIT){

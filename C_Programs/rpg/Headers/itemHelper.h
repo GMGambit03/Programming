@@ -3,6 +3,8 @@
 
 #include "jsonHeaders/structs.h"
 
+typedef struct ItemDatabase ItemDatabase;
+
 typedef enum{
     WEAPON,
     ARMOR,
@@ -36,11 +38,6 @@ typedef struct{
 }Item;
 
 typedef struct{
-    Item **items;
-    int count;
-}ItemDatabase;
-
-typedef struct{
     int itemId;
     int quantity;
 }InventorySlot;
@@ -62,5 +59,6 @@ Item *createItem(Object *itemData);
 ITEMTYPE getItemType(char *type);
 EFFECTTYPE getEffectType(char *type);
 Item *getItemById(ItemDatabase *itemDataBase, int id);
+
 
 #endif

@@ -1,8 +1,10 @@
 #include "Headers/dungeons.h"
+#include "Headers/dungeonMenus.h"
+#include "Headers/entityStructs.h"
+#include "Headers/fileHandle.h"
 #include "Headers/stringHelpers.h"
-#include <stdbool.h>
+#include "Headers/combat.h"
 #include <stdio.h>
-#include <time.h>
 
 Dungeon *createDungeon(Object *dungeonData){
     Dungeon *dungeonStruct = malloc(sizeof(Dungeon));
@@ -27,18 +29,18 @@ Dungeon *createDungeon(Object *dungeonData){
 
 }
 
-Dungeon *loadDungeon(DungeonDatabase **dungeonDatabase, int dungeonId){
-    for(int i = 0; i < (*dungeonDatabase)->size; i++){
-        Dungeon *currDungeon = (*dungeonDatabase)->dungeons[i];
-        if(currDungeon[i].dungeonId == dungeonId){
-            getDungeonNodes(&currDungeon);
+Dungeon *loadDungeon(Database **DB, int dungeonId){
+    for(int i = 0; i < (*DB)->dungeonDB->size; i++){
+        Dungeon *currDungeon = (*DB)->dungeonDB->dungeons[i];
+        if(currDungeon->dungeonId == dungeonId){
+            getDungeonNodes(&currDungeon, &(*DB)->enemeyDB);
             return currDungeon;
         }
     }
     return NULL;
 }
 
-DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Direction Parent){
+DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Direction Parent, EnemeyDataBase **enemeyDatabase){
     
     if(*count == roomCount){
         return NULL;
@@ -53,6 +55,12 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Dir
     room->west = NULL;
     room->south = NULL;
     room->enemiesCount = rand() % (tmp->maxEnemyCnt - tmp->minEnemyCnt + 1) + tmp->minEnemyCnt;
+    if(room->enemiesCount == 0){
+        room->enemiesDead = true;
+    }else{
+        room->enemiesDead = false;
+    }
+    room->enemies = getRanEnemies(tmp->possibleEnemies, tmp->possEnemyCount, room->enemiesCount, enemeyDatabase);
     room->description = "We dont got anything";
     
     *count += 1;
@@ -113,28 +121,28 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Dir
         switch (nxtRoom) {
             case NORTH:
                 childParent = SOUTH;
-                room->north = createDungeonNode(roomCount, dungeon, count, childParent);
+                room->north = createDungeonNode(roomCount, dungeon, count, childParent, enemeyDatabase);
                 if(room->north != NULL){
                     room->north->south = room;
                 }
             break;
             case WEST:
                 childParent = EAST;
-                room->west = createDungeonNode(roomCount, dungeon, count, childParent);
+                room->west = createDungeonNode(roomCount, dungeon, count, childParent, enemeyDatabase);
                 if(room->west != NULL){
                     room->west->east = room;
                 }
             break;
             case SOUTH:
                 childParent = NORTH;
-                room->south = createDungeonNode(roomCount, dungeon, count, childParent);
+                room->south = createDungeonNode(roomCount, dungeon, count, childParent, enemeyDatabase);
                 if(room->south != NULL){
                     room->south->north = room;
                 }
             break;
             case EAST:
                 childParent = WEST;
-                room->east = createDungeonNode(roomCount, dungeon, count, childParent);
+                room->east = createDungeonNode(roomCount, dungeon, count, childParent, enemeyDatabase);
                 if(room->east != NULL){
                     room->east->west = room;
                 }                
@@ -148,15 +156,15 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Dir
     return room;
 }
 
-void getDungeonNodes(Dungeon **dungeon){
+void getDungeonNodes(Dungeon **dungeon, EnemeyDataBase **enemeyDatabase){
 
     int roomCount = (rand() + (*dungeon)->minRooms) % (*dungeon)->maxRooms + 1;
     int count = 0;
-    (*dungeon)->entrance = createDungeonNode(roomCount, dungeon, &count, NONE);
+    (*dungeon)->entrance = createDungeonNode(roomCount, dungeon, &count, NONE, enemeyDatabase);
 }
 
-DungeonReturns dungeonEntrance(GameState **gameState, DungeonDatabase **dungeonDatabase, int dungeonId){
-    Dungeon *dungeon = loadDungeon(dungeonDatabase, dungeonId);
+DungeonReturns dungeonEntrance(GameState **gameState, Database **DB, int dungeonId){
+    Dungeon *dungeon = loadDungeon(DB, dungeonId);
 
     while(true){
         char userInput[3];
@@ -188,7 +196,7 @@ DungeonReturns dungeonEntrance(GameState **gameState, DungeonDatabase **dungeonD
                 return EXIT;
             break;
             case '2':
-                return enterDungeon(&(*gameState)->player, dungeon->dungeonName, dungeon->entrance);
+                return enterDungeon(&(*gameState)->player, dungeon->dungeonName, dungeon->entrance, DB);
             break;
             default:
                 printf("\n");
@@ -201,37 +209,84 @@ DungeonReturns dungeonEntrance(GameState **gameState, DungeonDatabase **dungeonD
 
 }
 
-DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dungeonNode){
-    clearScreen();
-    dungeonHeader(dungeonName);
-    charFiller(1, '\n');
-    printf(" You enter a %s", dungeonNode->description);
-    charFiller(1, '\n');
-    playerStats((*player)->health, (*player)->maxHealth, (*player)->mana, (*player)->maxMana);
-    charFiller(1, '\n');
+DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dungeonNode, Database **DB){
+    while(true){
+        clearScreen();
+        dungeonHeader(dungeonName);
+        charFiller(1, '\n');
+        printf(" You enter a %s", dungeonNode->description);
+        charFiller(1, '\n');
+        playerStats((*player)->health, (*player)->maxHealth, (*player)->mana, (*player)->maxMana);
+        charFiller(1, '\n');
 
-    // Get enemies
-    // char *enemiesStrArr[dungeonNode->enemiesCount];
-    // for(int i = 0; i < dungeonNode->enemiesCount; i++){
-    //     Enemey *currEnemy = dungeonNode->enemies->enemies[i];
+        
+        char *enemiesStrArr[dungeonNode->enemiesCount];
+        for(int i = 0; i < dungeonNode->enemiesCount; i++){
+            Enemey *currEnemy = dungeonNode->enemies->enemies[i];
 
-    //     enemiesStrArr[i] = currEnemy->name;
-    // }
-    char *enemiesStrArr[] = {"Skeleton", "Zombie", "Goblin"};
-    printEnemies(3, enemiesStrArr);
+            enemiesStrArr[i] = currEnemy->name;
+        }
+        printEnemies(dungeonNode->enemiesCount, enemiesStrArr);
+        charFiller(1, '\n');
+        charFiller(16, '-');
+        charFiller(1, '\n');
 
-    charFiller(1, '\n');
-    charFiller(16, '-');
+        char *strEnemeyOptions[] = {"Fight", "Inventory", "Run"};
+        DungeonReturns retEnemeyOptions[] = {FIGHT, INVENTORY, RUNAWAY};
 
-    char *options[] = {"Fight", "Inventory", "Inspect Room", "Move", "Run"};
-    int optionsLength = sizeof(options) / 8;
-    // char userInput = playerOptions(optionsLength, options);
+        char *strMainOptions[] = {"Move", "Search Room", "Inventory", "Leave Dungeon"};
+        DungeonReturns retMainOptions[] = {MOVE, SEARCHROOM, INVENTORY, LEAVE};
 
-    // switch(userInput){
-    //     case '5':
-    //         return RAN;
-    //     break;
-    // }
+        DungeonReturns userInput;
+        if(!dungeonNode->enemiesDead && dungeonNode->enemiesCount > 0){
+            userInput = playerOptions(sizeof(strEnemeyOptions)/8, strEnemeyOptions, retEnemeyOptions);
+        }else{
+            userInput = playerOptions(sizeof(strMainOptions)/8, strMainOptions, retMainOptions);
+        }
+        
+        Direction moveTo;
+        DungeonReturns enemiesDefeated;
+        switch(userInput){
+            case FIGHT:
+                enemiesDefeated = fightMenu(player, &dungeonNode->enemies, DB);
+                if(enemiesDefeated != ENEMEYDEFEATED){
+                    return enemiesDefeated;
+                }
+                dungeonNode->enemiesDead = true;
+            break;
+            case INVENTORY:
+                // displayInventory(player);
+            break;
+            case MOVE:
+                // moveTo = getDirections(dungeonNode);
+                switch (moveTo) {
+                    case NORTH:
+                        return enterDungeon(player, dungeonName, dungeonNode->north, DB);
+                    break;
+                    case WEST:
+                        return enterDungeon(player, dungeonName, dungeonNode->west, DB);
+                    break;
+                    case EAST:
+                        return enterDungeon(player, dungeonName, dungeonNode->east, DB);
+                    break;
+                    case SOUTH:
+                        return enterDungeon(player, dungeonName, dungeonNode->south, DB);
+                    break;
+                    default:
+                    break;
+                }
+            break;
+        //     // case SEARCHROOM:
+        //     //     return BOSSDEFEATED;
+        //     // break;
+            default:
+                return userInput;
+            break;
+        }
+    }
+
+
+
+    printf("Everything works");
     getchar();
-    return RAN;
 }

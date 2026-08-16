@@ -44,11 +44,13 @@ char *newSaveMenu(){
         printf(" Player Name: ");
 
         fgets(userInput, sizeof(userInput), stdin);
-
-        if(!checkName((int)strlen(userInput) + 1,userInput)){
+        int inputLength = (int)strlen(userInput);
+        if(!checkName(inputLength + 1,userInput)){
             continue;
         }
 
+        userInput[inputLength - 1] = '\0';
+        
         return userInput;
     }
 }

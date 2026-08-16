@@ -1,6 +1,8 @@
 #include "Headers/entityStructs.h"
 #include "Headers/itemHelper.h"
 #include "Headers/jsonHeaders/structs.h"
+#include "Headers/fileHandle.h"
+#include <stdlib.h>
 
 Class *createClass(Object *classData){
     Class *classStruct = malloc(sizeof(Class));
@@ -102,4 +104,37 @@ Enemey *createEnemey(Object *currEnemeyData){
     enemey->weapon = getMember(currEnemeyData, "Weapon")->value.data.number;
 
     return enemey;
+}
+
+EnemeyDataBase *getRanEnemies(int *possEnemies, int possEnemeyCount, int enemeyCount, EnemeyDataBase **enemeyDatabase){
+    EnemeyDataBase *enemies = malloc(sizeof(EnemeyDataBase));
+    enemies->enemiesCount = enemeyCount;
+    enemies->enemies = malloc(sizeof(Enemey) * enemies->enemiesCount);
+    
+    for(int i = 0; i < enemeyCount; i++){
+        enemies->enemies[i] = getEnemeyById(possEnemies[i], enemeyDatabase);
+    }
+
+    return enemies;
+}
+
+Enemey *getEnemeyById(int enemeyId, EnemeyDataBase **enemeyDatabase){
+    Enemey *enemey = malloc(sizeof(Enemey));
+
+    enemey->iD = enemeyId;
+    for(int i = 0; i < (*enemeyDatabase)->enemiesCount; i++){
+        Enemey *curr = (*enemeyDatabase)->enemies[i];
+        curr->isDead = false;
+        if(enemeyId == curr->iD){
+            enemey->health = curr->health;
+            enemey->loot = curr->loot;
+            enemey->lootCount = curr->lootCount;
+            enemey->name = curr->name;
+            enemey->speed = curr->speed;
+            enemey->strength = curr->strength;
+            enemey->weapon = curr->weapon;
+            return enemey;
+        }
+    }
+    return NULL;
 }

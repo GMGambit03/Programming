@@ -2,12 +2,14 @@
 #define ENTITYSTRUCTS
 
 #include <stdio.h>
-
 #include "itemHelper.h"
 #include "dice.h"
 #include "locationMgr.h"
 
-typedef struct{
+typedef struct EnemeyDataBase EnemeyDataBase;
+typedef struct ClassDatabase ClassDatabase;
+
+typedef struct Classes{
     int iD;
     char *className;
     char *description;
@@ -18,12 +20,7 @@ typedef struct{
     Inventory *inventory;
 }Class;
 
-typedef struct{
-    Class **classes;
-    int count;
-}ClassDatabase;
-
-typedef struct{
+typedef struct Player{
     char *name;
     char *className;
 
@@ -44,10 +41,10 @@ typedef struct{
     double mana;
     double maxMana;
 
-
+    int weapon;
 }Player;
 
-typedef struct{
+typedef struct Enemey{
     int iD;
     char *name;
 
@@ -60,12 +57,9 @@ typedef struct{
 
     int weapon;
 
-}Enemey;
+    bool isDead;
 
-typedef struct{
-    Enemey **enemies;
-    int enemiesCount;
-}EnemeyDataBase;
+}Enemey;
 
 typedef struct{
     Player *player;
@@ -88,5 +82,9 @@ Player *newPlayerInfo(Class *classData);
 Class *createClass(Object *classData);
 Class *findClass(ClassDatabase *classDataBase, int classId);
 Enemey *createEnemey(Object *currEnemeyData);
+EnemeyDataBase *getRanEnemies(int *possEnemies, int possEnemeyCount, int enemeyCount, EnemeyDataBase **enemeyDatabase);
+Enemey *getEnemeyById(int enemeyId, EnemeyDataBase **enemeyDatabase);
+
+void displayInventory(Player **player);
 
 #endif

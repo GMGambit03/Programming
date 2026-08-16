@@ -87,3 +87,13 @@ EnemeyDataBase *createEnemeyDB(){
 
     return enemeyDB;
 }
+
+Database *createDB(){
+    Database *DB = malloc(sizeof(Database));
+    
+    DB->classDB = createClassDB();
+    DB->dungeonDB = createDungeonDB();
+    DB->enemeyDB = createEnemeyDB();
+    DB->itemDB = createItemDB();
+    return DB;
+}

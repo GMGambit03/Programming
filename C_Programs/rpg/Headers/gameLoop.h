@@ -5,6 +5,7 @@
 #include <stdbool.h>
 
 #include "screenMenus.h"
+#include "dungeons.h"
 
 GameState *newGameIntro();
 
