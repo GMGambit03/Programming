@@ -7,6 +7,14 @@
 typedef struct Dungeon Dungeon;
 
 typedef enum{
+    NORTH,
+    WEST,
+    EAST,
+    SOUTH,
+    NONE
+}Direction;
+
+typedef enum{
     EXIT,
     RAN,
     DIED,
@@ -41,17 +49,23 @@ typedef struct Dungeon{
     DungeonNode *entrance;
     DungeonNode *bossRoom;
 
-    int *possibleEnimies;
+    int *possibleEnemies;
     int possEnemyCount;
 
     int minEnemyCnt;
     int maxEnemyCnt;
+
+    int minRooms;
+    int maxRooms;
+
     int dungeonBossId;
 }Dungeon;
 
-DungeonReturns dungeonEntrance(GameState **gameState, int dungeonId);
+DungeonReturns dungeonEntrance(GameState **gameState, DungeonDatabase **dungeonDatabase, int dungeonId);
 DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dungeonNode);
 Dungeon *createDungeon(Object *dungeonData);
-Dungeon *loadDungeon(int dungeonId);
+DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Direction parent);
+void getDungeonNodes(Dungeon **dungeon); 
+Dungeon *loadDungeon(DungeonDatabase **dungeonDatabase, int dungeonId);
 
 #endif

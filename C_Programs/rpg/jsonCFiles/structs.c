@@ -81,6 +81,14 @@ Object *getObject(ObjectArray *objArray, char *objName){
     return NULL;
 }
 
+int getObjectCount(ObjectArray *objArray){
+    int count = 0;
+    for(int i = 0; i < objArray->size; i++){
+        count++;
+    }
+    return count;
+}
+
 int *getIntArr(JsonArray *jsonArray, int *count){
     int *array = malloc(sizeof(int) * jsonArray->count);
 

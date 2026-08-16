@@ -1,6 +1,7 @@
 #include "Headers/screenMenus.h"
 
 int startMenu(){
+    srand(time(NULL));
     while(true){
         char userInput[3];
         Player player;

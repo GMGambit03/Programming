@@ -4,10 +4,11 @@
 
 GameState *newGameIntro(){
     // Loading assets, eventuallly turn this into a single function
-    ClassDatabase *classDataBase = createClassDataBase();
-    ItemDatabase *itemDataBase = createItemDatabase();
-    DungeonDataBase *dungeonDataBase = createDungeonDatabase();
+    ClassDatabase *classDataBase = createClassDB();
+    ItemDatabase *itemDataBase = createItemDB();
+    DungeonDatabase *dungeonDataBase = createDungeonDB();
     GameState *gameState = malloc(sizeof(GameState));
+    gameState->player = NULL;
 
     char *dialogOptions[] = {"I'll go take a look", "What exactly is the \"seal?\"", "Why me?"};
     int optionsLength = sizeof(dialogOptions) / sizeof(dialogOptions[0]);
@@ -41,6 +42,9 @@ GameState *newGameIntro(){
                 printf("\n");
                 printf("\n");
                 printf(" **Elder**: Good, before you go what's your class and name\n");
+                printf("\n");
+                enterContinue();
+                getchar();
 
                 Player *player = classMenu(classDataBase);
                 player->name = newSaveMenu();
@@ -86,7 +90,7 @@ GameState *newGameIntro(){
 
             while(true){
                 clearScreen();
-                DungeonReturns dungeonReturn = dungeonEntrance(&gameState, 1001);
+                DungeonReturns dungeonReturn = dungeonEntrance(&gameState, &dungeonDataBase, 1001);
     
                 switch(dungeonReturn){
                     case EXIT:

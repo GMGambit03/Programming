@@ -10,8 +10,8 @@
 #include "entityStructs.h"
 
 void getPlayerData(Player *playerData);
-ClassDatabase *createClassDataBase();
-ItemDatabase *createItemDatabase();
-DungeonDatabase *createDungeonDatabase();
+ClassDatabase *createClassDB();
+ItemDatabase *createItemDB();
+DungeonDatabase *createDungeonDB();
 
 #endif

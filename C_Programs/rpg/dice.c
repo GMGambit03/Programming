@@ -31,8 +31,6 @@ Dice createDice(DiceType diceType){
 
 double rollDice(Roll roll){
 
-    srand(time(NULL));
-
     Dice dice = createDice(roll.diceType);
     double sum = 0;
 

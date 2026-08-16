@@ -21,7 +21,7 @@ void playerStats(int health, int maxHealth, int mana, int maxMana){
     printf(" Mana: %d / %d", mana, maxMana);
 }
 
-void printenemies(int s, char *enimies[s]){
+void printEnemies(int s, char *enimies[s]){
     printf(" Enemies in room:");
     printf("\n");
     for(int i = 0; i < s; i++){

@@ -64,12 +64,13 @@ char *toUpper(char *string){
 
     for(int i = 0; i < strLength; i++){
         char currChar = string[i];
-        if(currChar >= 'a' || currChar <= 'z'){
-            upperStr[i] = currChar - 32;
+        if(currChar >= 'a' && currChar <= 'z'){
+            upperStr[i] = (char)(currChar - 32);
         }else{
             upperStr[i] = currChar;
         }
     }
+    upperStr[strLength] = '\0';
     return upperStr;
 }
 
