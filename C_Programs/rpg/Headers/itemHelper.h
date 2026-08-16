@@ -61,5 +61,6 @@ void getInventoryItems(Inventory **inventory, Node *items);
 Item *createItem(Object *itemData);
 ITEMTYPE getItemType(char *type);
 EFFECTTYPE getEffectType(char *type);
+Item *getItemById(ItemDatabase *itemDataBase, int id);
 
 #endif

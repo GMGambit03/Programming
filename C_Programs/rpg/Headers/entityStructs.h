@@ -60,12 +60,12 @@ typedef struct{
 
     int weapon;
 
-}Enemy;
+}Enemey;
 
 typedef struct{
-    Enemy **enemies;
+    Enemey **enemies;
     int enemiesCount;
-}EnemyArray;
+}EnemeyDataBase;
 
 typedef struct{
     Player *player;
@@ -87,5 +87,6 @@ typedef struct{
 Player *newPlayerInfo(Class *classData);
 Class *createClass(Object *classData);
 Class *findClass(ClassDatabase *classDataBase, int classId);
+Enemey *createEnemey(Object *currEnemeyData);
 
 #endif

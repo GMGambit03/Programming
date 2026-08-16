@@ -13,9 +13,10 @@ int startMenu(){
 
         printf(" ==== Welcome to IDK at the moment ====");
         printf("\n");
-        printf(" [ 1 ][ New Game ]");
         printf("\n");
-        printf(" [ 2 ][ Load Game ]");
+        printf("           [ 1 ][ New Game ]");
+        printf("\n");
+        printf("           [ 2 ][ Load Game ]");
         printf("\n: ");
 
         fgets(userInput, sizeof(userInput), stdin);
@@ -66,9 +67,10 @@ Player *classMenu(ClassDatabase *classDataBase){
         clearScreen();
         printf("\n");
         printf("\n");
-        printf(" ======== Pick Your Class ========");
+        printf("       ======== Pick Your Class ========");
         printf("\n");
-        printf("[1]Barbarian        [2]Mage        [3]Assassin");
+        printf(" [1]Barbarian        [2]Mage        [3]Assassin");
+        printf("\n");
         printf("\n");
         printf("\n");
         printf(" Enter the coorosponding number to learn mmore about the class: ");
@@ -90,7 +92,7 @@ Player *classMenu(ClassDatabase *classDataBase){
         }
 
         switch (chosenClass) {
-            case '1':
+            case 1:
                 if(*userInput == '1'){
                     player = newPlayerInfo(barbarian);
                 }

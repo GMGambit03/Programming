@@ -1,10 +1,12 @@
 #include "Headers/dungeonMenus.h"
+#include <stdio.h>
 
 void dungeonHeader(char *dungeonName){
     int filler = 16;
     int nameLength = strlen(dungeonName);
     int center = (filler - nameLength) / 2;
 
+    printf(" ");
     charFiller(16, '=');
     printf("\n");
     printf("\n");
@@ -12,6 +14,7 @@ void dungeonHeader(char *dungeonName){
     printf("%s", dungeonName);
     printf("\n");
     printf("\n");
+    printf(" ");
     charFiller(16, '=');
 }
 
@@ -26,6 +29,6 @@ void printEnemies(int s, char *enimies[s]){
     printf("\n");
     for(int i = 0; i < s; i++){
         char *currEnemy = enimies[i];
-        printf("    %s\n", currEnemy);
+        printf(" : [ %s ]\n", currEnemy);
     }
 }

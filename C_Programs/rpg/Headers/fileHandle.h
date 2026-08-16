@@ -13,5 +13,6 @@ void getPlayerData(Player *playerData);
 ClassDatabase *createClassDB();
 ItemDatabase *createItemDB();
 DungeonDatabase *createDungeonDB();
+EnemeyDataBase *createEnemeyDB();
 
 #endif

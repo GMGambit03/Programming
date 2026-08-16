@@ -1,0 +1,56 @@
+{
+    "Hollow Rat": {
+    "ID": 1001,
+    "Name": "Hollow Rat",
+    "Loot": [
+            3001,
+            4001
+        ],
+    "Health": 15.0,
+    "Strength": 3.0,
+    "Speed": 8.0,
+    "Weapon": 0
+  },
+  "Cracked Sentinel": {
+    "ID": 1002,
+    "Name": "Cracked Sentinel",
+    "Loot": [
+            1001,
+            1002,
+            2002,
+            3001
+        ],
+    "Health": 60.0,
+    "Strength": 12.0,
+    "Speed": 2.0,
+    "Weapon": 1002
+  },
+  "Wailer": {
+    "ID": 1003,
+    "Name": "Wailer",
+    "Loot": [
+            3003,
+            3004,
+            4002
+        ],
+    "Health": 20.0,
+    "Strength": 7.0,
+    "Speed": 9.0,
+    "Weapon": 0
+  },
+  "Blackwater Crawler": {
+    "ID": 1004,
+    "Name": "Blackwater Crawler",
+    "Loot": [
+            1005,
+            2003,
+            3001,
+            3002,
+            4003
+        ],
+    "Health": 45.0,
+    "Strength": 15.0,
+    "Speed": 6.0,
+    "Weapon": 1005
+  }
+}

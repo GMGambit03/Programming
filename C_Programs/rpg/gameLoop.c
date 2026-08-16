@@ -7,6 +7,7 @@ GameState *newGameIntro(){
     ClassDatabase *classDataBase = createClassDB();
     ItemDatabase *itemDataBase = createItemDB();
     DungeonDatabase *dungeonDataBase = createDungeonDB();
+    EnemeyDataBase *enemeyDataBase = createEnemeyDB();
     GameState *gameState = malloc(sizeof(GameState));
     gameState->player = NULL;
 
@@ -25,6 +26,7 @@ GameState *newGameIntro(){
         printf("\n");
         printf("\n");
         printf(" **Elder**: The seal is failing. There's a passage east of here that wasn't open yesterday. It is now.");
+        printf("\n");
         printf("\n");
         for(int i = 0; i < optionsLength; i++){
             printf("[ %d ]: %s\n", i + 1, dialogOptions[i]);

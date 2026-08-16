@@ -1,4 +1,6 @@
 #include "Headers/entityStructs.h"
+#include "Headers/itemHelper.h"
+#include "Headers/jsonHeaders/structs.h"
 
 Class *createClass(Object *classData){
     Class *classStruct = malloc(sizeof(Class));
@@ -79,4 +81,25 @@ Player *newPlayerInfo(Class *classData){
 
     return player;
     
+}
+
+
+Enemey *createEnemey(Object *currEnemeyData){
+    Enemey *enemey = malloc(sizeof(Enemey));
+
+    enemey->iD = getMember(currEnemeyData, "ID")->value.data.number;
+    enemey->name = getMember(currEnemeyData, "Name")->value.data.string;
+    
+    JsonArray *lootArr = getMember(currEnemeyData, "Loot")->value.data.array;
+    int count = 0;
+    enemey->loot = getIntArr(lootArr, &count);
+    enemey->lootCount = count;
+
+    enemey->health = getMember(currEnemeyData, "Health")->value.data.number;
+    enemey->speed = getMember(currEnemeyData, "Speed")->value.data.number;
+    enemey->strength = getMember(currEnemeyData, "Strength")->value.data.number;
+
+    enemey->weapon = getMember(currEnemeyData, "Weapon")->value.data.number;
+
+    return enemey;
 }

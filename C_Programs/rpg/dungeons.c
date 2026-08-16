@@ -1,5 +1,7 @@
 #include "Headers/dungeons.h"
+#include "Headers/stringHelpers.h"
 #include <stdbool.h>
+#include <stdio.h>
 #include <time.h>
 
 Dungeon *createDungeon(Object *dungeonData){
@@ -162,10 +164,17 @@ DungeonReturns dungeonEntrance(GameState **gameState, DungeonDatabase **dungeonD
 
         printf("\n");
         printf("\n");
-        printf(" ======== ENTERING %s ========\n", toUpper(dungeon->dungeonName));
+        printf("  ======== ENTERING %s ========", toUpper(dungeon->dungeonName));
         printf("\n");
         printf("\n");
-        printf(" [ 1 ] Exit        [ 2 ] Continue\n");
+        
+        //Gets Center
+        int nameLength = strlen(dungeon->dungeonName);
+        charFiller(((32 + (nameLength - 2)) - 34) / 2, ' ');
+        printf(" [ 1 ] Exit        [ 2 ] Continue");
+
+        printf("\n");
+        printf("\n");
         printf(": ");
 
         fgets(userInput, sizeof(userInput), stdin);
@@ -193,21 +202,25 @@ DungeonReturns dungeonEntrance(GameState **gameState, DungeonDatabase **dungeonD
 }
 
 DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dungeonNode){
+    clearScreen();
     dungeonHeader(dungeonName);
-    charFiller(3, '\n');
-    printf("You enter a %s", dungeonNode->description);
-    charFiller(3, '\n');
+    charFiller(1, '\n');
+    printf(" You enter a %s", dungeonNode->description);
+    charFiller(1, '\n');
     playerStats((*player)->health, (*player)->maxHealth, (*player)->mana, (*player)->maxMana);
-    charFiller(3, '\n');
+    charFiller(1, '\n');
 
-    char *enemiesStrArr[dungeonNode->enemiesCount];
-    for(int i = 0; i < dungeonNode->enemiesCount; i++){
-        Enemy *currEnemy = dungeonNode->enemies->enemies[i];
+    // Get enemies
+    // char *enemiesStrArr[dungeonNode->enemiesCount];
+    // for(int i = 0; i < dungeonNode->enemiesCount; i++){
+    //     Enemey *currEnemy = dungeonNode->enemies->enemies[i];
 
-        enemiesStrArr[i] = currEnemy->name;
-    }
-    printEnemies(dungeonNode->enemiesCount, enemiesStrArr);
+    //     enemiesStrArr[i] = currEnemy->name;
+    // }
+    char *enemiesStrArr[] = {"Skeleton", "Zombie", "Goblin"};
+    printEnemies(3, enemiesStrArr);
 
+    charFiller(1, '\n');
     charFiller(16, '-');
 
     char *options[] = {"Fight", "Inventory", "Inspect Room", "Move", "Run"};

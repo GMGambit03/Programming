@@ -1,5 +1,6 @@
 #include "Headers/fileHandle.h"
 #include "Headers/dungeons.h"
+#include "Headers/entityStructs.h"
 
 
 ItemDatabase *createItemDB(){
@@ -64,4 +65,25 @@ DungeonDatabase *createDungeonDB(){
     }
 
     return dungeonDB;
+}
+
+EnemeyDataBase *createEnemeyDB(){
+    char *fileName = "dataJson/enemies.json";
+    char *jsonFile = getJsonFile(fileName);
+
+    Parser parser = {0, 0, jsonFile, jsonFile[0]};
+    ObjectArray *enemiesData = searchMode(&parser);
+
+    EnemeyDataBase *enemeyDB = malloc(sizeof(DungeonDatabase));
+    enemeyDB->enemiesCount = getObjectCount(enemiesData);
+    enemeyDB->enemies = malloc(sizeof(Dungeon) * enemeyDB->enemiesCount);
+
+    for(int i = 0; i < enemeyDB->enemiesCount; i++){
+        Object *currEnemeyData = enemiesData->objects[i];
+        Enemey *currEnemey = createEnemey(currEnemeyData);
+
+        enemeyDB->enemies[i] = currEnemey;
+    }
+
+    return enemeyDB;
 }

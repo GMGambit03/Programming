@@ -27,7 +27,7 @@ typedef struct{
 }DungeonDatabase;
 
 typedef struct DungeonNode{
-    EnemyArray *enemies;
+    EnemeyDataBase *enemies;
     int enemiesCount;
 
     char *description;
