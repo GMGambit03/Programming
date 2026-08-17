@@ -118,7 +118,15 @@ EnemeyDataBase *getRanEnemies(int *possEnemies, int possEnemeyCount, int enemeyC
     enemies->enemiesCount = enemeyCount;
     enemies->enemies = malloc(sizeof(Enemey) * enemies->enemiesCount);
     
-    for(int i = 0; i < enemeyCount; i++){
+    for(int i = enemeyCount - 1; i >= 0; i--){
+        int ranNum = rand() % (i + 1);
+
+        int curr = possEnemies[i];
+        int swap = possEnemies[ranNum];
+
+        possEnemies[i] = swap;
+        possEnemies[ranNum] = curr;
+        
         enemies->enemies[i] = getEnemeyById(possEnemies[i], enemeyDatabase);
     }
 
