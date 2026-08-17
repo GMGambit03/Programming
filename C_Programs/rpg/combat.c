@@ -117,14 +117,18 @@ Enemey *attackTarget(Player **player, Enemey *enemey, ItemDatabase *itemDB){
     double playerDef = (*player)->speed + 8;
     double eneDef = enemey->speed + 8;
 
-    double playerDamage = damageRoll(D6, (*player)->strength, 2);
+    double playerBreakAc = damageRoll(D20, 0, 1);
+    double enemeyBreakAc = damageRoll(D20, 0, 1);
 
-    double enemeyDamage = damageRoll(D6, enemey->strength, 2);
+    double playerDamage = (*player)->strength;
+    double enemeyDamage = enemey->strength;
+
+    printf("Player: %.2lf, Enemey: %.2lf", playerBreakAc, enemeyBreakAc);
 
     for(int i = 0; i < 2; i++){
         switch(initRoll){
             case PLAYER:
-                if(playerDef < eneDef && playerDamage < eneDef){
+                if(playerDef < eneDef && playerBreakAc < eneDef){
                     printf("Player Missed");
                 }else{
                     playerDamage = applyArmor(playerDamage, enemey->armor, itemDB);
@@ -133,7 +137,7 @@ Enemey *attackTarget(Player **player, Enemey *enemey, ItemDatabase *itemDB){
                 }
             break;
             case ENEMEY:
-                if( eneDef < playerDef && eneDef < playerDamage){
+                if( eneDef < playerDef && enemeyBreakAc < eneDef){
                     printf("Enemey Missed");
                 }else if(enemey->health > 0){
                     enemeyDamage = applyArmor(enemeyDamage, (*player)->armorSet, itemDB);

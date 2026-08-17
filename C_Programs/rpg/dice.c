@@ -35,7 +35,7 @@ double rollDice(Roll roll){
     double sum = 0;
 
     for(int i = 0; i < roll.rolls; i++){
-        double roll = rand() % (dice.diceSides + 1);
+        double roll = (rand() % dice.diceSides) + 1 ;
         sum += roll;
     }
 
