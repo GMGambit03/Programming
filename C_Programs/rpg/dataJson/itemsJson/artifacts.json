@@ -1,0 +1,12 @@
+{
+    "Warden's Heart Fragment": {
+        "itemId": 5001,
+        "itemName": "Warden's Heart Fragment",
+        "type": "ARTIFACT",
+        "effectType": "NONE",
+        "stackable": false,
+        "weight": 20,
+        "value": 100,
+        "effect": 0
+    }
+}

@@ -29,8 +29,8 @@ typedef struct DungeonDatabase{
 }DungeonDatabase;
 
 typedef struct ItemDatabase{
-    Item **items;
-    int count;
+    Item ***itemsArray;
+    int *itemCounts;
 }ItemDatabase;
 
 typedef struct Database{

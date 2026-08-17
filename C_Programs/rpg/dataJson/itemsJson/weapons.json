@@ -1,0 +1,73 @@
+{
+    "Rusty Sword": {
+        "itemId": 1001,
+        "itemName": "Rusty Sword",
+        "type": "WEAPON",
+        "effectType": "DAMAGE",
+        "stackable": false,
+        "weight": 4.5,
+        "value": 15,
+        "effect": 7,
+        "penetration": 0.55
+    },
+
+    "Iron Sword": {
+        "itemId": 1002,
+        "itemName": "Iron Sword",
+        "type": "WEAPON",
+        "effectType": "DAMAGE",
+        "stackable": false,
+        "weight": 5.0,
+        "value": 60,
+        "effect": 12,
+        "penetration": 0.55
+    },
+
+    "Iron Battleaxe": {
+        "itemId": 1003,
+        "itemName": "Iron Battleaxe",
+        "type": "WEAPON",
+        "effectType": "DAMAGE",
+        "stackable": false,
+        "weight": 8.5,
+        "value": 85,
+        "effect": 16,
+        "penetration": 0.50
+    },
+
+    "Apprentice Staff": {
+        "itemId": 1004,
+        "itemName": "Apprentice Staff",
+        "type": "WEAPON",
+        "effectType": "DAMAGE",
+        "stackable": false,
+        "weight": 3.0,
+        "value": 55,
+        "effect": 8,
+        "penetration": 0.45
+    },
+
+    "Iron Dagger": {
+        "itemId": 1005,
+        "itemName": "Iron Dagger",
+        "type": "WEAPON",
+        "effectType": "DAMAGE",
+        "stackable": false,
+        "weight": 1.5,
+        "value": 40,
+        "effect": 9,
+        "penetration": 0.50
+    },
+
+    "Wooden Club": {
+        "itemId": 1006,
+        "itemName": "Wooden Club",
+        "type": "WEAPON",
+        "effectType": "DAMAGE",
+        "stackable": false,
+        "weight": 3.5,
+        "value": 8,
+        "effect": 5,
+        "penetration": 0.50
+    }
+}

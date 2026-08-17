@@ -28,24 +28,40 @@ double getInventoryCount(Node *inventory){
 
 //     return weight;
 // }
-
+// Creates the item based on the different objects the jsonparser gets
 Item *createItem(Object *itemData){
+    // Create space for the data in theitem struct
     Item *item = malloc(sizeof(Item));
 
+    // Start filling in all the differnt attributes for the struct
     item->itemId = getMember(itemData, "itemId")->value.data.number;
-    item->itemIype = getItemType(getMember(itemData, "type")->value.data.string);
+
+    // Transforms the string the jsonparsed for item type and turns it into a ItemType enum.
+    // Refer to Itemhelper header
+    item->itemType = getItemType(getMember(itemData, "ItemType")->value.data.string);
+
+    // Transforms the string the jsonparsed for item effect type and turns it into a EffectType enum.
+    // Refer to Itemhelper header
     item->effectType = getEffectType(getMember(itemData, "effectType")->value.data.string);
+
+
     item->effect = getMember(itemData, "effect")->value.data.number;
     item->itemName = getMember(itemData, "itemName")->value.data.string;
     item->value = getMember(itemData, "value")->value.data.number;
     item->stackable = getMember(itemData, "stackable")->value.data.boolean;
     item->weight = getMember(itemData, "weight")->value.data.number;
 
-    // not all items have a dmgReduction
-    if(item->itemId >= 1000 && item->itemId < 4000){
-        item->dmgReduction = getMember(itemData, "dmgReduction")->value.data.number;
-    }else{
-        item->dmgReduction = 0;
+    // For weapons they have pentration and armor has dmg reduction
+    // based on type we're going to get them
+    switch(item->itemType){
+        case WEAPON:
+            item->data.penetration = getMember(itemData, "pentration")->value.data.number;
+        break;
+        case ARMOR:
+            item->data.dmgReduction = getMember(itemData, "dmgReduction")->value.data.number;
+        break;
+        default:
+        break;
     }
 
     return item;
@@ -55,8 +71,8 @@ ITEMTYPE getItemType(char *type){
     ITEMTYPE itemType;
 
     // Eventually we dont want it hardcoded but thats a change for the future
-    char *strTypesArr[] = {"WEAPON", "ARMOR", "POTION", "UTILITY"};
-    ITEMTYPE typesArr[] = {WEAPON, ARMOR, POTION, UTILITY};
+    char *strTypesArr[] = {"WEAPON", "ARMOR", "POTION", "UTILITY, ARTIFACT"};
+    ITEMTYPE typesArr[] = {WEAPON, ARMOR, POTION, UTILITY, ARTIFACT};
 
     for(int i = 0; i < (int)sizeof(strTypesArr)/8; i++){
         int compare = strcmp(strTypesArr[i], type);
@@ -99,11 +115,11 @@ Item *getItemById(ItemDatabase *itemDataBase, int id){
     return NULL;
 }
 
-double applyArmor(double damage, int armorId, ItemDatabase *itemDB){
-    damage *= getItemById(itemDB, armorId)->.dmgReduction;
-    return damage;
-}
-void applyWeapon(double *currDamage, int weaponId, ItemDatabase *itemDB){
-    Item *weapon = getItemById(itemDB, weaponId);
-    *currDamage += (weapon->effect * weapon->dmgReduction);
-}
+// double applyArmor(double damage, int armorId, ItemDatabase *itemDB){
+//     damage *= getItemById(itemDB, armorId)->data->dmgReduction;
+//     return damage;
+// }
+// void applyWeapon(double *currDamage, int weaponId, ItemDatabase *itemDB){
+//     Item *weapon = getItemById(itemDB, weaponId);
+//     *currDamage += (weapon->effect * weapon->data.penetration);
+// }

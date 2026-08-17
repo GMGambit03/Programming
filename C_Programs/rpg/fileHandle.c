@@ -4,21 +4,41 @@
 
 
 ItemDatabase *createItemDB(){
-    char *itemDBName = "dataJson/items.json";
-    char *jsonFile = getJsonFile(itemDBName);
+    // We make a string array of all the different item file names
+    // We then get the count of the array for the actual jsonfile array
+    // do not change order unless you match it to the itemtypes order in filehandle.h
+    const char *fileNames[] = {"dataJson/weapons.json", "dataJson/armor.json", "dataJson/potions.json", "dataJson/utilities.json", "dataJson/artifacts.json"};
+    int jsonFileCount = sizeof(fileNames)/sizeof(fileNames)[0];
+
+    // create space for each actual json file 
+    char **jsonFile = malloc(jsonFileCount * sizeof(char));
+
+    // we then loop through each filename in filenames
+    // and then we assign them to jsonfile at the same spot
+    for(int i = 0; i < jsonFileCount; i++){
+        jsonFile[i] = getJsonFile(fileNames[i]);
+    }
     
-    Parser parser = {0, 0, jsonFile, jsonFile[0]};
-    ObjectArray *itemsData = searchMode(&parser);
-    
+    // we declare the size of itemDB so we can return it outside and input our attributes
     ItemDatabase *itemDB = malloc(sizeof(ItemDatabase));
-    itemDB->count = getObjectCount(itemsData);
-    itemDB->items = malloc(sizeof(Item) * itemDB->count);
-    
-    for(int i = 0; i < itemDB->count; i++){
-        Object *currItemData = itemsData->objects[i];
-        Item *item = createItem(currItemData);
+    itemDB->itemCounts = malloc(sizeof(int) * jsonFileCount);
+    itemDB->itemsArray = malloc(sizeof)
+
+    for(int i = 0; i < jsonFileCount; i++){
+        // refer to jsonparser
+        Parser parser = {0, 0, jsonFile[i], jsonFile[i][0]};
+        ObjectArray *itemsData = searchMode(&parser);
         
-        itemDB->items[i] = item;
+        itemDB->itemCounts[i] = getObjectCount(itemsData);
+        i
+        
+        
+        for(int i = 0; i < itemDB->itemCounts[i]; i++){
+            Object *currItemData = itemsData->objects[i];
+            Item *item = createItem(currItemData);
+            
+            itemDB->items[i] = item;
+        }
     }
     return itemDB;
 }

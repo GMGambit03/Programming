@@ -111,6 +111,10 @@ DungeonReturns selectTarget(Player **player, EnemyDataBase **enemies, Database *
 }
 
 Enemy *attackTarget(Player **player, Enemy *enemy, ItemDatabase *itemDB){
+
+    // Player damage is based on two factors the players armor dmgreductions and the enemey weapon pentration
+    // We're first going to subtract pentration from armor, and then if the pentration is greater then the armor dmgReduction then add it to the damge
+    // If the armor is greater then we'll multiply what we have left
     int baseDef = 8;
     //Entually add beingable to see a text of your attack
     // Also being able to chhose a specific attack

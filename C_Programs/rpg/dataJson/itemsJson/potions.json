@@ -1,0 +1,47 @@
+{
+    "Health Potion": {
+        "itemId": 3001,
+        "itemName": "Health Potion",
+        "type": "POTION",
+        "effectType": "RESTOREHP",
+        "stackable": true,
+        "weight": 0.5,
+        "value": 15,
+        "effect": 25
+    },
+
+    "Greater Health Potion": {
+        "itemId": 3002,
+        "itemName": "Greater Health Potion",
+        "type": "POTION",
+        "effectType": "RESTOREHP",
+        "stackable": true,
+        "weight": 0.75,
+        "value": 40,
+        "effect": 60
+    },
+
+    "Mana Potion": {
+        "itemId": 3003,
+        "itemName": "Mana Potion",
+        "type": "POTION",
+        "effectType": "RESTOREMANA",
+        "stackable": true,
+        "weight": 0.5,
+        "value": 20,
+        "effect": 25,
+        "dmgReduction": 0.30
+    },
+
+    "Strength Potion": {
+        "itemId": 3004,
+        "itemName": "Strength Potion",
+        "type": "POTION",
+        "effectType": "STRINCREASE",
+        "stackable": true,
+        "weight": 0.5,
+        "value": 35,
+        "effect": 5,
+        "dmgReduction": 0.30
+    }
+}

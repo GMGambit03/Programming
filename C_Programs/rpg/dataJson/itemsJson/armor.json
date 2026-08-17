@@ -1,0 +1,62 @@
+{
+    "Birthday Suit": {
+        "itemId": 2000,
+        "itemName": "Birthday Suit",
+        "type": "ARMOR",
+        "effectType": "DEFENSE",
+        "stackable": false,
+        "weight": 0.0,
+        "value": 0,
+        "effect": 0,
+        "dmgReduction": 1.0 
+    },
+
+    "Cloth Robes": {
+        "itemId": 2001,
+        "itemName": "Cloth Robes",
+        "type": "ARMOR",
+        "effectType": "DEFENSE",
+        "stackable": false,
+        "weight": 1.0,
+        "value": 20,
+        "effect": 2,
+        "dmgReduction": 0.90
+    },
+
+    "Leather Armor": {
+        "itemId": 2002,
+        "itemName": "Leather Armor",
+        "type": "ARMOR",
+        "effectType": "DEFENSE",
+        "stackable": false,
+        "weight": 5.0,
+        "value": 65,
+        "effect": 6,
+        "dmgReduction": 0.80
+    },
+
+    "Hide Armor": {
+        "itemId": 2003,
+        "itemName": "Hide Armor",
+        "type": "ARMOR",
+        "effectType": "DEFENSE",
+        "stackable": false,
+        "weight": 7.5,
+        "value": 80,
+        "effect": 8,
+        "dmgReduction": 0.70
+
+    },
+
+    "Iron Armor": {
+        "itemId": 2004,
+        "itemName": "Iron Armor",
+        "type": "ARMOR",
+        "effectType": "DEFENSE",
+        "stackable": false,
+        "weight": 14.0,
+        "value": 150,
+        "effect": 12,
+        "dmgReduction": 0.60
+    }
+}

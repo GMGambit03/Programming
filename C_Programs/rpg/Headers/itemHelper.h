@@ -9,7 +9,8 @@ typedef enum{
     WEAPON,
     ARMOR,
     POTION,
-    UTILITY
+    UTILITY,
+    ARTIFACT
 }ITEMTYPE;
 
 typedef enum{
@@ -27,26 +28,18 @@ typedef struct{
     char *itemName;
 
     EFFECTTYPE effectType;
-    ITEMTYPE itemIype;
+    ITEMTYPE itemType;
 
     bool stackable;
     double weight;
     double value;
     double effect;
     
-    typedef union
+    union
     {
         double dmgReduction;
         double penetration;
-    };
-    
-    .5       .5
-    .8      .8
-    1          1
-                1.2
-
-
-
+    }data;
 }Item;
 
 typedef struct{
