@@ -92,33 +92,33 @@ Player *newPlayerInfo(Class *classData){
     
 }
 
-Enemey *createEnemey(Object *currEnemeyData){
-    Enemey *enemey = malloc(sizeof(Enemey));
+Enemy *createEnemy(Object *currEnemyData){
+    Enemy *enemy = malloc(sizeof(Enemy));
 
-    enemey->iD = getMember(currEnemeyData, "ID")->value.data.number;
-    enemey->name = getMember(currEnemeyData, "Name")->value.data.string;
+    enemy->iD = getMember(currEnemyData, "ID")->value.data.number;
+    enemy->name = getMember(currEnemyData, "Name")->value.data.string;
     
-    JsonArray *lootArr = getMember(currEnemeyData, "Loot")->value.data.array;
+    JsonArray *lootArr = getMember(currEnemyData, "Loot")->value.data.array;
     int count = 0;
-    enemey->loot = getIntArr(lootArr, &count);
-    enemey->lootCount = count;
+    enemy->loot = getIntArr(lootArr, &count);
+    enemy->lootCount = count;
 
-    enemey->health = getMember(currEnemeyData, "Health")->value.data.number;
-    enemey->speed = getMember(currEnemeyData, "Speed")->value.data.number;
-    enemey->strength = getMember(currEnemeyData, "Strength")->value.data.number;
+    enemy->health = getMember(currEnemyData, "Health")->value.data.number;
+    enemy->speed = getMember(currEnemyData, "Speed")->value.data.number;
+    enemy->strength = getMember(currEnemyData, "Strength")->value.data.number;
 
-    enemey->weapon = getMember(currEnemeyData, "Weapon")->value.data.number;
-    enemey->armor = getMember(currEnemeyData, "Armor")->value.data.number;
+    enemy->weapon = getMember(currEnemyData, "Weapon")->value.data.number;
+    enemy->armor = getMember(currEnemyData, "Armor")->value.data.number;
 
-    return enemey;
+    return enemy;
 }
 
-EnemeyDataBase *getRanEnemies(int *possEnemies, int possEnemeyCount, int enemeyCount, EnemeyDataBase **enemeyDatabase){
-    EnemeyDataBase *enemies = malloc(sizeof(EnemeyDataBase));
-    enemies->enemiesCount = enemeyCount;
-    enemies->enemies = malloc(sizeof(Enemey) * enemies->enemiesCount);
+EnemyDataBase *getRanEnemies(int *possEnemies, int possEnemyCount, int enemyCount, EnemyDataBase **enemyDatabase){
+    EnemyDataBase *enemies = malloc(sizeof(EnemyDataBase));
+    enemies->enemiesCount = enemyCount;
+    enemies->enemies = malloc(sizeof(Enemy) * enemies->enemiesCount);
     
-    for(int i = enemeyCount - 1; i >= 0; i--){
+    for(int i = enemyCount - 1; i >= 0; i--){
         int ranNum = rand() % (i + 1);
 
         int curr = possEnemies[i];
@@ -127,29 +127,29 @@ EnemeyDataBase *getRanEnemies(int *possEnemies, int possEnemeyCount, int enemeyC
         possEnemies[i] = swap;
         possEnemies[ranNum] = curr;
         
-        enemies->enemies[i] = getEnemeyById(possEnemies[i], enemeyDatabase);
+        enemies->enemies[i] = getEnemyById(possEnemies[i], enemyDatabase);
     }
 
     return enemies;
 }
 
-Enemey *getEnemeyById(int enemeyId, EnemeyDataBase **enemeyDatabase){
-    Enemey *enemey = malloc(sizeof(Enemey));
+Enemy *getEnemyById(int enemyId, EnemyDataBase **enemyDatabase){
+    Enemy *enemy = malloc(sizeof(Enemy));
 
-    enemey->iD = enemeyId;
-    for(int i = 0; i < (*enemeyDatabase)->enemiesCount; i++){
-        Enemey *curr = (*enemeyDatabase)->enemies[i];
+    enemy->iD = enemyId;
+    for(int i = 0; i < (*enemyDatabase)->enemiesCount; i++){
+        Enemy *curr = (*enemyDatabase)->enemies[i];
         curr->isDead = false;
-        if(enemeyId == curr->iD){
-            enemey->health = curr->health;
-            enemey->loot = curr->loot;
-            enemey->lootCount = curr->lootCount;
-            enemey->name = curr->name;
-            enemey->speed = curr->speed;
-            enemey->strength = curr->strength;
-            enemey->weapon = curr->weapon;
-            enemey->armor = curr->armor;
-            return enemey;
+        if(enemyId == curr->iD){
+            enemy->health = curr->health;
+            enemy->loot = curr->loot;
+            enemy->lootCount = curr->lootCount;
+            enemy->name = curr->name;
+            enemy->speed = curr->speed;
+            enemy->strength = curr->strength;
+            enemy->weapon = curr->weapon;
+            enemy->armor = curr->armor;
+            return enemy;
         }
     }
     return NULL;

@@ -33,7 +33,18 @@ typedef struct{
     double weight;
     double value;
     double effect;
-    double multiplier;
+    
+    typedef union
+    {
+        double dmgReduction;
+        double penetration;
+    };
+    
+    .5       .5
+    .8      .8
+    1          1
+                1.2
+
 
 
 }Item;

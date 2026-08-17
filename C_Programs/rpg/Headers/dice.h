@@ -20,7 +20,7 @@ typedef struct{
 
 typedef struct{
         DiceType diceType;
-        double multiplier;
+        double dmgReduction;
         int rolls;
 }Roll;
 

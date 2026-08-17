@@ -10,7 +10,6 @@
         "WeightCap": 135,
 
         "Inventory": {
-            "ARMOR": 2003,
             "HPPOTION": 3001,
             "UTILITY": 4001
         },

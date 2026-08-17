@@ -34,14 +34,14 @@ Dungeon *loadDungeon(Database **DB, int dungeonId){
     for(int i = 0; i < (*DB)->dungeonDB->size; i++){
         Dungeon *currDungeon = (*DB)->dungeonDB->dungeons[i];
         if(currDungeon->dungeonId == dungeonId){
-            getDungeonNodes(&currDungeon, &(*DB)->enemeyDB);
+            getDungeonNodes(&currDungeon, &(*DB)->enemyDB);
             return currDungeon;
         }
     }
     return NULL;
 }
 
-DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Direction Parent, EnemeyDataBase **enemeyDatabase){
+DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Direction Parent, EnemyDataBase **enemyDatabase){
     
     if(*count == roomCount){
         return NULL;
@@ -61,7 +61,7 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Dir
     }else{
         room->enemiesDead = false;
     }
-    room->enemies = getRanEnemies(tmp->possibleEnemies, tmp->possEnemyCount, room->enemiesCount, enemeyDatabase);
+    room->enemies = getRanEnemies(tmp->possibleEnemies, tmp->possEnemyCount, room->enemiesCount, enemyDatabase);
     room->description = "We dont got anything";
     
     *count += 1;
@@ -122,28 +122,28 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Dir
         switch (nxtRoom) {
             case NORTH:
                 childParent = SOUTH;
-                room->north = createDungeonNode(roomCount, dungeon, count, childParent, enemeyDatabase);
+                room->north = createDungeonNode(roomCount, dungeon, count, childParent, enemyDatabase);
                 if(room->north != NULL){
                     room->north->south = room;
                 }
             break;
             case WEST:
                 childParent = EAST;
-                room->west = createDungeonNode(roomCount, dungeon, count, childParent, enemeyDatabase);
+                room->west = createDungeonNode(roomCount, dungeon, count, childParent, enemyDatabase);
                 if(room->west != NULL){
                     room->west->east = room;
                 }
             break;
             case SOUTH:
                 childParent = NORTH;
-                room->south = createDungeonNode(roomCount, dungeon, count, childParent, enemeyDatabase);
+                room->south = createDungeonNode(roomCount, dungeon, count, childParent, enemyDatabase);
                 if(room->south != NULL){
                     room->south->north = room;
                 }
             break;
             case EAST:
                 childParent = WEST;
-                room->east = createDungeonNode(roomCount, dungeon, count, childParent, enemeyDatabase);
+                room->east = createDungeonNode(roomCount, dungeon, count, childParent, enemyDatabase);
                 if(room->east != NULL){
                     room->east->west = room;
                 }                
@@ -157,11 +157,11 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Dir
     return room;
 }
 
-void getDungeonNodes(Dungeon **dungeon, EnemeyDataBase **enemeyDatabase){
+void getDungeonNodes(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
 
     int roomCount = (rand() + (*dungeon)->minRooms) % (*dungeon)->maxRooms + 1;
     int count = 0;
-    (*dungeon)->entrance = createDungeonNode(roomCount, dungeon, &count, NONE, enemeyDatabase);
+    (*dungeon)->entrance = createDungeonNode(roomCount, dungeon, &count, NONE, enemyDatabase);
 }
 
 DungeonReturns dungeonEntrance(GameState **gameState, Database **DB, int dungeonId){
@@ -223,7 +223,7 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
         
         char *enemiesStrArr[dungeonNode->enemiesCount];
         for(int i = 0; i < dungeonNode->enemiesCount; i++){
-            Enemey *currEnemy = dungeonNode->enemies->enemies[i];
+            Enemy *currEnemy = dungeonNode->enemies->enemies[i];
 
             enemiesStrArr[i] = currEnemy->name;
         }
@@ -232,15 +232,15 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
         charFiller(16, '-');
         charFiller(1, '\n');
 
-        char *strEnemeyOptions[] = {"Fight", "Inventory", "Run"};
-        DungeonReturns retEnemeyOptions[] = {FIGHT, INVENTORY, RUNAWAY};
+        char *strEnemyOptions[] = {"Fight", "Inventory", "Run"};
+        DungeonReturns retEnemyOptions[] = {FIGHT, INVENTORY, RUNAWAY};
 
         char *strMainOptions[] = {"Move", "Search Room", "Inventory", "Leave Dungeon"};
         DungeonReturns retMainOptions[] = {MOVE, SEARCHROOM, INVENTORY, LEAVE};
 
         DungeonReturns userInput;
         if(!dungeonNode->enemiesDead && dungeonNode->enemiesCount > 0){
-            userInput = playerOptions(sizeof(strEnemeyOptions)/8, strEnemeyOptions, retEnemeyOptions);
+            userInput = playerOptions(sizeof(strEnemyOptions)/8, strEnemyOptions, retEnemyOptions);
         }else{
             userInput = playerOptions(sizeof(strMainOptions)/8, strMainOptions, retMainOptions);
         }

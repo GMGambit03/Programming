@@ -8,7 +8,7 @@
         "weight": 4.5,
         "value": 15,
         "effect": 7,
-        "multiplier": 0.55
+        "penetration": 0.55
     },
 
     "Iron Sword": {
@@ -20,7 +20,7 @@
         "weight": 5.0,
         "value": 60,
         "effect": 12,
-        "multiplier": 0.55
+        "penetration": 0.55
     },
 
     "Iron Battleaxe": {
@@ -32,7 +32,7 @@
         "weight": 8.5,
         "value": 85,
         "effect": 16,
-        "multiplier": 0.50
+        "penetration": 0.50
     },
 
     "Apprentice Staff": {
@@ -44,7 +44,7 @@
         "weight": 3.0,
         "value": 55,
         "effect": 8,
-        "multiplier": 0.45
+        "penetration": 0.45
     },
 
     "Iron Dagger": {
@@ -56,7 +56,7 @@
         "weight": 1.5,
         "value": 40,
         "effect": 9,
-        "multiplier": 0.50
+        "penetration": 0.50
     },
 
     "Wooden Club": {
@@ -68,10 +68,10 @@
         "weight": 3.5,
         "value": 8,
         "effect": 5,
-        "multiplier": 0.50
+        "penetration": 0.50
     },
 
-    "None": {
+    "Birthday Suit": {
         "itemId": 2000,
         "itemName": "Birthday Suit",
         "type": "ARMOR",
@@ -80,7 +80,7 @@
         "weight": 0.0,
         "value": 0,
         "effect": 0,
-        "multiplier": 1.0 
+        "dmgReduction": 1.0 
     },
 
     "Cloth Robes": {
@@ -92,7 +92,7 @@
         "weight": 1.0,
         "value": 20,
         "effect": 2,
-        "multiplier": 0.90
+        "dmgReduction": 0.90
     },
 
     "Leather Armor": {
@@ -104,7 +104,7 @@
         "weight": 5.0,
         "value": 65,
         "effect": 6,
-        "multiplier": 0.80
+        "dmgReduction": 0.80
     },
 
     "Hide Armor": {
@@ -116,7 +116,7 @@
         "weight": 7.5,
         "value": 80,
         "effect": 8,
-        "multiplier": 0.70
+        "dmgReduction": 0.70
 
     },
 
@@ -129,31 +129,29 @@
         "weight": 14.0,
         "value": 150,
         "effect": 12,
-        "multiplier": 0.60
+        "dmgReduction": 0.60
     },
 
     "Health Potion": {
         "itemId": 3001,
         "itemName": "Health Potion",
         "type": "POTION",
-        "effectType": "HEAL",
+        "effectType": "RESTOREHP",
         "stackable": true,
         "weight": 0.5,
         "value": 15,
-        "effect": 25,
-        "multiplier": 0.30
+        "effect": 25
     },
 
     "Greater Health Potion": {
         "itemId": 3002,
         "itemName": "Greater Health Potion",
         "type": "POTION",
-        "effectType": "HEAL",
+        "effectType": "RESTOREHP",
         "stackable": true,
         "weight": 0.75,
         "value": 40,
-        "effect": 60,
-        "multiplier": 0.50
+        "effect": 60
     },
 
     "Mana Potion": {
@@ -165,7 +163,7 @@
         "weight": 0.5,
         "value": 20,
         "effect": 25,
-        "multiplier": 0.30
+        "dmgReduction": 0.30
     },
 
     "Strength Potion": {
@@ -177,7 +175,7 @@
         "weight": 0.5,
         "value": 35,
         "effect": 5,
-        "multiplier": 0.30
+        "dmgReduction": 0.30
     },
 
     "Smoke Bomb": {
@@ -189,7 +187,7 @@
         "weight": 0.5,
         "value": 20,
         "effect": 0,
-        "multiplier": 0.30
+        "dmgReduction": 0.30
     },
 
     "Torch": {

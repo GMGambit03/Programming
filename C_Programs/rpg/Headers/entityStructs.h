@@ -6,7 +6,7 @@
 #include "dice.h"
 #include "locationMgr.h"
 
-typedef struct EnemeyDataBase EnemeyDataBase;
+typedef struct EnemyDataBase EnemyDataBase;
 typedef struct ClassDatabase ClassDatabase;
 
 typedef struct Classes{
@@ -48,7 +48,7 @@ typedef struct Player{
     int weapon;
 }Player;
 
-typedef struct Enemey{
+typedef struct Enemy{
     int iD;
     char *name;
 
@@ -64,7 +64,7 @@ typedef struct Enemey{
 
     bool isDead;
 
-}Enemey;
+}Enemy;
 
 typedef struct{
     Player *player;
@@ -86,9 +86,9 @@ typedef struct{
 Player *newPlayerInfo(Class *classData);
 Class *createClass(Object *classData);
 Class *findClass(ClassDatabase *classDataBase, int classId);
-Enemey *createEnemey(Object *currEnemeyData);
-EnemeyDataBase *getRanEnemies(int *possEnemies, int possEnemeyCount, int enemeyCount, EnemeyDataBase **enemeyDatabase);
-Enemey *getEnemeyById(int enemeyId, EnemeyDataBase **enemeyDatabase);
+Enemy *createEnemy(Object *currEnemyData);
+EnemyDataBase *getRanEnemies(int *possEnemies, int possEnemyCount, int enemyCount, EnemyDataBase **enemyDatabase);
+Enemy *getEnemyById(int enemyId, EnemyDataBase **enemyDatabase);
 
 void displayInventory(Player **player);
 

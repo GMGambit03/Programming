@@ -10,7 +10,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-DungeonReturns fightMenu(Player **player, EnemeyDataBase **enemies, Database **DB){
+DungeonReturns fightMenu(Player **player, EnemyDataBase **enemies, Database **DB){
     bool canRun = true;
     int runAttempts = 0;
 
@@ -20,7 +20,7 @@ DungeonReturns fightMenu(Player **player, EnemeyDataBase **enemies, Database **D
     
         combatHeaderDisplay();
         playerDisplay((*player), &(*DB)->itemDB);
-        enemeyDisplay(enemies);
+        enemyDisplay(enemies);
     
         char *strOptions[] = {"Attack", "Use Item", "Attempt to Run"};
         ACTIONS actionOptions[] = {ATTACK, USEITEM, RUNATT};
@@ -69,7 +69,7 @@ DungeonReturns fightMenu(Player **player, EnemeyDataBase **enemies, Database **D
 
 }
 
-DungeonReturns selectTarget(Player **player, EnemeyDataBase **enemies, Database **DB){
+DungeonReturns selectTarget(Player **player, EnemyDataBase **enemies, Database **DB){
     while(true){
         char userInput[3];
 
@@ -88,11 +88,11 @@ DungeonReturns selectTarget(Player **player, EnemeyDataBase **enemies, Database 
             continue;
         }
 
-        Enemey *targetEnemey = (*enemies)->enemies[userInt - 1]; 
+        Enemy *targetEnemy = (*enemies)->enemies[userInt - 1]; 
 
-        targetEnemey = attackTarget(player, targetEnemey, (*DB)->itemDB);
+        targetEnemy = attackTarget(player, targetEnemy, (*DB)->itemDB);
 
-        WHO whosDead = checkDead(player, &targetEnemey);
+        WHO whosDead = checkDead(player, &targetEnemy);
 
         if(whosDead == PLAYER){
             return DIED;
@@ -102,7 +102,7 @@ DungeonReturns selectTarget(Player **player, EnemeyDataBase **enemies, Database 
             }
         }
 
-        (*enemies)->enemies[userInt - 1] = targetEnemey;
+        (*enemies)->enemies[userInt - 1] = targetEnemy;
         getchar();
         return FIGHT;
     }
@@ -110,41 +110,40 @@ DungeonReturns selectTarget(Player **player, EnemeyDataBase **enemies, Database 
 
 }
 
-Enemey *attackTarget(Player **player, Enemey *enemey, ItemDatabase *itemDB){
+Enemy *attackTarget(Player **player, Enemy *enemy, ItemDatabase *itemDB){
+    int baseDef = 8;
     //Entually add beingable to see a text of your attack
     // Also being able to chhose a specific attack
-    WHO initRoll = rollInitiative((*player), enemey);
-    double playerDef = (*player)->speed + 8;
-    double eneDef = enemey->speed + 8;
+    WHO initRoll = rollInitiative((*player), enemy);
+    double playerDef = (*player)->speed + baseDef;
+    double eneDef = enemy->speed + baseDef;
 
-    double playerBreakAc = damageRoll(D20, 0, 1);
-    double enemeyBreakAc = damageRoll(D20, 0, 1);
+    double playertoHitRoll = damageRoll(D20, 0, 1);
+    double enemytoHitRoll = damageRoll(D20, 0, 1);
 
     double playerDamage = (*player)->strength;
-    double enemeyDamage = enemey->strength;
-
-    printf("Player: %.2lf, Enemey: %.2lf", playerBreakAc, enemeyBreakAc);
+    double enemyDamage = enemy->strength;
 
     for(int i = 0; i < 2; i++){
         switch(initRoll){
             case PLAYER:
-                if(playerDef < eneDef && playerBreakAc < eneDef){
+                if(playerDef < eneDef && playertoHitRoll < eneDef){
                     printf("Player Missed");
                 }else{
-                    playerDamage = applyArmor(playerDamage, enemey->armor, itemDB);
-                    enemey->health -= playerDamage;
+                    playerDamage = applyArmor(playerDamage, enemy->armor, itemDB);
+                    enemy->health -= playerDamage;
                     printf(" PLayer did %.2lf damage", playerDamage);
                 }
             break;
             case ENEMEY:
-                if( eneDef < playerDef && enemeyBreakAc < eneDef){
-                    printf("Enemey Missed");
-                }else if(enemey->health > 0){
-                    enemeyDamage = applyArmor(enemeyDamage, (*player)->armorSet, itemDB);
-                    (*player)->health -= enemeyDamage;
-                    printf(" Enemey did %.2lf damage", enemeyDamage);
+                if( eneDef < playerDef && enemytoHitRoll < eneDef){
+                    printf("Enemy Missed");
+                }else if(enemy->health > 0){
+                    enemyDamage = applyArmor(enemyDamage, (*player)->armorSet, itemDB);
+                    (*player)->health -= enemyDamage;
+                    printf(" Enemy did %.2lf damage", enemyDamage);
                 }else{
-                    printf(" Enemey Died");
+                    printf(" Enemy Died");
                 }
             break;
             default:
@@ -155,35 +154,35 @@ Enemey *attackTarget(Player **player, Enemey *enemey, ItemDatabase *itemDB){
         initRoll = initRoll == PLAYER ? ENEMEY : PLAYER;
     }
     getchar();
-    return enemey;
+    return enemy;
 }
 
-WHO rollInitiative(Player *player, Enemey *enemey){
+WHO rollInitiative(Player *player, Enemy *enemy){
     Roll playerInit = {D20, player->speed, 1};
-    Roll enemeyInit = {D20, enemey->speed, 1};
+    Roll enemyInit = {D20, enemy->speed, 1};
 
-    if(rollDice(playerInit) > rollDice(enemeyInit)){
+    if(rollDice(playerInit) > rollDice(enemyInit)){
         return PLAYER;
     }
     return ENEMEY;
 }
 
-double damageRoll(DiceType type, double multiplier, int rolls){
-    Roll roll = {type, multiplier, rolls};
+double damageRoll(DiceType type, double dmgReduction, int rolls){
+    Roll roll = {type, dmgReduction, rolls};
     return rollDice(roll);
 }
 
-WHO checkDead(Player **player, Enemey **enemey){
+WHO checkDead(Player **player, Enemy **enemy){
     if((*player)->health <= 0){
         return PLAYER;
-    }else if((*enemey)->health <= 0){
-        (*enemey)->isDead = true;
+    }else if((*enemy)->health <= 0){
+        (*enemy)->isDead = true;
         return ENEMEY;
     }
     return NOONE;
 }
 
-DungeonReturns enemiesStatus(EnemeyDataBase *enemies){
+DungeonReturns enemiesStatus(EnemyDataBase *enemies){
     for(int i = 0; i < enemies->enemiesCount; i++){
         if(enemies->enemies[i]->isDead == false){
             return FIGHT;

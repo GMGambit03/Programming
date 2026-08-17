@@ -9,14 +9,14 @@
 #include "dungeons.h"
 #include "entityStructs.h"
 
-typedef struct Enemey Enemey;
+typedef struct Enemy Enemy;
 typedef struct Dungeon Dungeon;
 typedef struct Player Player;
 
-typedef struct EnemeyDataBase{
-    Enemey **enemies;
+typedef struct EnemyDataBase{
+    Enemy **enemies;
     int enemiesCount;
-}EnemeyDataBase;
+}EnemyDataBase;
 
 typedef struct ClassDatabase{
     Class **classes;
@@ -37,14 +37,14 @@ typedef struct Database{
     ClassDatabase *classDB;
     ItemDatabase *itemDB;
     DungeonDatabase *dungeonDB;
-    EnemeyDataBase *enemeyDB;
+    EnemyDataBase *enemyDB;
 }Database;
 
 void getPlayerData(Player *playerData);
 ClassDatabase *createClassDB();
 ItemDatabase *createItemDB();
 DungeonDatabase *createDungeonDB();
-EnemeyDataBase *createEnemeyDB();
+EnemyDataBase *createEnemyDB();
 Database *createDB();
 
 Class *createClass(Object *classData);

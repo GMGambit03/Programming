@@ -1,0 +1,36 @@
+All`
+: Add comments
+: make code cleaner
+: make variables make sense
+
+Dungeon.C
+: Make enemies random
+: Allow player to acces inventory use potions
+: Also have the dead in paraentheses next to most in main entrance dungeon menu
+: make a map for each node and see how theyre connected so player knows where they are
+
+Combat.C
+: Give a better ui for when fighting
+: Allow player to use potions when in combat 
+: Make it so based on the weapon is the dmgReduction for the roll(ex: staff = +wisdom);
+: add a loot found for defeating the enemies
+: add randmoization to player and enemy attacks 
+: Add a survive amount rooms 
+: function that calculaes damagedeuctoin and pentration.
+
+EntitiesStruct.C
+: Add wisdom to the player
+: Add AC to both player asnd enemy struct
+
+Items.H
+: create a union for damagereduction and penetration
+
+Json File
+: make a fighting dialogue fight scenes in form of text 
+: give dungeons a list of descriptions for each dungeon node 
+: give enemy an attack descriptions
+: give each weapon a list of different attacks
+: add wisodom to class json
+: Add a attack roll to different weapons and items the player can use
+: split items up into different categories 
+: Add penetration to weapons database

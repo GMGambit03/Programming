@@ -41,11 +41,11 @@ Item *createItem(Object *itemData){
     item->stackable = getMember(itemData, "stackable")->value.data.boolean;
     item->weight = getMember(itemData, "weight")->value.data.number;
 
-    // not all items have a multiplier
+    // not all items have a dmgReduction
     if(item->itemId >= 1000 && item->itemId < 4000){
-        item->multiplier = getMember(itemData, "multiplier")->value.data.number;
+        item->dmgReduction = getMember(itemData, "dmgReduction")->value.data.number;
     }else{
-        item->multiplier = 0;
+        item->dmgReduction = 0;
     }
 
     return item;
@@ -100,10 +100,10 @@ Item *getItemById(ItemDatabase *itemDataBase, int id){
 }
 
 double applyArmor(double damage, int armorId, ItemDatabase *itemDB){
-    damage *= getItemById(itemDB, armorId)->multiplier;
+    damage *= getItemById(itemDB, armorId)->.dmgReduction;
     return damage;
 }
 void applyWeapon(double *currDamage, int weaponId, ItemDatabase *itemDB){
     Item *weapon = getItemById(itemDB, weaponId);
-    *currDamage += (weapon->effect * weapon->multiplier);
+    *currDamage += (weapon->effect * weapon->dmgReduction);
 }

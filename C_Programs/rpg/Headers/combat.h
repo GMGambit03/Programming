@@ -12,13 +12,13 @@ typedef enum{
     NOONE
 }WHO;
 
-DungeonReturns fightMenu(Player **player, EnemeyDataBase **enemies, Database **DB);
-DungeonReturns selectTarget(Player **player, EnemeyDataBase **enemies, Database **DB);
-Enemey *attackTarget(Player **player, Enemey *enemey, ItemDatabase *itemDB);
+DungeonReturns fightMenu(Player **player, EnemyDataBase **enemies, Database **DB);
+DungeonReturns selectTarget(Player **player, EnemyDataBase **enemies, Database **DB);
+Enemy *attackTarget(Player **player, Enemy *enemy, ItemDatabase *itemDB);
 
-WHO checkDead(Player **player, Enemey **enemey);
-DungeonReturns enemiesStatus(EnemeyDataBase *enemies);
-WHO rollInitiative(Player *player, Enemey *enemey);
-double damageRoll(DiceType type, double multiplier, int rolls);
+WHO checkDead(Player **player, Enemy **enemy);
+DungeonReturns enemiesStatus(EnemyDataBase *enemies);
+WHO rollInitiative(Player *player, Enemy *enemy);
+double damageRoll(DiceType type, double dmgReduction, int rolls);
 
 #endif

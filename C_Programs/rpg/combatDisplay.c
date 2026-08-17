@@ -49,18 +49,18 @@ void playerDisplay(Player *player, ItemDatabase **itemDataBase){
     charFiller(1, '\n');
 }
 
-void enemeyDisplay(EnemeyDataBase **enemies){
+void enemyDisplay(EnemyDataBase **enemies){
 
     generalHeaderDisplay("ENEMIES", '-', 16);
 
     for(int i = 0; i < (*enemies)->enemiesCount; i++){
-        Enemey *currEnemey = (*enemies)->enemies[i];
-        if(currEnemey->isDead){
+        Enemy *currEnemy = (*enemies)->enemies[i];
+        if(currEnemy->isDead){
             continue;
         }
-        printf(" [ %d ] [ %s ]", (i + 1), currEnemey->name);
+        printf(" [ %d ] [ %s ]", (i + 1), currEnemy->name);
         printf("\n");
-        printf("       [ HP ]: %.2lf", currEnemey->health);
+        printf("       [ HP ]: %.2lf", currEnemy->health);
         charFiller(1, '\n');
     }
 }
@@ -76,7 +76,7 @@ void actionsDisplay(char *strOptions[], bool canRun){
         printf("\n: ");
 }
 
-void selTargetDisplay(EnemeyDataBase *enemies){
+void selTargetDisplay(EnemyDataBase *enemies){
     clearScreen();
     charFiller(1, ' ');
     charFiller(8, '=');
@@ -85,7 +85,7 @@ void selTargetDisplay(EnemeyDataBase *enemies){
     charFiller(1, '\n');
 
     for(int i = 0; i < enemies->enemiesCount; i++){
-        Enemey *curr = enemies->enemies[i];
+        Enemy *curr = enemies->enemies[i];
         if(curr->isDead == true){
             continue;
         }

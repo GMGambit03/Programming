@@ -18,7 +18,7 @@ typedef enum{
 }Direction;
 
 typedef struct DungeonNode{
-    EnemeyDataBase *enemies;
+    EnemyDataBase *enemies;
     int enemiesCount;
     bool enemiesDead;
 
@@ -56,8 +56,8 @@ typedef struct Dungeon{
 DungeonReturns dungeonEntrance(GameState **gameState, Database **DB, int dungeonId);
 DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dungeonNode, Database **DB);
 Dungeon *createDungeon(Object *dungeonData);
-DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Direction parent, EnemeyDataBase **enemeyDatabase);
-void getDungeonNodes(Dungeon **dungeon, EnemeyDataBase **enemeyDatabase); 
+DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Direction parent, EnemyDataBase **enemyDatabase);
+void getDungeonNodes(Dungeon **dungeon, EnemyDataBase **enemyDatabase); 
 Dungeon *loadDungeon(Database **DB, int dungeonId);
 
 Direction getDirections(DungeonNode *dungeonNode);

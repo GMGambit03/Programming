@@ -67,25 +67,25 @@ DungeonDatabase *createDungeonDB(){
     return dungeonDB;
 }
 
-EnemeyDataBase *createEnemeyDB(){
+EnemyDataBase *createEnemyDB(){
     char *fileName = "dataJson/enemies.json";
     char *jsonFile = getJsonFile(fileName);
 
     Parser parser = {0, 0, jsonFile, jsonFile[0]};
     ObjectArray *enemiesData = searchMode(&parser);
 
-    EnemeyDataBase *enemeyDB = malloc(sizeof(DungeonDatabase));
-    enemeyDB->enemiesCount = getObjectCount(enemiesData);
-    enemeyDB->enemies = malloc(sizeof(Dungeon) * enemeyDB->enemiesCount);
+    EnemyDataBase *enemyDB = malloc(sizeof(DungeonDatabase));
+    enemyDB->enemiesCount = getObjectCount(enemiesData);
+    enemyDB->enemies = malloc(sizeof(Dungeon) * enemyDB->enemiesCount);
 
-    for(int i = 0; i < enemeyDB->enemiesCount; i++){
-        Object *currEnemeyData = enemiesData->objects[i];
-        Enemey *currEnemey = createEnemey(currEnemeyData);
+    for(int i = 0; i < enemyDB->enemiesCount; i++){
+        Object *currEnemyData = enemiesData->objects[i];
+        Enemy *currEnemy = createEnemy(currEnemyData);
 
-        enemeyDB->enemies[i] = currEnemey;
+        enemyDB->enemies[i] = currEnemy;
     }
 
-    return enemeyDB;
+    return enemyDB;
 }
 
 Database *createDB(){
@@ -93,7 +93,7 @@ Database *createDB(){
     
     DB->classDB = createClassDB();
     DB->dungeonDB = createDungeonDB();
-    DB->enemeyDB = createEnemeyDB();
+    DB->enemyDB = createEnemyDB();
     DB->itemDB = createItemDB();
     return DB;
 }

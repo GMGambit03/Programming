@@ -39,7 +39,7 @@ double rollDice(Roll roll){
         sum += roll;
     }
 
-    sum += roll.multiplier;
+    sum += roll.dmgReduction;
 
     return sum;
 }

@@ -5,7 +5,7 @@
 #include "itemHelper.h"
 
 typedef struct Player Player;
-typedef struct EnemeyDataBase EnemeyDataBase;
+typedef struct EnemyDataBase EnemyDataBase;
 typedef struct ItemDatabase ItemDatabase;
 
 typedef enum{
@@ -17,10 +17,10 @@ typedef enum{
 void combatHeaderDisplay();
 void generalHeaderDisplay(char *print, char character, int filler);
 void playerDisplay(Player *player, ItemDatabase **itemDataBase);
-void enemeyDisplay(EnemeyDataBase **enemies);
+void enemyDisplay(EnemyDataBase **enemies);
 void actionsDisplay(char *strOptions[], bool canRun);
 
-void selTargetDisplay(EnemeyDataBase *enemies);
+void selTargetDisplay(EnemyDataBase *enemies);
 
 
 #endif
