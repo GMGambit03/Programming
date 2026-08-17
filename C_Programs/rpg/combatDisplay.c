@@ -55,6 +55,9 @@ void enemeyDisplay(EnemeyDataBase **enemies){
 
     for(int i = 0; i < (*enemies)->enemiesCount; i++){
         Enemey *currEnemey = (*enemies)->enemies[i];
+        if(currEnemey->isDead){
+            continue;
+        }
         printf(" [ %d ] [ %s ]", (i + 1), currEnemey->name);
         printf("\n");
         printf("       [ HP ]: %.2lf", currEnemey->health);
@@ -83,12 +86,14 @@ void selTargetDisplay(EnemeyDataBase *enemies){
 
     for(int i = 0; i < enemies->enemiesCount; i++){
         Enemey *curr = enemies->enemies[i];
-
+        if(curr->isDead == true){
+            continue;
+        }
         printf(" [ %d ]  %s     HP:  %.2lf", (i + 1), curr->name, curr->health);
         charFiller(1, '\n');
     }
     printf("\n");
-    
+
     printf(" [ 0 ]  Back");
     charFiller(1, '\n');
 

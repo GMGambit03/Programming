@@ -1,4 +1,5 @@
 #include "Headers/dungeons.h"
+#include "Headers/dialogue.h"
 #include "Headers/dungeonMenus.h"
 #include "Headers/entityStructs.h"
 #include "Headers/fileHandle.h"
@@ -258,7 +259,7 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
                 // displayInventory(player);
             break;
             case MOVE:
-                // moveTo = getDirections(dungeonNode);
+                moveTo = getDirections(dungeonNode);
                 switch (moveTo) {
                     case NORTH:
                         return enterDungeon(player, dungeonName, dungeonNode->north, DB);
@@ -276,11 +277,7 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
                     break;
                 }
             break;
-        //     // case SEARCHROOM:
-        //     //     return BOSSDEFEATED;
-        //     // break;
             default:
-                return userInput;
             break;
         }
     }
@@ -289,4 +286,36 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
 
     printf("Everything works");
     getchar();
+}
+
+Direction getDirections(DungeonNode *dungeonNode){
+    while(true){
+        clearScreen();
+        char userInput[3];
+    
+        Direction dirOptions[4] = {NORTH, EAST, SOUTH, WEST};
+        char *strDir[] = {"NORTH", "EAST", "SOUTH", "WEST"};
+        int strDirLength = sizeof(strDir)/sizeof(strDir[0]);
+
+        displayDirections(dungeonNode, strDirLength, strDir);
+
+        fgets(userInput, sizeof(userInput), stdin);
+        if(!clearBuffer((int)sizeof(userInput) ,userInput)){
+            continue;
+        }
+
+        int userInt = (*userInput - '0');
+
+        if(userInt < 0 || userInt > sizeof(dirOptions)/4){
+            validOption();
+            enterContinue();
+            getchar();
+            continue;
+        }else if(userInt == 0){
+            return NONE;
+        }
+        return dirOptions[userInt - 1];
+    }
+
+
 }

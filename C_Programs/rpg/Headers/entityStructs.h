@@ -18,6 +18,9 @@ typedef struct Classes{
     double speed;
     double mana;
     Inventory *inventory;
+
+    int weapon;
+    int armorSet;
 }Class;
 
 typedef struct Player{
@@ -41,6 +44,7 @@ typedef struct Player{
     double mana;
     double maxMana;
 
+    int armorSet;
     int weapon;
 }Player;
 
@@ -56,6 +60,7 @@ typedef struct Enemey{
     double speed;
 
     int weapon;
+    int armor;
 
     bool isDead;
 

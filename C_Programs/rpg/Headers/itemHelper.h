@@ -33,6 +33,7 @@ typedef struct{
     double weight;
     double value;
     double effect;
+    double multiplier;
 
 
 }Item;
@@ -59,6 +60,9 @@ Item *createItem(Object *itemData);
 ITEMTYPE getItemType(char *type);
 EFFECTTYPE getEffectType(char *type);
 Item *getItemById(ItemDatabase *itemDataBase, int id);
+
+double applyArmor(double damage, int armorId, ItemDatabase *itemDB);
+void applyWeapon(double *damage, int weaponId, ItemDatabase *itemDB);
 
 
 #endif

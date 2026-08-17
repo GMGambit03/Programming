@@ -21,6 +21,9 @@ Class *createClass(Object *classData){
     inventory->capacity = inventory->count * .50;
     inventory->weightCap = getMember(classData, "WeightCap")->value.data.number;
 
+    classStruct->weapon = getMember(classData, "Weapon")->value.data.number;
+    classStruct->armorSet = getMember(classData, "Armor Set")->value.data.number;
+
     inventory->items = malloc(sizeof(Item) * inventory->capacity);
 
     Node *tmp = inventoryData->subObjs;
@@ -81,10 +84,13 @@ Player *newPlayerInfo(Class *classData){
 
     player->inventory = classData->inventory;
 
+    player->weapon = classData->weapon;
+    player->armorSet = classData->armorSet;
+
+
     return player;
     
 }
-
 
 Enemey *createEnemey(Object *currEnemeyData){
     Enemey *enemey = malloc(sizeof(Enemey));
@@ -102,6 +108,7 @@ Enemey *createEnemey(Object *currEnemeyData){
     enemey->strength = getMember(currEnemeyData, "Strength")->value.data.number;
 
     enemey->weapon = getMember(currEnemeyData, "Weapon")->value.data.number;
+    enemey->armor = getMember(currEnemeyData, "Armor")->value.data.number;
 
     return enemey;
 }
@@ -133,6 +140,7 @@ Enemey *getEnemeyById(int enemeyId, EnemeyDataBase **enemeyDatabase){
             enemey->speed = curr->speed;
             enemey->strength = curr->strength;
             enemey->weapon = curr->weapon;
+            enemey->armor = curr->armor;
             return enemey;
         }
     }

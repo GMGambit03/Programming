@@ -5,11 +5,12 @@
 #include "Headers/dungeons.h"
 #include "Headers/entityStructs.h"
 #include "Headers/combatDisplay.h"
+#include "Headers/itemHelper.h"
 #include "Headers/stringHelpers.h"
 #include <stdbool.h>
 #include <stdio.h>
 
-bool fightMenu(Player **player, EnemeyDataBase **enemies, Database **DB){
+DungeonReturns fightMenu(Player **player, EnemeyDataBase **enemies, Database **DB){
     bool canRun = true;
     int runAttempts = 0;
 
@@ -64,7 +65,7 @@ bool fightMenu(Player **player, EnemeyDataBase **enemies, Database **DB){
 
     }
 
-    return NULL;
+    return FIGHT;
 
 }
 
@@ -89,7 +90,7 @@ DungeonReturns selectTarget(Player **player, EnemeyDataBase **enemies, Database 
 
         Enemey *targetEnemey = (*enemies)->enemies[userInt - 1]; 
 
-        targetEnemey = attackTarget(player, targetEnemey);
+        targetEnemey = attackTarget(player, targetEnemey, (*DB)->itemDB);
 
         WHO whosDead = checkDead(player, &targetEnemey);
 
@@ -109,30 +110,37 @@ DungeonReturns selectTarget(Player **player, EnemeyDataBase **enemies, Database 
 
 }
 
-Enemey *attackTarget(Player **player, Enemey *enemey){
+Enemey *attackTarget(Player **player, Enemey *enemey, ItemDatabase *itemDB){
     //Entually add beingable to see a text of your attack
     // Also being able to chhose a specific attack
     WHO initRoll = rollInitiative((*player), enemey);
+    double playerDef = (*player)->speed + 8;
+    double eneDef = enemey->speed + 8;
 
     double playerDamage = damageRoll(D6, (*player)->strength, 2);
+
     double enemeyDamage = damageRoll(D6, enemey->strength, 2);
 
     for(int i = 0; i < 2; i++){
         switch(initRoll){
             case PLAYER:
-                if((*player)->speed < enemey->speed && playerDamage < enemey->speed){
+                if(playerDef < eneDef && playerDamage < eneDef){
                     printf("Player Missed");
                 }else{
+                    playerDamage = applyArmor(playerDamage, enemey->armor, itemDB);
                     enemey->health -= playerDamage;
                     printf(" PLayer did %.2lf damage", playerDamage);
                 }
             break;
             case ENEMEY:
-                if( enemey->speed < (*player)->speed && enemey->speed < playerDamage){
+                if( eneDef < playerDef && eneDef < playerDamage){
                     printf("Enemey Missed");
-                }else{
+                }else if(enemey->health > 0){
+                    enemeyDamage = applyArmor(enemeyDamage, (*player)->armorSet, itemDB);
                     (*player)->health -= enemeyDamage;
                     printf(" Enemey did %.2lf damage", enemeyDamage);
+                }else{
+                    printf(" Enemey Died");
                 }
             break;
             default:

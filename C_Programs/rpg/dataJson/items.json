@@ -7,7 +7,8 @@
         "stackable": false,
         "weight": 4.5,
         "value": 15,
-        "effect": 7
+        "effect": 7,
+        "multiplier": 0.55
     },
 
     "Iron Sword": {
@@ -18,7 +19,8 @@
         "stackable": false,
         "weight": 5.0,
         "value": 60,
-        "effect": 12
+        "effect": 12,
+        "multiplier": 0.55
     },
 
     "Iron Battleaxe": {
@@ -29,7 +31,8 @@
         "stackable": false,
         "weight": 8.5,
         "value": 85,
-        "effect": 16
+        "effect": 16,
+        "multiplier": 0.50
     },
 
     "Apprentice Staff": {
@@ -40,7 +43,8 @@
         "stackable": false,
         "weight": 3.0,
         "value": 55,
-        "effect": 8
+        "effect": 8,
+        "multiplier": 0.45
     },
 
     "Iron Dagger": {
@@ -51,7 +55,8 @@
         "stackable": false,
         "weight": 1.5,
         "value": 40,
-        "effect": 9
+        "effect": 9,
+        "multiplier": 0.50
     },
 
     "Wooden Club": {
@@ -62,7 +67,20 @@
         "stackable": false,
         "weight": 3.5,
         "value": 8,
-        "effect": 5
+        "effect": 5,
+        "multiplier": 0.50
+    },
+
+    "None": {
+        "itemId": 2000,
+        "itemName": "Birthday Suit",
+        "type": "ARMOR",
+        "effectType": "DEFENSE",
+        "stackable": false,
+        "weight": 0.0,
+        "value": 0,
+        "effect": 0,
+        "multiplier": 1.0 
     },
 
     "Cloth Robes": {
@@ -73,7 +91,8 @@
         "stackable": false,
         "weight": 1.0,
         "value": 20,
-        "effect": 2
+        "effect": 2,
+        "multiplier": 0.90
     },
 
     "Leather Armor": {
@@ -84,7 +103,8 @@
         "stackable": false,
         "weight": 5.0,
         "value": 65,
-        "effect": 6
+        "effect": 6,
+        "multiplier": 0.80
     },
 
     "Hide Armor": {
@@ -95,7 +115,9 @@
         "stackable": false,
         "weight": 7.5,
         "value": 80,
-        "effect": 8
+        "effect": 8,
+        "multiplier": 0.70
+
     },
 
     "Iron Armor": {
@@ -106,7 +128,8 @@
         "stackable": false,
         "weight": 14.0,
         "value": 150,
-        "effect": 12
+        "effect": 12,
+        "multiplier": 0.60
     },
 
     "Health Potion": {
@@ -117,7 +140,8 @@
         "stackable": true,
         "weight": 0.5,
         "value": 15,
-        "effect": 25
+        "effect": 25,
+        "multiplier": 0.30
     },
 
     "Greater Health Potion": {
@@ -128,7 +152,8 @@
         "stackable": true,
         "weight": 0.75,
         "value": 40,
-        "effect": 60
+        "effect": 60,
+        "multiplier": 0.50
     },
 
     "Mana Potion": {
@@ -139,7 +164,8 @@
         "stackable": true,
         "weight": 0.5,
         "value": 20,
-        "effect": 25
+        "effect": 25,
+        "multiplier": 0.30
     },
 
     "Strength Potion": {
@@ -150,7 +176,20 @@
         "stackable": true,
         "weight": 0.5,
         "value": 35,
-        "effect": 5
+        "effect": 5,
+        "multiplier": 0.30
+    },
+
+    "Smoke Bomb": {
+        "itemId": 3005,
+        "itemName": "Smoke Bomb",
+        "type": "UTILITY",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 0.5,
+        "value": 20,
+        "effect": 0,
+        "multiplier": 0.30
     },
 
     "Torch": {
@@ -161,17 +200,6 @@
         "stackable": true,
         "weight": 1.0,
         "value": 5,
-        "effect": 0
-    },
-
-    "Smoke Bomb": {
-        "itemId": 4002,
-        "itemName": "Smoke Bomb",
-        "type": "UTILITY",
-        "effectType": "NONE",
-        "stackable": true,
-        "weight": 0.5,
-        "value": 20,
         "effect": 0
     },
 

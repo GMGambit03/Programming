@@ -6,10 +6,11 @@
             3001,
             4001
         ],
-    "Health": 5.0,
+    "Health": 8.0,
     "Strength": 2.0,
-    "Speed": 7.0,
-    "Weapon": 0
+    "Speed": 4.0,
+    "Weapon": 0,
+    "Armor": 2000
   },
   "Cracked Sentinel": {
     "ID": 1002,
@@ -20,10 +21,11 @@
             2002,
             3001
         ],
-    "Health": 14.0,
+    "Health": 24.0,
     "Strength": 7.0,
     "Speed": 2.0,
-    "Weapon": 1002
+    "Weapon": 1002,
+    "Armor": 2004
   },
   "Wailer": {
     "ID": 1003,
@@ -33,10 +35,11 @@
             3004,
             4002
         ],
-    "Health": 8.0,
+    "Health": 14.0,
     "Strength": 4.0,
-    "Speed": 9.0,
-    "Weapon": 0
+    "Speed": 7.0,
+    "Weapon": 0,
+    "Armor": 2001
   },
   "Blackwater Crawler": {
     "ID": 1004,
@@ -48,9 +51,10 @@
             3002,
             4003
         ],
-    "Health": 18.0,
-    "Strength": 8.0,
+    "Health": 28.0,
+    "Strength": 7.0,
     "Speed": 5.0,
-    "Weapon": 1005
+    "Weapon": 1005,
+    "Armor": 2003
   }
 }

@@ -1,5 +1,8 @@
 #include "Headers/dungeonMenus.h"
+#include "Headers/dungeons.h"
+#include "Headers/stringHelpers.h"
 #include <stdio.h>
+#include <time.h>
 
 void dungeonHeader(char *dungeonName){
     int filler = 16;
@@ -52,6 +55,26 @@ char playerOptions(int optionsLength, char *options[optionsLength], DungeonRetur
 
 
     }
+}
 
+void displayDirections(DungeonNode *dungeonNode, int length, char *strDir[]){
+    charFiller(8, '=');
+    printf(" MOVE ");
+    charFiller(8, '=');
+    charFiller(1, '\n');
 
+    for(int i = 0; i < length; i++){
+
+        if(i == 0 && dungeonNode->north == NULL) continue;
+        else if(i == 1 && dungeonNode->east == NULL) continue;
+        else if(i == 2 && dungeonNode->south == NULL) continue;
+        else if(i == 3 && dungeonNode->west == NULL) continue;
+
+        printf(" [ %d ] %s", (i + 1), strDir[i]);
+        printf("\n");
+    }
+    charFiller(1, '\n');
+    printf(" [ 0 ] Back");
+    charFiller(1, '\n');
+    printf(" >");
 }

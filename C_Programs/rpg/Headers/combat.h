@@ -12,9 +12,9 @@ typedef enum{
     NOONE
 }WHO;
 
-bool fightMenu(Player **player, EnemeyDataBase **enemies, Database **DB);
+DungeonReturns fightMenu(Player **player, EnemeyDataBase **enemies, Database **DB);
 DungeonReturns selectTarget(Player **player, EnemeyDataBase **enemies, Database **DB);
-Enemey *attackTarget(Player **player, Enemey *enemey);
+Enemey *attackTarget(Player **player, Enemey *enemey, ItemDatabase *itemDB);
 
 WHO checkDead(Player **player, Enemey **enemey);
 DungeonReturns enemiesStatus(EnemeyDataBase *enemies);
