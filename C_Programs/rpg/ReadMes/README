@@ -9,6 +9,8 @@ Dungeon.C
 : Also have the dead in paraentheses next to most in main entrance dungeon menu
 : make a map for each node and see how theyre connected so player knows where they are
 : Make sure the dungeon has a bossroom
+: Add a search room function
+: add different things you can do inside each room(ex: you may need a torch or lockpick to enter a door)
 
 Combat.C
 : Give a better ui for when fighting
