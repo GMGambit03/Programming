@@ -1,16 +1,5 @@
 {   
-    "Smoke Bomb": {
-        "itemId": 3005,
-        "itemName": "Smoke Bomb",
-        "type": "UTILITY",
-        "effectType": "NONE",
-        "stackable": true,
-        "weight": 0.5,
-        "value": 20,
-        "effect": 0,
-        "dmgReduction": 0.30
-    },
-
+    
     "Torch": {
         "itemId": 4001,
         "itemName": "Torch",
@@ -22,6 +11,18 @@
         "effect": 0
     },
 
+    "Smoke Bomb": {
+        "itemId": 4002,
+        "itemName": "Smoke Bomb",
+        "type": "UTILITY",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 0.5,
+        "value": 20,
+        "effect": 0,
+        "dmgReduction": 0.30
+    },
+    
     "Lockpick": {
         "itemId": 4003,
         "itemName": "Lockpick",
@@ -32,7 +33,7 @@
         "value": 8,
         "effect": 0
     },
-
+    
     "Rope": {
         "itemId": 4004,
         "itemName": "Rope",
@@ -42,5 +43,6 @@
         "weight": 2.5,
         "value": 10,
         "effect": 0
-    }
+    } 
+
 }

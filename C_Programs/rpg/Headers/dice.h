@@ -11,20 +11,20 @@ typedef enum{
     D10,
     D12,
     D20
-}DiceType;
+}DICETYPE;
 
 typedef struct{
-    DiceType diceType;
+    DICETYPE diceType;
     int diceSides;
 }Dice;
 
 typedef struct{
-        DiceType diceType;
-        double dmgReduction;
-        int rolls;
+    DICETYPE diceType;
+    int rolls;
 }Roll;
 
 double rollDice(Roll roll);
-Dice createDice(DiceType diceType);
+Dice createDice(DICETYPE diceType);
+DICETYPE getDiceType(int diceSides);
 
 #endif

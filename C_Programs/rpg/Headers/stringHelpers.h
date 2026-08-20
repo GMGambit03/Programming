@@ -14,4 +14,6 @@ bool checkFirstDigit(char *userInput);
 char *toUpper(char *string);
 void charFiller(int length, char charc);
 
+double max(double a, double b);
+
 #endif

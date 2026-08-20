@@ -19,6 +19,7 @@ Enemy *attackTarget(Player **player, Enemy *enemy, ItemDatabase *itemDB);
 WHO checkDead(Player **player, Enemy **enemy);
 DungeonReturns enemiesStatus(EnemyDataBase *enemies);
 WHO rollInitiative(Player *player, Enemy *enemy);
-double damageRoll(DiceType type, double dmgReduction, int rolls);
+double toHitRoll(DICETYPE type, double attModifier, int rolls);
+double getDamageRoll(Roll roll, double statModifier, double armorDmgReduct, double weaponPen);
 
 #endif

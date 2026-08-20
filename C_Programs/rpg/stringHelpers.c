@@ -74,8 +74,27 @@ char *toUpper(char *string){
     return upperStr;
 }
 
+void generalHeaderDisplay(char *print, char character, int filler){
+    int nameLength = strlen(print);
+    int center = (filler - nameLength) / 2;
+
+    printf(" ");
+    charFiller(filler, character);
+    printf("\n");
+    charFiller(center, ' ');
+    printf(" %s", print);
+    printf("\n");
+    printf(" ");
+    charFiller(filler, character);
+    charFiller(1, '\n');
+}
+
 void charFiller(int length, char charc){
     for(int i = 0; i <= length; i++){
         printf("%c", charc);
     }
+}
+
+double max(double a, double b){
+    return (a > b) ? b : a;
 }

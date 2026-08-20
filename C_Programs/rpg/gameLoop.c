@@ -47,8 +47,6 @@ GameState *newGameIntro(){
                 Player *player = classMenu(DB->classDB);
                 player->name = newSaveMenu();
 
-                applyWeapon(&player->strength, player->weapon, DB->itemDB);
-
                 gameState->player = player;
 
                 printf(" **Elder**: Nice to have you stand and cure our village.\n");
@@ -135,8 +133,8 @@ GameState *newGameIntro(){
 
 }
 
-void mainLoop(GameState gameState){
-    Player *player = gameState.player;
+void mainLoop(GameState *gameState){
+    Player *player = gameState->player;
 
 
 }

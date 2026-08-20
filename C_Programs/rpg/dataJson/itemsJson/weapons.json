@@ -1,4 +1,5 @@
 {
+    
     "Rusty Sword": {
         "itemId": 1001,
         "itemName": "Rusty Sword",
@@ -7,8 +8,13 @@
         "stackable": false,
         "weight": 4.5,
         "value": 15,
-        "effect": 7,
-        "penetration": 0.55
+
+        
+        "penetration": 1,
+        "diceRoll": {
+            "diceSides": 6,
+            "rolls": 1
+        }
     },
 
     "Iron Sword": {
@@ -19,8 +25,12 @@
         "stackable": false,
         "weight": 5.0,
         "value": 60,
-        "effect": 12,
-        "penetration": 0.55
+
+        "penetration": 2,
+        "diceRoll": {
+            "diceSides": 8,
+            "rolls": 1
+        }
     },
 
     "Iron Battleaxe": {
@@ -31,8 +41,12 @@
         "stackable": false,
         "weight": 8.5,
         "value": 85,
-        "effect": 16,
-        "penetration": 0.50
+
+        "penetration": 3,
+        "diceRoll": {
+            "diceSides": 10,
+            "rolls": 1
+        }
     },
 
     "Apprentice Staff": {
@@ -43,8 +57,12 @@
         "stackable": false,
         "weight": 3.0,
         "value": 55,
-        "effect": 8,
-        "penetration": 0.45
+        
+        "penetration": 0,
+         "diceRoll": {
+            "diceSides": 4,
+            "rolls": 1
+        }
     },
 
     "Iron Dagger": {
@@ -55,8 +73,12 @@
         "stackable": false,
         "weight": 1.5,
         "value": 40,
-        "effect": 9,
-        "penetration": 0.50
+        
+        "penetration": 2,
+        "diceRoll": {
+            "diceSides": 4,
+            "rolls": 1
+        }
     },
 
     "Wooden Club": {
@@ -67,7 +89,45 @@
         "stackable": false,
         "weight": 3.5,
         "value": 8,
-        "effect": 5,
-        "penetration": 0.50
+        
+        "penetration": 0,
+        "diceRoll": {
+            "diceSides": 6,
+            "rolls": 1
+        }
+    },
+
+    "Hollow Rat Claws":{
+        "itemId": 1007,
+        "itemName": "Claws",
+        "type": "WEAPON",
+        "effectType": "DAMAGE",
+        "stackable": false,
+        "weight": 0,
+        "value": 15,
+
+        
+        "penetration": 0,
+        "diceRoll": {
+            "diceSides": 4,
+            "rolls": 2
+        }
+    },
+
+    "Wailer Staff":{
+        "itemId": 1008,
+        "itemName": "Wailer Staff",
+        "type": "WEAPON",
+        "effectType": "DAMAGE",
+        "stackable": false,
+        "weight": 4.5,
+        "value": 15,
+
+        
+        "penetration": 0,
+        "diceRoll": {
+            "diceSides": 6,
+            "rolls": 1
+        }
     }
 }

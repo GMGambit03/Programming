@@ -7,8 +7,8 @@
         "stackable": false,
         "weight": 0.0,
         "value": 0,
-        "effect": 0,
-        "dmgReduction": 1.0 
+
+        "dmgReduction": 0 
     },
 
     "Cloth Robes": {
@@ -19,8 +19,8 @@
         "stackable": false,
         "weight": 1.0,
         "value": 20,
-        "effect": 2,
-        "dmgReduction": 0.90
+        
+        "dmgReduction": 2
     },
 
     "Leather Armor": {
@@ -31,8 +31,8 @@
         "stackable": false,
         "weight": 5.0,
         "value": 65,
-        "effect": 6,
-        "dmgReduction": 0.80
+        
+        "dmgReduction": 6
     },
 
     "Hide Armor": {
@@ -43,8 +43,8 @@
         "stackable": false,
         "weight": 7.5,
         "value": 80,
-        "effect": 8,
-        "dmgReduction": 0.70
+        
+        "dmgReduction": 8
 
     },
 
@@ -56,7 +56,7 @@
         "stackable": false,
         "weight": 14.0,
         "value": 150,
-        "effect": 12,
-        "dmgReduction": 0.60
+        
+        "dmgReduction": 12
     }
 }

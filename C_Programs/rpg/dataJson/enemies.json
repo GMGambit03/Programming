@@ -2,25 +2,17 @@
     "Hollow Rat": {
     "ID": 1001,
     "Name": "Hollow Rat",
-    "Loot": [
-            3001,
-            4001
-        ],
+    "Loot": [3001,4001],
     "Health": 8.0,
     "Strength": 2.0,
     "Speed": 4.0,
-    "Weapon": 0,
+    "Weapon": 1007,
     "Armor": 2000
   },
   "Cracked Sentinel": {
     "ID": 1002,
     "Name": "Cracked Sentinel",
-    "Loot": [
-            1001,
-            1002,
-            2002,
-            3001
-        ],
+    "Loot": [1001,1002,2002,3001],
     "Health": 24.0,
     "Strength": 7.0,
     "Speed": 2.0,
@@ -30,31 +22,62 @@
   "Wailer": {
     "ID": 1003,
     "Name": "Wailer",
-    "Loot": [
-            3003,
-            3004,
-            4002
-        ],
+    "Loot": [3003,3004,4002],
     "Health": 14.0,
     "Strength": 4.0,
     "Speed": 7.0,
-    "Weapon": 0,
+    "Weapon": 1008,
     "Armor": 2001
   },
   "Blackwater Crawler": {
     "ID": 1004,
     "Name": "Blackwater Crawler",
-    "Loot": [
-            1005,
-            2003,
-            3001,
-            3002,
-            4003
-        ],
+    "Loot": [1005,2003,3001,3002,4003],
     "Health": 28.0,
     "Strength": 7.0,
     "Speed": 5.0,
     "Weapon": 1005,
     "Armor": 2003
+  },
+
+  "Deep Stalker": {
+    "ID": 1005,
+    "Name": "Deep Stalker",
+    "Loot": [1005,4002],
+    "Health": 11.0,
+    "Strength": 6.0,
+    "Speed": 6.0,
+    "Weapon": 1005,
+    "Armor": 0
+  },
+
+"Fungal Husk": {
+    "ID": 1006,
+    "Name": "Fungal Husk",
+    "Loot": [
+            3001,
+            3003
+        ],
+
+    "Health": 16.0,
+    "Strength": 5.0,
+    "Speed": 2.0,
+    "Weapon": 0,
+    "Armor": 0
+  },
+
+"UnderDark Marauder": {
+    "ID": 1007,
+    "Name": "UnderDark Marauder",
+    "Loot": [
+            1001,
+            2002,
+            3001
+        ],
+    "Health": 15.0,
+    "Strength": 7.0,
+    "Speed": 4.0,
+    "Weapon": 1001,
+    "Armor": 2002
   }
 }

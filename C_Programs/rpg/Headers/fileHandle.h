@@ -13,6 +13,8 @@ typedef struct Enemy Enemy;
 typedef struct Dungeon Dungeon;
 typedef struct Player Player;
 
+typedef struct ItemArray ItemArray;
+
 typedef struct EnemyDataBase{
     Enemy **enemies;
     int enemiesCount;
@@ -29,9 +31,14 @@ typedef struct DungeonDatabase{
 }DungeonDatabase;
 
 typedef struct ItemDatabase{
-    Item ***itemsArray;
-    int *itemCounts;
+    ItemArray **itemsArray;
+    int itemCount;
 }ItemDatabase;
+
+typedef struct ItemArray{
+    Item **items;
+    int itemsCount;
+}ItemArray;
 
 typedef struct Database{
     ClassDatabase *classDB;

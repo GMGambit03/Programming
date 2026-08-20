@@ -31,6 +31,7 @@ Dungeon *createDungeon(Object *dungeonData){
 }
 
 Dungeon *loadDungeon(Database **DB, int dungeonId){
+    // searches through dungeon database to find which specific dungeon we're looking for then returns it
     for(int i = 0; i < (*DB)->dungeonDB->size; i++){
         Dungeon *currDungeon = (*DB)->dungeonDB->dungeons[i];
         if(currDungeon->dungeonId == dungeonId){
@@ -43,27 +44,42 @@ Dungeon *loadDungeon(Database **DB, int dungeonId){
 
 DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Direction Parent, EnemyDataBase **enemyDatabase){
     
+    // This is our recursive funtion return comparison
+    // We basically stop once we reach the m=amount of room we set in getDungeonNodes
     if(*count == roomCount){
         return NULL;
     }
 
+    // we create a tmp pointer so its easier to type everything
     Dungeon *tmp = (*dungeon);
 
+    // ccreate space for everything we're going to add to the room
     DungeonNode *room = malloc(sizeof(DungeonNode));
 
+    // initially set all the directions to null because not every room will have all the directions
     room->north = NULL;
     room->east = NULL;
     room->west = NULL;
     room->south = NULL;
+
+    // we get a random enemy count between the specifc dungeons min and max enemies
     room->enemiesCount = rand() % (tmp->maxEnemyCnt - tmp->minEnemyCnt + 1) + tmp->minEnemyCnt;
+
+    // Just to make it easier for other funtions we check if theyre any enimies even in the dungeon
     if(room->enemiesCount == 0){
         room->enemiesDead = true;
     }else{
         room->enemiesDead = false;
     }
+
+    // we then based on the different enimies the dungeon can have we randomly add them to the room
     room->enemies = getRanEnemies(tmp->possibleEnemies, tmp->possEnemyCount, room->enemiesCount, enemyDatabase);
+
+    // eventually we'll have different descriptions for each room
     room->description = "We dont got anything";
     
+    // if the number of rooms count is 1 then its the first room which we will add to be the entrance\
+    // if the room count is the max then the room is set to be the boss room
     *count += 1;
     if(*count == 1){
         (*dungeon)->entrance = room;
@@ -71,9 +87,11 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Dir
         (*dungeon)->bossRoom = room;
     }
 
+    // makeing an array of the different directions we can have
     Direction direction[4] = {NORTH, EAST, SOUTH, WEST};
     int dirSize = sizeof(direction)/sizeof(*direction);
 
+    // we first check if this is child of another room if so we create space for one less direction array
     Direction *direct;
     if(Parent != NONE){
         Direction *tmp = malloc(sizeof(Direction) * 3);
@@ -82,6 +100,7 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Dir
         Direction *tmp = malloc(sizeof(Direction) * 4);
         direct = tmp;
     }
+    // we then fill up the new direction array with all the valid directions
     int y = 0;
     int newDirSize = 0;
     for(int i = 0; i < dirSize; i++){
@@ -94,13 +113,14 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Dir
 
      int dirCnt = 0;
      // The formula is (rand() % (max - min + 1)) + min
+    // we then use rand to get rand number of different rooms you can go inside of the actual room
     // If we have 2 or less rooms those rooms will have the option between 1 and 3 options
-    if(*count <= 2){
-        int min = 1;
+    if(*count <= 3){
+        int min = 2;
         dirCnt = newDirSize == dirSize ? (rand() % (dirSize - min + 1)) + min : (rand() % (newDirSize - min + 1)) + min;
     }else{
         // if we have moree then its between 0 and 2
-        int min = 0;
+        int min = 1;
         dirCnt = newDirSize == dirSize ? (rand() % (dirSize - min + 1)) + min : (rand() % (newDirSize - min + 1)) + min;
     }
 
@@ -115,10 +135,12 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Dir
         direct[ranNum] = curr;
     }
 
-    // Set the next direction to this function again and when it returns
     for(int i = 0; i < dirCnt; i++){
+        // we create next room equal to our shuffled array starting at 0 and going until it maxes out
         Direction nxtRoom = direct[i];
         Direction childParent;
+        // based on nxtRoom which is the direction we then set the parent for the next room so it knows where this room is
+        // if the parent room is just the opistite direction of nxtRoom
         switch (nxtRoom) {
             case NORTH:
                 childParent = SOUTH;
@@ -159,12 +181,15 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Dir
 
 void getDungeonNodes(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
 
+    // this function we just get the max room count and set the dungeon entrance
+    // And we declare the count here because in get nodes each child can change the value and it wouldnt be random
     int roomCount = (rand() + (*dungeon)->minRooms) % (*dungeon)->maxRooms + 1;
     int count = 0;
     (*dungeon)->entrance = createDungeonNode(roomCount, dungeon, &count, NONE, enemyDatabase);
 }
 
 DungeonReturns dungeonEntrance(GameState **gameState, Database **DB, int dungeonId){
+    // we first load the dungeon refer to loaddungeon function
     Dungeon *dungeon = loadDungeon(DB, dungeonId);
 
     while(true){
@@ -191,6 +216,7 @@ DungeonReturns dungeonEntrance(GameState **gameState, Database **DB, int dungeon
             continue;
         }
 
+        // based on userinput we can either exit or enter the dungeon
         clearScreen();
         switch(*userInput){
             case '1':
@@ -211,6 +237,7 @@ DungeonReturns dungeonEntrance(GameState **gameState, Database **DB, int dungeon
 }
 
 DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dungeonNode, Database **DB){
+    // refer to dungeonMenus for all displays and prints
     while(true){
         clearScreen();
         dungeonHeader(dungeonName);
@@ -220,7 +247,7 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
         playerStats((*player)->health, (*player)->maxHealth, (*player)->mana, (*player)->maxMana);
         charFiller(1, '\n');
 
-        
+        // we just make an of the enemies names so we can then display them on screen
         char *enemiesStrArr[dungeonNode->enemiesCount];
         for(int i = 0; i < dungeonNode->enemiesCount; i++){
             Enemy *currEnemy = dungeonNode->enemies->enemies[i];
@@ -232,6 +259,8 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
         charFiller(16, '-');
         charFiller(1, '\n');
 
+        // we're making the options char and Dungeonreturs so we can match the player input to the actual enum easier
+        // same for main options
         char *strEnemyOptions[] = {"Fight", "Inventory", "Run"};
         DungeonReturns retEnemyOptions[] = {FIGHT, INVENTORY, RUNAWAY};
 
@@ -239,6 +268,8 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
         DungeonReturns retMainOptions[] = {MOVE, SEARCHROOM, INVENTORY, LEAVE};
 
         DungeonReturns userInput;
+        // we first check if all the enemies are dead if they are we cand display main options
+        // if they arent dead we display fighting options
         if(!dungeonNode->enemiesDead && dungeonNode->enemiesCount > 0){
             userInput = playerOptions(sizeof(strEnemyOptions)/8, strEnemyOptions, retEnemyOptions);
         }else{
@@ -247,18 +278,25 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
         
         Direction moveTo;
         DungeonReturns enemiesDefeated;
+        // we choose based on the user input
         switch(userInput){
             case FIGHT:
+                // this is where the fight actually happens
                 enemiesDefeated = fightMenu(player, &dungeonNode->enemies, DB);
+
+                // This checks if the enemies were deafted and they wernt then that means the player either ran or died
                 if(enemiesDefeated != ENEMEYDEFEATED){
                     return enemiesDefeated;
                 }
                 dungeonNode->enemiesDead = true;
             break;
             case INVENTORY:
-                // displayInventory(player);
+                // refer to displayinventory
+                displayInventoryItems((*player), (*DB)->itemDB);
             break;
             case MOVE:
+                // getdirections just displays the valid directions to the player
+                // Then returns what the player chose
                 moveTo = getDirections(dungeonNode);
                 switch (moveTo) {
                     case NORTH:
@@ -281,11 +319,6 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
             break;
         }
     }
-
-
-
-    printf("Everything works");
-    getchar();
 }
 
 Direction getDirections(DungeonNode *dungeonNode){
@@ -293,10 +326,12 @@ Direction getDirections(DungeonNode *dungeonNode){
         clearScreen();
         char userInput[3];
     
+        // We make a directions array and char directions array so we can easily match what the player chose to an actual enum
         Direction dirOptions[4] = {NORTH, EAST, SOUTH, WEST};
         char *strDir[] = {"NORTH", "EAST", "SOUTH", "WEST"};
         int strDirLength = sizeof(strDir)/sizeof(strDir[0]);
 
+        // refer to dungeonMenu dispklaydirections funcntoin
         displayDirections(dungeonNode, strDirLength, strDir);
 
         fgets(userInput, sizeof(userInput), stdin);
@@ -304,8 +339,10 @@ Direction getDirections(DungeonNode *dungeonNode){
             continue;
         }
 
+        // turn player input to int to directly use it to get the enum direction in the enum array
         int userInt = (*userInput - '0');
 
+        // checks if the player input is valid
         if(userInt < 0 || userInt > sizeof(dirOptions)/4){
             validOption();
             enterContinue();

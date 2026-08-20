@@ -43,7 +43,7 @@ char playerOptions(int optionsLength, char *options[optionsLength], DungeonRetur
         for(int i = 0; i < optionsLength; i++){
             printf(" [%d] %s\n", (i + 1), options[i]);
         }
-        printf("\n: ");
+        printf("\n >");
 
         fgets(userInput, sizeof(userInput), stdin);
         if(!clearBuffer((int)sizeof(userInput) ,userInput)){

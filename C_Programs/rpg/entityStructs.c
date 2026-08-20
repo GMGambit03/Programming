@@ -20,16 +20,18 @@ Class *createClass(Object *classData){
     inventory->count = getInventoryCount(inventoryData->subObjs);
     inventory->capacity = inventory->count * .50;
     inventory->weightCap = getMember(classData, "WeightCap")->value.data.number;
+    inventory->currWeight = 0;
+    
+    inventory->items = malloc(sizeof(InventorySlot) * inventory->count);
+    
 
     classStruct->weapon = getMember(classData, "Weapon")->value.data.number;
     classStruct->armorSet = getMember(classData, "Armor Set")->value.data.number;
 
-    inventory->items = malloc(sizeof(Item) * inventory->capacity);
-
     Node *tmp = inventoryData->subObjs;
     for(int i = 0; i < inventory->count; i++){
         inventory->items[i].itemId = tmp->value.data.number;
-        inventory->items[i].quantity = 0;
+        inventory->items[i].quantity = 1;
         tmp = tmp->next;
     }
 
@@ -51,7 +53,7 @@ Player *newPlayerInfo(Class *classData){
 
     Player *player = malloc(sizeof(Player));
 
-    Roll goldRoll = {D4, 10, 0};
+    Roll goldRoll = {D4, 10};
     
     switch(classData->iD){
         case 1:
@@ -77,8 +79,11 @@ Player *newPlayerInfo(Class *classData){
     player->maxHealth = player->health;
     player->mana = classData->mana;
     player->maxMana = player->mana;
+
     player->speed = classData->speed;
     player->maxSpeed = player->speed;
+    player->AC = player->maxSpeed + 8;
+
     player->strength = classData->strength;
     player->maxStrength = player->strength;
 
@@ -104,7 +109,10 @@ Enemy *createEnemy(Object *currEnemyData){
     enemy->lootCount = count;
 
     enemy->health = getMember(currEnemyData, "Health")->value.data.number;
+
     enemy->speed = getMember(currEnemyData, "Speed")->value.data.number;
+    enemy->AC = enemy->speed + 8;
+
     enemy->strength = getMember(currEnemyData, "Strength")->value.data.number;
 
     enemy->weapon = getMember(currEnemyData, "Weapon")->value.data.number;
@@ -149,6 +157,7 @@ Enemy *getEnemyById(int enemyId, EnemyDataBase **enemyDatabase){
             enemy->strength = curr->strength;
             enemy->weapon = curr->weapon;
             enemy->armor = curr->armor;
+            enemy->AC = curr->AC;
             return enemy;
         }
     }

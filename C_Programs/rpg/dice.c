@@ -1,6 +1,6 @@
 #include "Headers/dice.h"
 
-Dice createDice(DiceType diceType){
+Dice createDice(DICETYPE diceType){
 
     Dice dice;
     dice.diceType = diceType;
@@ -39,7 +39,32 @@ double rollDice(Roll roll){
         sum += roll;
     }
 
-    sum += roll.dmgReduction;
+    // this might be replaced with modifier in the future
+    // sum += roll.dmgReduction;
 
     return sum;
+}
+
+DICETYPE getDiceType(int diceSides){
+    switch(diceSides){
+        case 4:
+            return D4;
+        break;
+        case 6:
+            return D6;
+        break;
+        case 8:
+            return D8;
+        break;
+        case 10:
+            return D10;
+        break;
+        case 12:
+            return D12;
+        break;
+        case 20:
+            return D20;
+        break;
+    }
+    return D4;
 }

@@ -6,8 +6,9 @@ int main(){
 
     if(loadSave == 1){
         GameState *gameState = newGameIntro();
-
     }
+
+    mainLoop(gameState);
 
     return 0;
 }

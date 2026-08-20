@@ -35,6 +35,8 @@ typedef struct Player{
     double maxHealth;
     double health;
 
+    double AC;
+
     double maxStrength;
     double strength;
 
@@ -58,6 +60,7 @@ typedef struct Enemy{
     double health;
     double strength;
     double speed;
+    double AC;
 
     int weapon;
     int armor;

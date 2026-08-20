@@ -23,7 +23,7 @@
         "Description": "Unstoppable at a distance and the universe at your fingertips",
         "Hp": 8,
         "Strength": 4,
-        "Speed": 6,
+        "Speed": 5,
         "Mana": 12,
         "WeightCap": 60,
 
@@ -41,7 +41,7 @@
         "Description": "Quick, Quiet, Deadly. Gone before anyone notice",
         "Hp": 10,
         "Strength": 6,
-        "Speed": 9,
+        "Speed": 7,
         "Mana": 4,
         "WeightCap": 90,
 

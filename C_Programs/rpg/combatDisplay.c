@@ -4,21 +4,6 @@
 #include "Headers/fileHandle.h"
 #include <stdio.h>
 
-void generalHeaderDisplay(char *print, char character, int filler){
-    int nameLength = strlen(print);
-    int center = (filler - nameLength) / 2;
-
-    printf(" ");
-    charFiller(filler, character);
-    printf("\n");
-    charFiller(center, ' ');
-    printf(" %s", print);
-    printf("\n");
-    printf(" ");
-    charFiller(filler, character);
-    charFiller(1, '\n');
-}
-
 void combatHeaderDisplay(){
     int filler = 16;
     int nameLength = strlen("COMBAT");
