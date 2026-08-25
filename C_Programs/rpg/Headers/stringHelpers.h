@@ -13,6 +13,7 @@ bool checkChars(char *userInput);
 bool checkFirstDigit(char *userInput);
 char *toUpper(char *string);
 void charFiller(int length, char charc);
+void intShuffler(int **array, int times);
 
 double max(double a, double b);
 

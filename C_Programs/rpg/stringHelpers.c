@@ -95,6 +95,18 @@ void charFiller(int length, char charc){
     }
 }
 
+void intShuffler(int **array, int arraySize){
+    for(int i = 0; i < arraySize; i++){
+        int ranNum = rand() % (i + 1);
+
+        int curr = (*array)[i];
+        int swap = (*array)[ranNum];
+
+        (*array)[i] = swap;
+        (*array)[ranNum] = curr;
+    }
+}
+
 double max(double a, double b){
     return (a > b) ? b : a;
 }

@@ -6,7 +6,7 @@
     "Health": 8.0,
     "Strength": 2.0,
     "Speed": 4.0,
-    "Weapon": 1007,
+    "Weapon": 1100,
     "Armor": 2000
   },
   "Cracked Sentinel": {
@@ -26,7 +26,7 @@
     "Health": 14.0,
     "Strength": 4.0,
     "Speed": 7.0,
-    "Weapon": 1008,
+    "Weapon": 1101,
     "Armor": 2001
   },
   "Blackwater Crawler": {
@@ -36,7 +36,7 @@
     "Health": 28.0,
     "Strength": 7.0,
     "Speed": 5.0,
-    "Weapon": 1005,
+    "Weapon": 1102,
     "Armor": 2003
   },
 
@@ -48,32 +48,25 @@
     "Strength": 6.0,
     "Speed": 6.0,
     "Weapon": 1005,
-    "Armor": 0
+    "Armor": 2000
   },
 
 "Fungal Husk": {
     "ID": 1006,
     "Name": "Fungal Husk",
-    "Loot": [
-            3001,
-            3003
-        ],
+    "Loot": [3001,3003],
 
     "Health": 16.0,
     "Strength": 5.0,
     "Speed": 2.0,
-    "Weapon": 0,
-    "Armor": 0
+    "Weapon": 1103,
+    "Armor": 2000
   },
 
 "UnderDark Marauder": {
     "ID": 1007,
     "Name": "UnderDark Marauder",
-    "Loot": [
-            1001,
-            2002,
-            3001
-        ],
+    "Loot": [1001,2002,3001],
     "Health": 15.0,
     "Strength": 7.0,
     "Speed": 4.0,

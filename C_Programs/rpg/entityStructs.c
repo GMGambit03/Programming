@@ -2,6 +2,7 @@
 #include "Headers/itemHelper.h"
 #include "Headers/jsonHeaders/structs.h"
 #include "Headers/fileHandle.h"
+#include "Headers/stringHelpers.h"
 #include <stdlib.h>
 
 Class *createClass(Object *classData){
@@ -127,14 +128,7 @@ EnemyDataBase *getRanEnemies(int *possEnemies, int possEnemyCount, int enemyCoun
     enemies->enemies = malloc(sizeof(Enemy) * enemies->enemiesCount);
     
     for(int i = enemyCount - 1; i >= 0; i--){
-        int ranNum = rand() % (i + 1);
-
-        int curr = possEnemies[i];
-        int swap = possEnemies[ranNum];
-
-        possEnemies[i] = swap;
-        possEnemies[ranNum] = curr;
-        
+        intShuffler(&possEnemies, possEnemyCount);
         enemies->enemies[i] = getEnemyById(possEnemies[i], enemyDatabase);
     }
 

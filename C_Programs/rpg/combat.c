@@ -107,6 +107,11 @@ DungeonReturns selectTarget(Player **player, EnemyDataBase **enemies, Database *
         // we put the enemey the player chose into a variable for ease of acces
         Enemy *targetEnemy = (*enemies)->enemies[userInt - 1]; 
 
+        //Check if that enemy is dead already
+        if(targetEnemy->isDead){
+            printf(" You spat on the dead %s\n", targetEnemy->name);
+        }
+
         // The send through attack target and attack target changes the player health and does the calculations for damage
         // The returns and Enemy type which is the enemies health
         targetEnemy = attackTarget(player, targetEnemy, (*DB)->itemDB);

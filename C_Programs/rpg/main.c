@@ -8,7 +8,7 @@ int main(){
         GameState *gameState = newGameIntro();
     }
 
-    mainLoop(gameState);
+    // mainLoop(gameState);
 
     return 0;
 }

@@ -1,0 +1,121 @@
+{
+    "Rat Claw": {
+        "itemId": 6001,
+        "itemName": "Hollow Rat Claw",
+        "type": "MATERIAL",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 0.1,
+        "value": 3
+    },
+
+    "Rat Hide": {
+        "itemId": 6002,
+        "itemName": "Hollow Rat Hide",
+        "type": "MATERIAL",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 0.4,
+        "value": 5
+    },
+
+    "Cracked Iron Shard": {
+        "itemId": 6003,
+        "itemName": "Cracked Iron Shard",
+        "type": "MATERIAL",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 0.8,
+        "value": 8
+    },
+
+    "Core Fragment": {
+        "itemId": 6004,
+        "itemName": "Sentinel Core Fragment",
+        "type": "MATERIAL",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 0.5,
+        "value": 14
+    },
+
+    "Wailer Essence": {
+        "itemId": 6005,
+        "itemName": "Wailer Essence",
+        "type": "MATERIAL",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 0.1,
+        "value": 12
+    },
+
+    "Wailer Talon": {
+        "itemId": 6006,
+        "itemName": "Wailer Talon",
+        "type": "MATERIAL",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 0.2,
+        "value": 7
+    },
+
+    "Crawler Fang": {
+        "itemId": 6007,
+        "itemName": "Crawler Fang",
+        "type": "MATERIAL",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 0.3,
+        "value": 9
+    },
+
+    "Blackwater Carapace": {
+        "itemId": 6008,
+        "itemName": "Blackwater Carapace",
+        "type": "MATERIAL",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 1.0,
+        "value": 16
+    },
+
+    "Deep Stalker Fang": {
+        "itemId": 6009,
+        "itemName": "Deep Stalker Fang",
+        "type": "MATERIAL",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 0.2,
+        "value": 10
+    },
+
+    "Fungal Fiber": {
+        "itemId": 6010,
+        "itemName": "Fungal Fiber",
+        "type": "MATERIAL",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 0.2,
+        "value": 6
+    },
+
+    "Glowcap Spore": {
+        "itemId": 6011,
+        "itemName": "Glowcap Spore",
+        "type": "MATERIAL",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 0.1,
+        "value": 8
+    },
+
+    "Darksteel Scrap": {
+        "itemId": 6012,
+        "itemName": "Darksteel Scrap",
+        "type": "MATERIAL",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 1.2,
+        "value": 18
+    }
+}

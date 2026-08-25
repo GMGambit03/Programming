@@ -46,8 +46,7 @@
         "WeightCap": 90,
 
         "Inventory": {
-            "HPOTION": 3001,
-            "UTILITY": 4002
+            "HPOTION": 3001
         },
 
         "Weapon": 1005,

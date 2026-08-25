@@ -2,15 +2,21 @@ AllWays`
 : Add comments
 : make code cleaner
 : make variables make sense
-: Continue overtime balancing enemies and player
+: Continue overtime balancing enemies and player:
+
+Items
+: Implment Materials 
+: Get enemies to drop loot
+: Implment loot drop rarites
+: Add a drop rate for all items
 
 Dungeon.C
-: Make enemies random
 : Also have the dead in paraentheses next to most in main entrance dungeon menu
 : make a map for each node and see how theyre connected so player knows where they are
 : Make sure the dungeon has a bossroom
 : Add a search room function
 : add different things you can do inside each room(ex: you may need a torch or lockpick to enter a door)
+: Add enemy drops and loot that the room drops
 
 Combat.C
 : Give a better ui for when fighting

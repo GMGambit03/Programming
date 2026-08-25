@@ -135,6 +135,4 @@ GameState *newGameIntro(){
 
 void mainLoop(GameState *gameState){
     Player *player = gameState->player;
-
-
 }
