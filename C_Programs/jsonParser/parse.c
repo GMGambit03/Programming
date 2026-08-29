@@ -238,6 +238,7 @@ JsonValue parseValue(Parser *parser){
             value.data.boolean = true;
         break;
         case '[':
+            parser->prev = parser->cursor;
             value.type = ARRAY;
             value.data.array = arrayMode(parser);
         break;
@@ -250,6 +251,11 @@ JsonValue parseValue(Parser *parser){
             parser->cursor = parser->prev - 1;
             value.type = OBJECT;
             value.data.obj = objMode(parser);
+            if(parser->token == ','){
+                parser->token = lexer(&parser->file, &parser->cursor);
+                parser->cursor -= 1;
+                parser->token = parser->file[parser->cursor];
+            }
         break;
         default:
             value.type = NUMBER;
@@ -275,6 +281,8 @@ JsonArray *arrayMode(Parser *parser){
     while(parser->token != ']'){
         subValue = parseValue(parser);
 
+        parser->prev = parser->cursor - 1;
+
         if(array->count == array->capacity){
             array->capacity *= 2;
             JsonValue *tmp = realloc(array->values, sizeof(JsonArray) * array->capacity);
@@ -282,6 +290,10 @@ JsonArray *arrayMode(Parser *parser){
                 array->values = tmp;
             }
         }
+
+        // if(parser->token == ','){
+        //     parser->token = lexer(&parser->file, &parser->cursor);
+        // }
 
         array->values[array->count] = subValue;
         array->count++;

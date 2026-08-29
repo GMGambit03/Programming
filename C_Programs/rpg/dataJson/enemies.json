@@ -54,7 +54,16 @@
 "Fungal Husk": {
     "ID": 1006,
     "Name": "Fungal Husk",
-    "Loot": [3001,3003],
+    "Loot": [
+      {
+        "ItemID": 3001,
+        "Chance": 70 
+      },
+      {
+        "ItemID": 3003,
+        "Chance": 35
+      }
+    ],
 
     "Health": 16.0,
     "Strength": 5.0,
