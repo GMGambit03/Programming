@@ -2,14 +2,15 @@
 "Fungal Husk": {
     "ID": 1006,
     "Name": "Fungal Husk",
+    "Yooo": ["hello", "yooo"],
     "Loot": [
       {
-        "ItemID": 3001,
-        "Chance": 70 
+        "Hello": 456,
+        "YOOO": 234
       },
       {
-        "ItemID": 3003,
-        "Chance": 35
+        "PlsWork": "Maybe",
+        "Yoursmart": "Stop Lying"
       }
     ],
 

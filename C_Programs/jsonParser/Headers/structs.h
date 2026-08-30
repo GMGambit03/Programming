@@ -62,8 +62,9 @@ typedef struct{
 
 Object *createObj();
 Node *createNode(char *key, JsonValue value, Node *next);
-Object *getObject(ObjectArray *objArray, char *objName);
+ObjectArray *createObjArr(Object *object);
 Member *getObjArrayMember(ObjectArray *objArray, char *objName, char *key);
+Object *getObject(ObjectArray *objArray, char *objName);
 Member *getMember(Object *object, char *key);
 int *getIntArr(JsonArray *jsonArray, int *count);
 void freeObj(Object *object);

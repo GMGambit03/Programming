@@ -5,10 +5,7 @@ ObjectArray *searchMode(Parser *parser){
     // Initialize search mode to start iterating through json file
     int state = SEARCH;
     // create the object that will be returned
-    ObjectArray *objects = malloc(sizeof(ObjectArray));
-    objects->size = 0;
-    objects->objects = malloc(sizeof(Object) * objects->size);
-
+    Object *objs = malloc(sizeof(Object));
     // while loop that continues unitll it reaches the end of the json objects 
     while(parser->token != '}'){
 
@@ -38,22 +35,20 @@ ObjectArray *searchMode(Parser *parser){
             // objmode function also makes the subobject and also will continue to call lexer to get more tokens
             // and also returns a object
             case OBJMODE:
-                objects->size += 1;
-                objects->objects = realloc(objects->objects, sizeof(Object) * objects->size);
-                objects->objects[objects->size - 1] = objMode(parser);
+                objs = objMode(parser);
             break;
             default:
             break;    
         }
 
-        if(state == BREAK){
+        if(state == BREAK || parser->token == 0){
             break;
         }
     }
+    ObjectArray *objects = createObjArr(objs);
     return objects;
 }
 Object *objMode(Parser *parser){
-    parser->token = lexer(&parser->file, &parser->cursor);
 
     // we initialize the object were going to create
     Object *currObj = createObj();
@@ -64,10 +59,6 @@ Object *objMode(Parser *parser){
     // for this level if we run into a '"' that means we have a string and 
     while(parser->token != '}'){
         switch (parser->token) {
-            // we'll get that full string and put it as the obj name
-            case '"':
-                currObj->objName = parseString(parser);
-            break;
             // Then we'll go another level deeper and start getting the subobjs that will make our nodes to then attach to to the obj
             case '{':
                 // we'll go one more so the subobjmode doesnt see the '{' token and confuse it with its job
@@ -136,7 +127,8 @@ Node *subObjMode(Parser *parser){
 
 char *parseString(Parser *parser){
     // When we encounter a string set prev to the start of the quotes just in case we need to go back
-    parser->prev = parser->cursor;
+    // parser->prev = parser->cursor;
+
     // Get rid of empty space and non important charcters
     parser->token = lexer(&parser->file, &parser->cursor);
     
@@ -238,7 +230,7 @@ JsonValue parseValue(Parser *parser){
             value.data.boolean = true;
         break;
         case '[':
-            parser->prev = parser->cursor;
+            // parser->prev = parser->cursor;
             value.type = ARRAY;
             value.data.array = arrayMode(parser);
         break;
@@ -248,14 +240,14 @@ JsonValue parseValue(Parser *parser){
         // We do minus one because at the beginning of objmode it increases the cursor so we want to make sure 
         // We stay on quotations when we enter objmode
         case '{':
-            parser->cursor = parser->prev - 1;
+            // parser->cursor = parser->prev - 1;
             value.type = OBJECT;
             value.data.obj = objMode(parser);
-            if(parser->token == ','){
-                parser->token = lexer(&parser->file, &parser->cursor);
-                parser->cursor -= 1;
-                parser->token = parser->file[parser->cursor];
-            }
+            // if(parser->token == ','){
+            //     parser->token = lexer(&parser->file, &parser->cursor);
+            //     parser->cursor -= 1;
+            //     parser->token = parser->file[parser->cursor];
+            // }
         break;
         default:
             value.type = NUMBER;
@@ -279,9 +271,9 @@ JsonArray *arrayMode(Parser *parser){
 
     // Were going to call jsonvalue again and the value of each object and go in a loop
     while(parser->token != ']'){
-        subValue = parseValue(parser);
+        // parser->prev = parser->cursor - 1;
 
-        parser->prev = parser->cursor - 1;
+        subValue = parseValue(parser);
 
         if(array->count == array->capacity){
             array->capacity *= 2;
@@ -298,6 +290,5 @@ JsonArray *arrayMode(Parser *parser){
         array->values[array->count] = subValue;
         array->count++;
     }
-    array->count--;
     return array;
 }
