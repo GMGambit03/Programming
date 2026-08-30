@@ -66,6 +66,24 @@ Member *getMember(Object *object, char *key){
     return member;
 }
 
+ObjectArray *createObjArr(Object *object){
+    ObjectArray *objs = malloc(sizeof(ObjectArray));
+    objs->size = 0;
+    objs->objects = malloc(sizeof(Object) * objs->size); 
+
+    Node *tmpNode = object->subObjs;
+
+    while(tmpNode != NULL){
+        objs->size += 1;
+        objs->objects = realloc(objs->objects, sizeof(Object) * objs->size);
+        tmpNode->value.data.obj->objName = tmpNode->key;
+        objs->objects[objs->size - 1] = tmpNode->value.data.obj; 
+        tmpNode = tmpNode->next;
+    }
+
+    return objs;
+}
+
 Object *getObject(ObjectArray *objArray, char *objName){
     int objLength = objArray->size;
 

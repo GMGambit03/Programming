@@ -65,6 +65,7 @@ Node *createNode(char *key, JsonValue value, Node *next);
 ObjectArray *createObjArr(Object *object);
 Member *getObjArrayMember(ObjectArray *objArray, char *objName, char *key);
 Object *getObject(ObjectArray *objArray, char *objName);
+int getObjectCount(ObjectArray *objArray);
 Member *getMember(Object *object, char *key);
 int *getIntArr(JsonArray *jsonArray, int *count);
 void freeObj(Object *object);
