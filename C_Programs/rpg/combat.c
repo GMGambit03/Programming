@@ -9,13 +9,17 @@
 #include "Headers/stringHelpers.h"
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 DungeonReturns fightMenu(Player **player, EnemyDataBase **enemies, Database **DB){
     // Declare a can run bool for whenever the player tries to run it checks if they can
     bool canRun = true;
-
     // Wants you reach a certine point of attempts it make can run false
     int runAttempts = 0;
+    // We want ctch when the enemies are dead so we can change the options
+    bool enemiesDead = false;
+    // declare nect and based on next we decide weather to continue or return to dungeon.c entrance function
+    DungeonReturns next;
 
     while(true){
         clearScreen();
@@ -29,10 +33,29 @@ DungeonReturns fightMenu(Player **player, EnemyDataBase **enemies, Database **DB
     
         // We create strOption and actionOption exactly the same so when the player choose one option from strOptions
         // It matches the coorosponding one in actionOptions
-        char *strOptions[] = {"Attack", "Inventory", "Attempt to Run"};
-        ACTIONS actionOptions[] = {ATTACK, USEITEM, RUNATT};
+        char *strActions[] = {"Attack", "Inventory", "Attempt to Run", "Loot"};
+        ACTIONS actions[] = {ATTACK, USEITEM, RUNATT, LOOT};
+
+        char **strOptions;
+        ACTIONS *actionOptions;
+
+        // Based on eneimies dead, itll determine weather we include loot or not
+        int optionCount = 0;
+        if(!enemiesDead){
+            optionCount = 3;
+        }else{
+            strActions[2] = "Go Back";
+            optionCount = 4;
+        }
+
+        strOptions = malloc(sizeof(char *) * optionCount);
+        actionOptions = malloc(sizeof(ACTIONS) * optionCount);
+        for(int i = 0; i < optionCount; i++){
+            strOptions[i] = strActions[i];
+            actionOptions[i] = actions[i];
+        }
     
-        actionsDisplay(strOptions ,canRun);
+        actionsDisplay(strOptions ,canRun, optionCount);
     
         fgets(userInput, sizeof(userInput), stdin);
         if(!clearBuffer((int)sizeof(userInput) ,userInput)){
@@ -43,7 +66,7 @@ DungeonReturns fightMenu(Player **player, EnemyDataBase **enemies, Database **DB
         int userInt = *userInput - '0';
 
         // input check to see if its in range of the options
-        if(userInt > 3 || userInt < 1){
+        if(userInt > optionCount || userInt < 1){
             validOption();
             enterContinue();
             getchar();
@@ -53,26 +76,39 @@ DungeonReturns fightMenu(Player **player, EnemyDataBase **enemies, Database **DB
         // assign the the player action
         ACTIONS playerAction = actionOptions[userInt - 1];
 
-        // declare nect and based on next we decide weather to continue or return to dungeon.c entrance function
-        DungeonReturns next;
         switch(playerAction){
             case ATTACK:
                 next = selectTarget(player, enemies, DB);
+                if(next == ENEMEYDEFEATED){
+                    enemiesDead = true;
+                }
             break;
             case USEITEM:
                 displayInventoryItems((*player), (*DB)->itemDB);
-                next = FIGHT;
+                if(enemiesDead){
+                    next = ENEMEYDEFEATED;
+                }else{
+                    next = FIGHT;
+                }
             break;
             case RUNATT:
+                if(enemiesDead){
+                    return ENEMEYDEFEATED;
+                }
                 if(runAttempts == 3){
                     canRun = false;
                 }
                 // bool runAttempt = runAttempt();
                 // runAttempts++;
             break;
+            case LOOT:
+                clearScreen();
+                lootEnemyDisplay(player, enemies, (*DB)->itemDB);
+                next = FIGHT;
+            break;
         }
 
-        if(next != FIGHT){
+        if(next == DIED){
             return next;
         }
 
@@ -110,6 +146,7 @@ DungeonReturns selectTarget(Player **player, EnemyDataBase **enemies, Database *
         //Check if that enemy is dead already
         if(targetEnemy->isDead){
             printf(" You spat on the dead %s\n", targetEnemy->name);
+            return FIGHT;
         }
 
         // The send through attack target and attack target changes the player health and does the calculations for damage
@@ -146,7 +183,7 @@ Enemy *attackTarget(Player **player, Enemy *enemy, ItemDatabase *itemDB){
     WHO initRoll = rollInitiative((*player), enemy);
 
     // We then roll to see if they can hit eachother
-    double playertoHitRoll = toHitRoll(D20, 0, 1);
+    double playertoHitRoll = toHitRoll(D20, 30, 1);
     double enemytoHitRoll = toHitRoll(D20, 0, 1);
 
     // We then get theyre weapons and armor to then calculate how much dmg they do to eachother
@@ -172,7 +209,7 @@ Enemy *attackTarget(Player **player, Enemy *enemy, ItemDatabase *itemDB){
                 // This just checks if the enemy is still alive if he is he can do damage if not print enemy died
                 else if((*player)->health > 0){
                     // If either the ac is higher or tohit is higher the player does dammage
-                    enemy->health -= playerDamage;
+                    enemy->health -= playerDamage * 100;
 
                     // Eventually we'll add a little scene to imagine the fight
                     printf(" PLayer did %.2lf damage", playerDamage);
@@ -250,6 +287,7 @@ WHO checkDead(Player **player, Enemy **enemy){
         return PLAYER;
     }else if((*enemy)->health <= 0){
         (*enemy)->isDead = true;
+        getEnemyDrop(enemy);
         return ENEMEY;
     }
     return NOONE;
@@ -264,6 +302,32 @@ DungeonReturns enemiesStatus(EnemyDataBase *enemies){
         }
     }
     return ENEMEYDEFEATED;
+}
+
+void getEnemyDrop(Enemy **enemy){
+    // we're going to roll from 0 to 100 and then based on the drop chance
+    // we're going to add it to the enemy drops
+    (*enemy)->dropCount = 0;
+    (*enemy)->drop = malloc(sizeof(int) * (*enemy)->dropCount);
+
+    // If the chance of the loot to drop is less then or equal to our roll then we 
+    // add it to enemy drops
+    Roll forDrops = {D100, 1};
+
+    // We declare y to keep track of the drop count and everyhting add
+    int y = 0;
+    for(int i = 0; i < (*enemy)->lootCount; i++){
+        double dropNum = rollDice(forDrops);
+        Loot currLoot = (*enemy)->loot[i];
+        // We then test if the roll will get the item or not
+        if(currLoot.chance >= dropNum){
+            // If it does we increase the drop count and realloc drop so we can fit the item in
+            (*enemy)->dropCount += 1;
+            (*enemy)->drop = realloc((*enemy)->drop, sizeof(int) * (*enemy)->dropCount);
+            (*enemy)->drop[y] = currLoot.itemId;
+            y++;
+        }
+    }
 }
 
 

@@ -16,6 +16,7 @@ Dungeon *createDungeon(Object *dungeonData){
 
     // Getting array for possibleEnemies
     JsonArray *dungeonEnemiesArr = getMember(dungeonData, "PossibleEnemies")->value.data.array;
+    dungeonEnemiesArr->count--;
     dungeonStruct->possibleEnemies = getIntArr(dungeonEnemiesArr, &dungeonStruct->possEnemyCount); 
 
     dungeonStruct->minEnemyCnt = getMember(dungeonData, "MinEnemyCount")->value.data.number;
@@ -25,7 +26,6 @@ Dungeon *createDungeon(Object *dungeonData){
     dungeonStruct->maxRooms = getMember(dungeonData, "MaxRooms")->value.data.number;
 
     dungeonStruct->dungeonBossId = getMember(dungeonData, "BossId")->value.data.number;
-
     return dungeonStruct;
 
 }
@@ -82,9 +82,9 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Dir
     // if the room count is the max then the room is set to be the boss room
     *count += 1;
     if(*count == 1){
-        (*dungeon)->entrance = room;
+        room->isEntrance = true;
     }else if(*count == roomCount){
-        (*dungeon)->bossRoom = room;
+        room->isBossRoom = true;
     }
 
     // makeing an array of the different directions we can have
@@ -175,6 +175,8 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Dir
         }
 
     }
+    if(room->isBossRoom) (*dungeon)->bossRoom = room;
+    if(room->isEntrance) (*dungeon)->entrance = room;
     free(direct);
     return room;
 }
@@ -285,10 +287,11 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
                 enemiesDefeated = fightMenu(player, &dungeonNode->enemies, DB);
 
                 // This checks if the enemies were deafted and they wernt then that means the player either ran or died
-                if(enemiesDefeated != ENEMEYDEFEATED){
+                if(enemiesDefeated == DIED){
                     return enemiesDefeated;
                 }
                 dungeonNode->enemiesDead = true;
+
             break;
             case INVENTORY:
                 // refer to displayinventory
@@ -314,6 +317,9 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
                     default:
                     break;
                 }
+            break;
+            case SEARCHROOM:
+                
             break;
             default:
             break;

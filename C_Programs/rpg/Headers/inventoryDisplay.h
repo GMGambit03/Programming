@@ -3,7 +3,7 @@
 
 #include "fileHandle.h"
 
-void itemHeader(Inventory *inventory, ItemArray *items);
+void itemHeader(ItemArray *items);
 ITEMOPTIONS *itemDisplay(Item *item, int *optionsSize);
 
 int dropQtcMenu();

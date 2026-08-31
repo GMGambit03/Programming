@@ -1,5 +1,6 @@
 #include "Headers/entityStructs.h"
 #include "Headers/itemHelper.h"
+#include "Headers/jsonHeaders/getFile.h"
 #include "Headers/jsonHeaders/structs.h"
 #include "Headers/fileHandle.h"
 #include "Headers/stringHelpers.h"
@@ -47,6 +48,8 @@ Class *findClass(ClassDatabase *classDataBase, int classId){
             return classDataBase->classes[i];
         }
     }
+    printf("Couldnt find class by id");
+    getchar();
     return NULL;
 }
 
@@ -104,10 +107,18 @@ Enemy *createEnemy(Object *currEnemyData){
     enemy->iD = getMember(currEnemyData, "ID")->value.data.number;
     enemy->name = getMember(currEnemyData, "Name")->value.data.string;
     
+    // since the enemy loot in the json file is an array of objects 
+    // we first get the array
     JsonArray *lootArr = getMember(currEnemyData, "Loot")->value.data.array;
-    int count = 0;
-    enemy->loot = getIntArr(lootArr, &count);
-    enemy->lootCount = count;
+    enemy->loot = malloc(sizeof(Loot) * lootArr->count);
+
+    // we then go through the array and for each object we'll get the itemid and the chance 
+    for(int i = 0; i < lootArr->count; i++){
+        Object *currLoot = lootArr->values[i].data.obj;
+        enemy->loot[i].itemId = getMember(currLoot, "ItemID")->value.data.number;
+        enemy->loot[i].chance = getMember(currLoot, "Chance")->value.data.number;
+    }
+    enemy->lootCount = lootArr->count;
 
     enemy->health = getMember(currEnemyData, "Health")->value.data.number;
 
@@ -130,6 +141,10 @@ EnemyDataBase *getRanEnemies(int *possEnemies, int possEnemyCount, int enemyCoun
     for(int i = enemyCount - 1; i >= 0; i--){
         intShuffler(&possEnemies, possEnemyCount);
         enemies->enemies[i] = getEnemyById(possEnemies[i], enemyDatabase);
+        if(enemies->enemies[i] == NULL){
+            printf("getEnemyById returned Null");
+            getchar();
+        }
     }
 
     return enemies;
@@ -155,5 +170,7 @@ Enemy *getEnemyById(int enemyId, EnemyDataBase **enemyDatabase){
             return enemy;
         }
     }
+    printf("Error Couldnt Find Enemy by id");
+    getchar();
     return NULL;
 }

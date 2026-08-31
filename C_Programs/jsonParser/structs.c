@@ -148,6 +148,14 @@ void printValue(JsonValue value){
         case NUMBER:
             printf("%.*lf", value.placeMent, value.data.number);
         break;
+        case ARRAY:
+            for(int i = 0; i < value.data.array->count; i++){
+                printValue(value.data.array->values[i]);
+            }
+        break;
+        case OBJECT:
+            printObj(value.data.obj);
+        break;
         default:
         break;
     }
@@ -158,7 +166,11 @@ void printObj(Object *object){
     Object *tmpObj = object;
     Node *tmpNode = tmpObj->subObjs;
 
-    printf("%s\n", tmpObj->objName);
+    if(object->objName == NULL){
+        printf("    NULL: \n");
+    }else{
+        printf("%s\n", tmpObj->objName);
+    }
 
     while(tmpNode != NULL){
         printf("    %s: ", tmpNode->key);

@@ -54,8 +54,11 @@ typedef struct Enemy{
     int iD;
     char *name;
 
-    int *loot;
+    Loot *loot;
     int lootCount;
+
+    int *drop;
+    int dropCount;
 
     double health;
     double strength;

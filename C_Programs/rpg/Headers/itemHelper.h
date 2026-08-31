@@ -6,6 +6,7 @@
 
 typedef struct ItemDatabase ItemDatabase;
 typedef struct Player Player;
+typedef struct Enemy Enemy;
 
 typedef enum{
     USE,
@@ -19,7 +20,8 @@ typedef enum{
     ARMOR,
     POTION,
     UTILITY,
-    ARTIFACT
+    ARTIFACT,
+    MATERIAL
 }ITEMTYPE;
 
 typedef enum{
@@ -42,6 +44,8 @@ typedef struct{
     bool stackable;
     double weight;
     double value;
+
+    int quantity;
     
     union
     {
@@ -69,18 +73,24 @@ typedef struct{
     double weightCap;
 }Inventory;
 
+typedef struct {
+    int itemId;
+    int chance;
+}Loot;
+
 double getInventoryCount(Node *inventory);
 double getInventoryWeight(Inventory *inventory, ItemDatabase *itemDB);
 
 void displayInventoryItems(Player *player, ItemDatabase *itemDB);
-void displayItemData(Player *player, Item *item);
+void displayItemData(Player *player, Item *item, ItemDatabase *itemDB);
 
-void equipItem(Player *player, Item *item);
+void equipItem(Player *player, Item *item, ItemDatabase *itemDB);
 int useItem(Player *player, Item *item);
 
-void addItem(Player *player, int itemId);
+int addItem(Player *player, Item *item);
 int dropItem(Player *player, int itemId, int count);
 void removeItem(Player *player, int itemId);
+void removeDrop(Enemy **enemy, int itemId);
 
 Item *createItem(Object *itemData);
 ITEMTYPE getItemType(char *type);

@@ -5,10 +5,7 @@ AllWays`
 : Continue overtime balancing enemies and player:
 
 Items
-: Implment Materials 
-: Get enemies to drop loot
-: Implment loot drop rarites
-: Add a drop rate for all items
+: Implment Materials in the itemdatabase
 
 Dungeon.C
 : Also have the dead in paraentheses next to most in main entrance dungeon menu
@@ -16,12 +13,11 @@ Dungeon.C
 : Make sure the dungeon has a bossroom
 : Add a search room function
 : add different things you can do inside each room(ex: you may need a torch or lockpick to enter a door)
-: Add enemy drops and loot that the room drops
+: improve dungeon generation so the first room has more then one move/ direction
 
 Combat.C
 : Give a better ui for when fighting
 : Make it so based on the weapon is the dmgReduction for the roll(ex: staff = +wisdom);
-: add a loot found for defeating the enemies
 : Add a survive amount rooms 
 
 EntitiesStruct.C
@@ -33,6 +29,3 @@ Json File
 : give enemy an attack descriptions
 : give each weapon a list of different attacks
 : add wisodom to class json
-: Add a attack roll to different weapons and items the player can use
-: split items up into different categories 
-: Add penetration to weapons database

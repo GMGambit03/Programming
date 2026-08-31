@@ -8,7 +8,7 @@ ItemDatabase *createItemDB(){
     // We make a string array of all the different item file names
     // We then get the count of the array for the actual jsonfile array
     // do not change order unless you match it to the itemtypes order in filehandle.h
-    char *fileNames[] = {"dataJson/itemsJson/weapons.json", "dataJson/itemsJson/armor.json", "dataJson/itemsJson/potions.json", "dataJson/itemsJson/utilities.json", "dataJson/itemsJson/artifacts.json"};
+    char *fileNames[] = {"dataJson/itemsJson/weapons.json", "dataJson/itemsJson/armor.json", "dataJson/itemsJson/potions.json", "dataJson/itemsJson/utilities.json", "dataJson/itemsJson/artifacts.json", "dataJson/itemsJson/materials.json"};
     int jsonFileCount = sizeof(fileNames)/sizeof(fileNames)[0];
 
     // create space for each actual json file 

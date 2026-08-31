@@ -24,6 +24,9 @@ Dice createDice(DICETYPE diceType){
         case D20:
             dice.diceSides = 20;
         break;
+        case D100:
+            dice.diceSides = 100;
+        break;
     }
     
     return dice;
@@ -64,6 +67,9 @@ DICETYPE getDiceType(int diceSides){
         break;
         case 20:
             return D20;
+        break;
+        case 100:
+            return D100;
         break;
     }
     return D4;

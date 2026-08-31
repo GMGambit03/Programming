@@ -5,7 +5,7 @@
 #include "Headers/stringHelpers.h"
 #include <stdio.h>
 
-void itemHeader(Inventory *inventory, ItemArray *items){
+void itemHeader(ItemArray *items){
     charFiller(60, '-');
     printf("\n");
     printf("%-4s %-25s %-5s %-10s\n","#", "ITEM", "QTY", "WEIGHT");
@@ -14,7 +14,7 @@ void itemHeader(Inventory *inventory, ItemArray *items){
 
     for(int i = 0; i < items->itemsCount; i++){
         Item *currItem = items->items[i];
-        printf("%-4d %-25s %-5d %-20.2lf", (i + 1), currItem->itemName, inventory->items[i].quantity, currItem->weight);
+        printf("%-4d %-25s %-5d %-20.2lf", (i + 1), currItem->itemName, items->items[i]->quantity, currItem->weight);
         printf("\n");
     }
     charFiller(60, '-');

@@ -30,6 +30,7 @@ typedef struct DungeonNode{
     struct DungeonNode *west;
 
     bool isBossRoom;
+    bool isEntrance;
     int utilityRequ;
 }DungeonNode;
 

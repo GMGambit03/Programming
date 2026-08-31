@@ -1,4 +1,5 @@
 #include "Headers/combatDisplay.h"
+#include "Headers/dialogue.h"
 #include "Headers/inventoryDisplay.h"
 #include "Headers/itemHelper.h"
 #include "Headers/fileHandle.h"
@@ -25,11 +26,12 @@ void displayInventoryItems(Player *player, ItemDatabase *itemDB){
         itemArray->items = malloc(sizeof(Item *) * itemArray->itemsCount);
         for(int i = 0; i < itemArray->itemsCount; i++){
             Item *currItem = getItemById(itemDB, player->inventory->items[i].itemId);
+            currItem->quantity = player->inventory->items[i].quantity;
             itemArray->items[i] = currItem;
         }
     
         // The using the itemheader we can display all the items 
-        itemHeader(player->inventory, itemArray);
+        itemHeader(itemArray);
     
         // Next we're going to get the user input for all the items
         char userInput[3];
@@ -58,14 +60,14 @@ void displayInventoryItems(Player *player, ItemDatabase *itemDB){
         }
 
         // if its not 0 then we'll display the itemData
-        displayItemData(player, itemArray->items[userInt - 1]);
+        displayItemData(player, itemArray->items[userInt - 1], itemDB);
     
         free(itemArray->items);
         free(itemArray);
     }
 }
 
-void displayItemData(Player *player, Item *item){
+void displayItemData(Player *player, Item *item, ItemDatabase *itemDB){
     while(true){
         clearScreen();
         // refer to inventoryDisplay for all the prints and displays
@@ -113,7 +115,7 @@ void displayItemData(Player *player, Item *item){
                 }
             break;
             case EQUIP:
-                equipItem(player, item);
+                equipItem(player, item, itemDB);
             break;
             case DROP:
                 dropItem(player, item->itemId, 1);
@@ -162,7 +164,7 @@ int useItem(Player *player, Item *item){
     return anyMore;
 }
 
-void equipItem(Player *player, Item *item){
+void equipItem(Player *player, Item *item, ItemDatabase *itemDB){
     // We first check what type of item we're equipping
     int currEquip;
     switch (item->itemType) {
@@ -196,17 +198,25 @@ void equipItem(Player *player, Item *item){
     // then we reomve the item from the player inventory 
     // and add the old equiped item to the inventory
     removeItem(player, item->itemId);
-    addItem(player, currEquip);
+    addItem(player, getItemById(itemDB, currEquip));
 }
 
-void addItem(Player *player, int itemId){
+int addItem(Player *player, Item *item){
 
-    // We first start searching for the item to see if it already in the inventory
+    // We first check if the player can carry the weight if not we'll display weightoverload
+    if(player->inventory->currWeight + item->weight > player->inventory->weightCap){
+        printf(" Could not add %s to inventory. Your at full capacity", item->itemName);
+        enterContinue();
+        getchar();
+        return 1;
+    }
+
+    // Then we start searching for the item to see if it already in the inventory
     // If it is we just simply increase the quantity
     for(int i = 0; i < player->inventory->count; i++){
-        if(itemId == player->inventory->items[i].itemId){
+        if(item->itemId == player->inventory->items[i].itemId){
             player->inventory->items[i].quantity++;
-            return;
+            return 0;
         }
 
         // if its not and we reach the end of the inventory 
@@ -222,11 +232,12 @@ void addItem(Player *player, int itemId){
                     player->inventory->items = tmp;
                 }
             }
-            player->inventory->items[i + 1].itemId = itemId;
+            player->inventory->items[i + 1].itemId = item->itemId;
             player->inventory->items[i + 1].quantity = 1;
-            return;
+            return 0;
         }
     }
+    return 1;
 }
 
 void removeItem(Player *player, int itemId){
@@ -243,6 +254,21 @@ void removeItem(Player *player, int itemId){
         }
     }
     player->inventory->count--;
+}
+
+void removeDrop(Enemy **enemy, int itemId){
+    // we search through the players inventory and basically move the item we;re trying to get rid to the end
+    // We then just subtract the inventory count
+    for(int i = 0; i < (*enemy)->dropCount - 1; i++){
+        int currSlot = (*enemy)->drop[i];
+        int nxtSlot = (*enemy)->drop[i + 1];
+
+        if(itemId == currSlot){
+            (*enemy)->drop[i] = nxtSlot;
+            (*enemy)->drop[i + 1] = currSlot;
+        }
+    }
+    (*enemy)->dropCount--;
 }
 
 int dropItem(Player *player, int itemId, int count){
@@ -270,6 +296,7 @@ int dropItem(Player *player, int itemId, int count){
             }
         }
     }
+    return 0;
 }
 
 double getInventoryCount(Node *inventory){
@@ -347,8 +374,8 @@ ITEMTYPE getItemType(char *type){
     ITEMTYPE itemType;
 
     // Eventually we dont want it hardcoded but thats a change for the future
-    char *strTypesArr[] = {"WEAPON", "ARMOR", "POTION", "UTILITY, ARTIFACT"};
-    ITEMTYPE typesArr[] = {WEAPON, ARMOR, POTION, UTILITY, ARTIFACT};
+    char *strTypesArr[] = {"WEAPON", "ARMOR", "POTION", "UTILITY, ARTIFACT, MATERIAL"};
+    ITEMTYPE typesArr[] = {WEAPON, ARMOR, POTION, UTILITY, ARTIFACT, MATERIAL};
 
     for(int i = 0; i < (int)sizeof(strTypesArr)/8; i++){
         int compare = strcmp(strTypesArr[i], type);
@@ -392,8 +419,10 @@ Item *getItemById(ItemDatabase *itemDataBase, int id){
         database = POTION;
     }else if(id < 5000){
         database = UTILITY;
-    }else{
+    }else if(id < 6000){
         database = ARTIFACT;
+    }else{
+        database = MATERIAL;
     }
 
     // Then based on the is we can search for the item effectivly
@@ -405,5 +434,7 @@ Item *getItemById(ItemDatabase *itemDataBase, int id){
             return currItem;
         }
     }
+    printf(" Couldnt find item by id");
+    getchar();
     return NULL;
 }

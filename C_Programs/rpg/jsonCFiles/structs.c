@@ -61,6 +61,8 @@ Member *getMember(Object *object, char *key){
     }
     if(tmpNode == NULL){
         free(member);
+        printf("getMember returned NULL");
+        getchar();
         return NULL;
     }
     return member;

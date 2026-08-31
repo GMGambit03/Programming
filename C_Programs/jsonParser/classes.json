@@ -1,19 +1,185 @@
 {
-"Fungal Husk": {
-    "ID": 1006,
-    "Name": "Fungal Husk",
-    "Yooo": ["hello", "yooo"],
+  "Hollow Rat": {
+    "ID": 1001,
+    "Name": "Hollow Rat",
     "Loot": [
       {
-        "Hello": 456,
-        "YOOO": 234
+        "ItemID": 6001,
+        "Chance": 75
       },
       {
-        "PlsWork": "Maybe",
-        "Yoursmart": "Stop Lying"
+        "ItemID": 6002,
+        "Chance": 35
+      },
+      {
+        "ItemID": 3001,
+        "Chance": 8
+      },
+      {
+        "ItemID": 4001,
+        "Chance": 12
       }
     ],
+    "Health": 8.0,
+    "Strength": 2.0,
+    "Speed": 4.0,
+    "Weapon": 1100,
+    "Armor": 2000
+  },
 
+  "Cracked Sentinel": {
+    "ID": 1002,
+    "Name": "Cracked Sentinel",
+    "Loot": [
+      {
+        "ItemID": 6003,
+        "Chance": 80
+      },
+      {
+        "ItemID": 6004,
+        "Chance": 28
+      },
+      {
+        "ItemID": 3001,
+        "Chance": 15
+      },
+      {
+        "ItemID": 1001,
+        "Chance": 8
+      },
+      {
+        "ItemID": 1002,
+        "Chance": 4
+      },
+      {
+        "ItemID": 2002,
+        "Chance": 5
+      }
+    ],
+    "Health": 24.0,
+    "Strength": 7.0,
+    "Speed": 2.0,
+    "Weapon": 1002,
+    "Armor": 2004
+  },
+
+  "Wailer": {
+    "ID": 1003,
+    "Name": "Wailer",
+    "Loot": [
+      {
+        "ItemID": 6006,
+        "Chance": 65
+      },
+      {
+        "ItemID": 6005,
+        "Chance": 30
+      },
+      {
+        "ItemID": 3003,
+        "Chance": 18
+      },
+      {
+        "ItemID": 3004,
+        "Chance": 8
+      },
+      {
+        "ItemID": 4002,
+        "Chance": 12
+      }
+    ],
+    "Health": 14.0,
+    "Strength": 4.0,
+    "Speed": 7.0,
+    "Weapon": 1101,
+    "Armor": 2001
+  },
+
+  "Blackwater Crawler": {
+    "ID": 1004,
+    "Name": "Blackwater Crawler",
+    "Loot": [
+      {
+        "ItemID": 6007,
+        "Chance": 70
+      },
+      {
+        "ItemID": 6008,
+        "Chance": 32
+      },
+      {
+        "ItemID": 3001,
+        "Chance": 18
+      },
+      {
+        "ItemID": 3002,
+        "Chance": 6
+      },
+      {
+        "ItemID": 4003,
+        "Chance": 12
+      },
+      {
+        "ItemID": 1005,
+        "Chance": 5
+      },
+      {
+        "ItemID": 2003,
+        "Chance": 4
+      }
+    ],
+    "Health": 28.0,
+    "Strength": 7.0,
+    "Speed": 5.0,
+    "Weapon": 1102,
+    "Armor": 2003
+  },
+
+  "Deep Stalker": {
+    "ID": 1005,
+    "Name": "Deep Stalker",
+    "Loot": [
+      {
+        "ItemID": 6009,
+        "Chance": 65
+      },
+      {
+        "ItemID": 4002,
+        "Chance": 15
+      },
+      {
+        "ItemID": 1005,
+        "Chance": 6
+      }
+    ],
+    "Health": 11.0,
+    "Strength": 6.0,
+    "Speed": 6.0,
+    "Weapon": 1005,
+    "Armor": 2000
+  },
+
+  "Fungal Husk": {
+    "ID": 1006,
+    "Name": "Fungal Husk",
+    "Loot": [
+      {
+        "ItemID": 6010,
+        "Chance": 80
+      },
+      {
+        "ItemID": 6011,
+        "Chance": 42
+      },
+      {
+        "ItemID": 3001,
+        "Chance": 22
+      },
+      {
+        "ItemID": 3003,
+        "Chance": 12
+      }
+    ],
     "Health": 16.0,
     "Strength": 5.0,
     "Speed": 2.0,
@@ -21,10 +187,27 @@
     "Armor": 2000
   },
 
-"UnderDark Marauder": {
+  "UnderDark Marauder": {
     "ID": 1007,
     "Name": "UnderDark Marauder",
-    "Loot": [1001,2002,3001],
+    "Loot": [
+      {
+        "ItemID": 6012,
+        "Chance": 38
+      },
+      {
+        "ItemID": 3001,
+        "Chance": 18
+      },
+      {
+        "ItemID": 1001,
+        "Chance": 8
+      },
+      {
+        "ItemID": 2002,
+        "Chance": 5
+      }
+    ],
     "Health": 15.0,
     "Strength": 7.0,
     "Speed": 4.0,

@@ -1,4 +1,5 @@
 #include "Headers/combatDisplay.h"
+#include "Headers/entityStructs.h"
 #include "Headers/itemHelper.h"
 #include "Headers/stringHelpers.h"
 #include "Headers/fileHandle.h"
@@ -40,9 +41,6 @@ void enemyDisplay(EnemyDataBase **enemies){
 
     for(int i = 0; i < (*enemies)->enemiesCount; i++){
         Enemy *currEnemy = (*enemies)->enemies[i];
-        if(currEnemy->isDead){
-            continue;
-        }
         printf(" [ %d ] [ %s ]", (i + 1), currEnemy->name);
         printf("\n");
         printf("       [ HP ]: %.2lf", currEnemy->health);
@@ -50,12 +48,143 @@ void enemyDisplay(EnemyDataBase **enemies){
     }
 }
 
-void actionsDisplay(char *strOptions[], bool canRun){
+void lootEnemyDisplay(Player **player, EnemyDataBase **enemies, ItemDatabase *itemDB){
+    while(true){
+        char userInput[3];
+        generalHeaderDisplay("LOOT", '-', 16);
+    
+        for(int i = 0; i < (*enemies)->enemiesCount; i++){
+            Enemy *curr = (*enemies)->enemies[i];
+            printf("[ Loot ] [ %d ]  [ %s ]", (i + 1), curr->name);
+            printf("\n");
+        }
+        printf("Exit 0");
+        charFiller(1, '\n');
+        printf(" < ");
+
+        fgets(userInput, sizeof(userInput), stdin);
+        if(!clearBuffer((int)sizeof(userInput) ,userInput)){
+            continue;
+        }
+
+        // Turn the userinput into and actual integer so we can match it the the actionOptions Array
+        int userInt = *userInput - '0';
+
+        // input check to see if its in range of the options
+        if(userInt < 0 || userInt > (*enemies)->enemiesCount){
+            validOption();
+            enterContinue();
+            getchar();
+            continue;
+        }
+        if(userInt == 0){
+            return;
+        }
+        displayLoot(player, (*enemies)->enemies[userInt - 1], itemDB);
+    }
+}
+
+void displayLoot(Player **player, Enemy *enemy, ItemDatabase *itemDB){
+
+    while(true){
+        generalHeaderDisplay("LOOT", '=', 30);
+        printf(" %s", enemy->name);
+        charFiller(1, '\n');
+    
+        // create space for itemarray
+            ItemArray *itemArray = malloc(sizeof(ItemArray));
+            itemArray->itemsCount = enemy->dropCount;
+        
+            // Create space for the items in the item array
+            // for each item in the inventory get the id and and get the data of the item using getitembyid function
+            itemArray->items = malloc(sizeof(Item *) * itemArray->itemsCount);
+            for(int i = 0; i < itemArray->itemsCount; i++){
+                Item *currItem = getItemById(itemDB, enemy->drop[i]);
+                currItem->quantity = 1;
+                itemArray->items[i] = currItem;
+            }
+    
+        lootHeader((*player), itemArray);
+
+        // Next we're going to get the user input for all the items
+        char userInput[3];
+    
+        fgets(userInput, sizeof(userInput), stdin);
+        if(!clearBuffer((int)sizeof(userInput) ,userInput)){
+            free(itemArray);
+            continue;
+        }
+
+        // They choose A were going to get all the items and put it in theyre inventory if they can carry it
+        if(*userInput == 'A'){
+            for(int i = 0; i <= enemy->dropCount; i++){
+                // if the addItem return anything other then zero that means the player can carry it and itll just loop again
+                if(addItem((*player), getItemById(itemDB, (enemy->drop[i]))) == 0){
+                    removeDrop(&enemy, enemy->drop[i]);
+                }else{
+                    printf("Couldnt additem");
+                    getchar();
+                    break;
+                }
+            }
+            continue;
+        }
+        // Put userinput into a integer format and we can get what enemy the player chose
+        int userInt = *userInput - '0';
+        if(userInt < 0 || userInt > enemy->dropCount){
+            free(itemArray);
+            validOption();
+            enterContinue();
+            getchar();
+            continue;
+        }
+        if(userInt == 0){
+            return;
+        }
+
+        if(addItem((*player), getItemById(itemDB, (enemy->drop[userInt - 1]))) == 0){
+            clearScreen();
+            removeDrop(&enemy, enemy->drop[userInt - 1]);
+            printf(" Item taken succesfully");
+        }
+        continue;
+
+    }
+
+}
+
+void lootHeader(Player *player, ItemArray *items){
+    charFiller(60, '-');
+    printf("\n");
+    printf("%-4s %-25s %-5s %-10s\n","#", "ITEM", "QTY", "WEIGHT");
+    charFiller(60, '-');
+    charFiller(1, '\n');
+
+    for(int i = 0; i < items->itemsCount; i++){
+        Item *currItem = items->items[i];
+        printf("%-4d %-25s %-5d %-20.2lf", (i + 1), currItem->itemName, items->items[i]->quantity, currItem->weight);
+        printf("\n");
+    }
+    charFiller(60, '-');
+    charFiller(1, '\n');
+
+    printf(" Inventory Weight: %.2lf / %.2lf", player->inventory->currWeight, player->inventory->weightCap);
+    charFiller(1, '\n');
+    printf(" [ # ] SELECT ITEM");
+    printf("\n");
+    printf(" [ A ] TAKE ALL");
+    printf("\n");
+    printf(" [ 0 ] EXIT");
+    charFiller(1, '\n');
+    printf(" >");
+}
+
+void actionsDisplay(char **strOptions, bool canRun, int optionsCount){
     generalHeaderDisplay("ACTIONS", '-', 16);
 
-    int optionsLength = canRun == true ? sizeof(*strOptions)/4 : (sizeof(*strOptions) - 1);
+    // int optionsLength = canRun == true ? sizeof(*strOptions)/4 : (sizeof(*strOptions) - 1);
 
-    for(int i = 0; i < optionsLength; i++){
+    for(int i = 0; i < optionsCount; i++){
             printf(" [%d] %s\n", (i + 1), strOptions[i]);
         }
         printf("\n: ");

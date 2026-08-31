@@ -17,6 +17,8 @@ DungeonReturns selectTarget(Player **player, EnemyDataBase **enemies, Database *
 Enemy *attackTarget(Player **player, Enemy *enemy, ItemDatabase *itemDB);
 
 WHO checkDead(Player **player, Enemy **enemy);
+void getEnemyDrop(Enemy **enemy);
+
 DungeonReturns enemiesStatus(EnemyDataBase *enemies);
 WHO rollInitiative(Player *player, Enemy *enemy);
 double toHitRoll(DICETYPE type, double attModifier, int rolls);
