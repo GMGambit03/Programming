@@ -69,6 +69,7 @@ DungeonReturns dungeonEntrance(GameState **gameState, Database **DB, int dungeon
 
 DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dungeonNode, Database **DB){
     // refer to dungeonMenus for all displays and prints
+    int roomsCompleted = 0;
     while(true){
         clearScreen();
         dungeonHeader(dungeonName);
@@ -120,6 +121,7 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
                     return enemiesDefeated;
                 }
                 dungeonNode->enemiesDead = true;
+                roomsCompleted++;
 
             break;
             case INVENTORY:

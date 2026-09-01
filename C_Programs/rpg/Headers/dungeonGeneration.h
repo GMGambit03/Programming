@@ -3,17 +3,6 @@
 
 #include "entityStructs.h"
 
-typedef struct QueueEntry{
-    DungeonNode *room;
-    Direction parent;
-    struct QueueEntry *next;
-}QueueEntry;
-
-typedef struct{
-    QueueEntry *front;
-    QueueEntry *rear;
-}Queue;
-
 typedef enum{
     NORTH,
     WEST,
@@ -47,6 +36,8 @@ typedef struct Dungeon{
     DungeonNode *entrance;
     DungeonNode *bossRoom;
 
+    int roomsCompleted;
+
     int *possibleEnemies;
     int possEnemyCount;
 
@@ -59,11 +50,22 @@ typedef struct Dungeon{
     int dungeonBossId;
 }Dungeon;
 
+typedef struct QueueEntry{
+    DungeonNode *room;
+    Direction parent;
+    struct QueueEntry *next;
+}QueueEntry;
+
+typedef struct{
+    QueueEntry *front;
+    QueueEntry *rear;
+}Queue;
+
 void enqueue(Queue *queue, DungeonNode *room, Direction parent);
 QueueEntry *dequeue(Queue *queue);
 
 Dungeon *createDungeon(Object *dungeonData);
-DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, int *count, Direction parent, EnemyDataBase **enemyDatabase);
+DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase **enemyDatabase);
 void getDungeonNodes(Dungeon **dungeon, EnemyDataBase **enemyDatabase); 
 
 #endif

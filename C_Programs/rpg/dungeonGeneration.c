@@ -127,6 +127,8 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
         DungeonNode *room = current->room;
         Direction parent = current->parent;
 
+        free(current);
+
         // makeing an array of the different directions we can have
         Direction direction[4] = {NORTH, EAST, SOUTH, WEST};
         int dirSize = sizeof(direction)/sizeof(*direction);
@@ -174,15 +176,22 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
             direct[ranNum] = curr;
         }
     
-        for(int i = 0; i < dirCnt; i++){
+        for(int i = 0; i < dirCnt && count <= roomCount; i++){
             // we create next room equal to our shuffled array starting at 0 and going until it maxes out
             Direction nxtRoom = direct[i];
             Direction childParent;
 
             DungeonNode *child = createRoom(dungeon, enemyDatabase);
+            count++;
+
+            // we then get the bossroom
+            if(count == roomCount){
+                child->isBossRoom = true;
+                (*dungeon)->bossRoom = child;
+            }
             // based on nxtRoom which is the direction we then set the parent for the next room so it knows where this room is
             // if the parent room is just the opistite direction of nxtRoom
-            // Then we'll also add the new room to the 
+            // Then we'll also add the new room to the queue
             switch (nxtRoom) {
                 case NORTH:
                     childParent = SOUTH;
@@ -223,12 +232,6 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
                 default:
                 break;
             }
-    
-            // we then get the bossroom
-            if(count == roomCount){
-                child->isBossRoom = true;
-                (*dungeon)->bossRoom = child;
-            }
         }
         free(direct);
     }
@@ -241,6 +244,5 @@ void getDungeonNodes(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
     // this function we just get the max room count and set the dungeon entrance
     // And we declare the count here because in get nodes each child can change the value and it wouldnt be random
     int roomCount = (rand() + (*dungeon)->minRooms) % (*dungeon)->maxRooms + 1;
-    int count = 0;
-    (*dungeon)->entrance = createDungeonNode(roomCount, dungeon, &count, NONE, enemyDatabase);
+    (*dungeon)->entrance = createDungeonNode(roomCount, dungeon, enemyDatabase);
 }
