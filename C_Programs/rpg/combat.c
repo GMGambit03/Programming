@@ -133,6 +133,12 @@ DungeonReturns selectTarget(Player **player, EnemyDataBase **enemies, Database *
 
         // Put userinput into a integer format and we can get what enemy the player chose
         int userInt = *userInput - '0';
+
+        // we'll first check if the user input 0
+        if(userInt == 0){
+            return FIGHT;
+        }
+
         if(userInt < 0 || userInt > (*enemies)->enemiesCount){
             validOption();
             enterContinue();
@@ -145,8 +151,11 @@ DungeonReturns selectTarget(Player **player, EnemyDataBase **enemies, Database *
 
         //Check if that enemy is dead already
         if(targetEnemy->isDead){
+            clearScreen();
             printf(" You spat on the dead %s\n", targetEnemy->name);
-            return FIGHT;
+            enterContinue();
+            getchar();
+            continue;
         }
 
         // The send through attack target and attack target changes the player health and does the calculations for damage
@@ -287,6 +296,7 @@ WHO checkDead(Player **player, Enemy **enemy){
         return PLAYER;
     }else if((*enemy)->health <= 0){
         (*enemy)->isDead = true;
+        (*enemy)->health = 0;
         getEnemyDrop(enemy);
         return ENEMEY;
     }

@@ -3,6 +3,7 @@ AllWays`
 : make code cleaner
 : make variables make sense
 : Continue overtime balancing enemies and player:
+: Whenever updating and then syncing from moran make sure to change lauchjson to rpg and rebuild
 
 Items
 : Implment Materials in the itemdatabase
@@ -14,6 +15,7 @@ Dungeon.C
 : Add a search room function
 : add different things you can do inside each room(ex: you may need a torch or lockpick to enter a door)
 : improve dungeon generation so the first room has more then one move/ direction
+: Allow player to go back into combat mode 
 
 Combat.C
 : Give a better ui for when fighting

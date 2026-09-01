@@ -5,7 +5,7 @@
             "name": "Debug RPG",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/rpg",
+            "program": "${workspaceFolder}/rpgOldLinux",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

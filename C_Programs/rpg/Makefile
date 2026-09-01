@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -g
 
-TARGET = rpg
+TARGET = rpgOldLinux
 
 .PHONY: all clean Rebuild
 

@@ -5,12 +5,12 @@
 #include <time.h>
 
 void dungeonHeader(char *dungeonName){
-    int filler = 16;
+    int filler = 30;
     int nameLength = strlen(dungeonName);
     int center = (filler - nameLength) / 2;
 
     printf(" ");
-    charFiller(16, '=');
+    charFiller(30, '=');
     printf("\n");
     printf("\n");
     charFiller(center, ' ');
@@ -18,7 +18,7 @@ void dungeonHeader(char *dungeonName){
     printf("\n");
     printf("\n");
     printf(" ");
-    charFiller(16, '=');
+    charFiller(30, '=');
 }
 
 void playerStats(int health, int maxHealth, int mana, int maxMana){
