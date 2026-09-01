@@ -149,7 +149,10 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
                 newDirSize++;
                 y++;
             }
-        }room
+        }
+    
+         int dirCnt = 0;
+         // The formula is (rand() % (max - min + 1)) + min
         // we then use rand to get rand number of different rooms you can go inside of the actual room
         // If we have 2 or less rooms those rooms will have 2 options the plater can choose from
         if(count <= 2){
@@ -185,7 +188,7 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
                     childParent = SOUTH;
 
                     room->north = child;
-                    child->south = childParent;
+                    child->south = room;
 
                     enqueue(&queue, child, childParent);
                     
@@ -194,7 +197,7 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
                     childParent = EAST;
                     
                     room->west = child;
-                    child->east = childParent;
+                    child->east = room;
 
                     enqueue(&queue, child, childParent);
 
@@ -203,7 +206,7 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
                     childParent = NORTH;
                     
                     room->south = child;
-                    child->north = childParent;
+                    child->north = room;
 
                     enqueue(&queue, child, childParent);
 
@@ -212,7 +215,7 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
                     childParent = WEST;
                     
                     room->east = child;
-                    child->west = childParent;
+                    child->west = room;
 
                     enqueue(&queue, child, childParent);
 
@@ -226,8 +229,8 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
                 child->isBossRoom = true;
                 (*dungeon)->bossRoom = child;
             }
-            free(direct);
         }
+        free(direct);
     }
     return entrance;
 
