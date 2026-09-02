@@ -213,5 +213,33 @@
     "Speed": 4.0,
     "Weapon": 1001,
     "Armor": 2002
-  }
+  },
+
+  "Tmp": {
+  "ID": 1100,
+  "Name": "Tmp",
+  "Loot": [
+    {
+      "ItemID": 6012,
+      "Chance": 38
+    },
+    {
+      "ItemID": 3001,
+      "Chance": 18
+    },
+    {
+      "ItemID": 1001,
+      "Chance": 8
+    },
+    {
+      "ItemID": 2002,
+      "Chance": 5
+    }
+  ],
+  "Health": 50.0,
+  "Strength": 12.0,
+  "Speed": 5.0,
+  "Weapon": 1001,
+  "Armor": 2002
+}
 }

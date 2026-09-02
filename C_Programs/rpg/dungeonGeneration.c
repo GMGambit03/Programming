@@ -69,45 +69,6 @@ Dungeon *createDungeon(Object *dungeonData){
 
 }
 
-DungeonNode *createRoom(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
-    // This is our recursive funtion return comparison
-    // We basically stop once we reach the m=amount of room we set in getDungeonNodes
-
-    // we create a tmp pointer so its easier to type everything
-    Dungeon *tmp = (*dungeon);
-
-    // ccreate space for everything we're going to add to the room
-    DungeonNode *room = malloc(sizeof(DungeonNode));
-
-    // initially set all the directions to null because not every room will have all the directions
-    room->north = NULL;
-    room->east = NULL;
-    room->west = NULL;
-    room->south = NULL;
-
-    // initialize the isEntrance and isBossRoom false so C doesnt give it a random value
-    room->isBossRoom = false;
-    room->isEntrance = false;
-
-    // we get a random enemy count between the specifc dungeons min and max enemies
-    room->enemiesCount = rand() % (tmp->maxEnemyCnt - tmp->minEnemyCnt + 1) + tmp->minEnemyCnt;
-
-    // Just to make it easier for other funtions we check if theyre any enimies even in the dungeon
-    if(room->enemiesCount == 0){
-        room->enemiesDead = true;
-    }else{
-        room->enemiesDead = false;
-    }
-
-    // we then based on the different enimies the dungeon can have we randomly add them to the room
-    room->enemies = getRanEnemies(tmp->possibleEnemies, tmp->possEnemyCount, room->enemiesCount, enemyDatabase);
-
-    // eventually we'll have different descriptions for each room
-    room->description = "We dont got anything";
-
-    return room;
-}
-
 DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase **enemyDatabase){
 
     int count = 0;
@@ -135,14 +96,6 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
         Direction parent = current->parent;
 
         free(current);
-
-        if(room->isBossRoom){
-            room->description = " BossRoom";
-
-            room->enemiesCount = 1;
-            room->enemies->enemiesCount = 1;
-            room->enemies->enemies[0] = getEnemyById((*dungeon)->dungeonBossId, enemyDatabase);
-        }
 
         // makeing an array of the different directions we can have
         Direction direction[4] = {NORTH, EAST, SOUTH, WEST};
@@ -194,14 +147,18 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
             Direction nxtRoom = direct[i];
             Direction childParent;
 
-            DungeonNode *child = createRoom(dungeon, enemyDatabase);
+            // We first initialize the dungeonNode so based one weather we're at the end of the dungeon
+            // we can descide on weather its a boss dungeon or not
+            DungeonNode *child;
+            if(roomCount - 1 == count){
+                child = createBossRoom(dungeon, enemyDatabase);
+                (*dungeon)->bossRoom = child;
+            }else{
+                child = createRoom(dungeon, enemyDatabase);
+            }
+
             count++;
 
-            // we then get the bossroom
-            if(count == roomCount){
-                child->isBossRoom = true;
-                (*dungeon)->bossRoom = child;
-            }
             // based on nxtRoom which is the direction we then set the parent for the next room so it knows where this room is
             // if the parent room is just the opistite direction of nxtRoom
             // Then we'll also add the new room to the queue
@@ -255,6 +212,113 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
 void getDungeonNodes(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
     // this function we just get the max room count and set the dungeon entrance
     // And we declare the count here because in get nodes each child can change the value and it wouldnt be random
-    int roomCount = (rand() + (*dungeon)->minRooms) % (*dungeon)->maxRooms + 1;
+    int roomCount = (rand() % ((*dungeon)->maxRooms - (*dungeon)->minRooms + 1)) + (*dungeon)->minRooms;
     (*dungeon)->entrance = createDungeonNode(roomCount, dungeon, enemyDatabase);
+
+    int count = 0;
+    int depth = 0;
+
+    printf("%d", roomCount);
+    test((*dungeon)->entrance, &count, &depth, "Entrance");
+    getchar();
+}
+
+DungeonNode *createRoom(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
+
+    // we create a tmp pointer so its easier to type everything
+    Dungeon *tmp = (*dungeon);
+
+    // ccreate space for everything we're going to add to the room
+    DungeonNode *room = malloc(sizeof(DungeonNode));
+
+    // initially set all the directions to null because not every room will have all the directions
+    room->north = NULL;
+    room->east = NULL;
+    room->west = NULL;
+    room->south = NULL;
+
+    // initialize the isEntrance and isBossRoom false so C doesnt give it a random value
+    room->isBossRoom = false;
+    room->isEntrance = false;
+
+    // we get a random enemy count between the specifc dungeons min and max enemies
+    room->enemiesCount = rand() % (tmp->maxEnemyCnt - tmp->minEnemyCnt + 1) + tmp->minEnemyCnt;
+
+    // Just to make it easier for other funtions we check if theyre any enimies even in the dungeon
+    if(room->enemiesCount == 0){
+        room->enemiesDead = true;
+    }else{
+        room->enemiesDead = false;
+    }
+
+    // we then based on the different enimies the dungeon can have we randomly add them to the room
+    room->enemies = getRanEnemies(tmp->possibleEnemies, tmp->possEnemyCount, room->enemiesCount, enemyDatabase);
+
+    // eventually we'll have different descriptions for each room
+    room->description = "We dont got anything";
+
+    return room;
+}
+
+DungeonNode  *createBossRoom(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
+    //This where we explicitly create the bossroom
+
+    // we create a tmp pointer so its easier to type everything
+    Dungeon *tmp = (*dungeon);
+
+    // ccreate space for everything we're going to add to the room
+    DungeonNode *bossRoom = malloc(sizeof(DungeonNode));
+
+    // initially set all the directions to null because not every room will have all the directions
+    bossRoom->north = NULL;
+    bossRoom->east = NULL;
+    bossRoom->west = NULL;
+    bossRoom->south = NULL;
+
+    // initialize the isEntrance to false and the bossRoom to true
+    bossRoom->isBossRoom = true;
+    bossRoom->isEntrance = false;
+
+    // for right now we're going to make the enemy count just 1 which is going to be the boss itself
+    bossRoom->enemiesCount = 1;
+
+    // Just to make it easier for other funtions we check if theyre any enimies even in the dungeon
+    if(bossRoom->enemiesCount == 0){
+        bossRoom->enemiesDead = true;
+    }else{
+        bossRoom->enemiesDead = false;
+    }
+
+    // we then based on the different enimies the dungeon can have we randomly add them to the room
+    bossRoom->enemies = getEnemyById((*dungeon)->dungeonBossId, enemyDatabase);
+    bossRoom->enemies->enemiesCount = bossRoom->enemiesCount;
+
+    // eventually we'll have different descriptions for each room
+    bossRoom->description = "BossRoom";
+
+    return bossRoom;
+}
+
+
+void test(DungeonNode *root, int *count, int *depth, char* direction){
+    if(root == NULL || root->visited){
+        return;
+    }
+    root->visited = true;
+    if(root->isBossRoom){
+        direction = "BossRoom";
+    }
+
+    *count += 1;
+    
+    for(int i = 0; i < *depth; i++) {
+        printf("  │ ");
+    }
+
+    printf("└─── [%s] ||| Room #%d\n", direction, *count);
+
+    test(root->north, count, depth + 1, "North");
+    test(root->east,  count, depth + 1, "East");
+    test(root->south, count, depth + 1, "South");
+    test(root->west,  count, depth + 1, "West");
 }

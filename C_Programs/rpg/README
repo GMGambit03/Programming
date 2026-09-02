@@ -22,8 +22,7 @@ CURRENTLY WORKING
 
 KNOWN BUGS
 : When looting all sometimes it doesnt add all the items to player inventory and just leaves the last one in the array
-: Double check dungeon to make sure all the nodes are generated
-: : Make a quick function to count all the nodes
+: Segmentation fault whenever you reach bossroom
 
 Always
 : Add comments

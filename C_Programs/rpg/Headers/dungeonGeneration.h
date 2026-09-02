@@ -26,6 +26,8 @@ typedef struct DungeonNode{
     bool isBossRoom;
     bool isEntrance;
     int utilityRequ;
+
+    bool visited;
 }DungeonNode;
 
 typedef struct Dungeon{
@@ -65,7 +67,10 @@ void enqueue(Queue *queue, DungeonNode *room, Direction parent);
 QueueEntry *dequeue(Queue *queue);
 
 Dungeon *createDungeon(Object *dungeonData);
-DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase **enemyDatabase);
 void getDungeonNodes(Dungeon **dungeon, EnemyDataBase **enemyDatabase); 
+DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase **enemyDatabase);
+DungeonNode *createRoom(Dungeon **dungeon, EnemyDataBase **enemyDatabase);
+DungeonNode  *createBossRoom(Dungeon **dungeon, EnemyDataBase **enemyDatabase);
+void test(DungeonNode *root, int *count, int *depth, char* direction);
 
 #endif
