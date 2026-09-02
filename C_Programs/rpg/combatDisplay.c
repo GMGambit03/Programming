@@ -1,4 +1,5 @@
 #include "Headers/combatDisplay.h"
+#include "Headers/dialogue.h"
 #include "Headers/entityStructs.h"
 #include "Headers/itemHelper.h"
 #include "Headers/stringHelpers.h"
@@ -85,6 +86,10 @@ void lootEnemyDisplay(Player **player, EnemyDataBase **enemies, ItemDatabase *it
             // then go into another loop for each enemy we try to add all the item drops
             for(int i = 0; i < (*enemies)->enemiesCount; i++){
                 Enemy *curr = (*enemies)->enemies[i];
+                // We check if the enemy has already been looted
+                if(curr->dropCount == 0){
+                    continue;
+                }
                 for(int i = 0; i <= curr->dropCount; i++){
                     // if the addItem return anything other then zero that means the player can carry it and itll just loop again
                     if(addItem((*player), getItemById(itemDB, (curr->drop[i]))) == 0){
@@ -97,6 +102,7 @@ void lootEnemyDisplay(Player **player, EnemyDataBase **enemies, ItemDatabase *it
                 }
                 continue;
             }
+            continue;
         }
 
         // we'll first check if the user entered 0 to exit 
@@ -149,14 +155,22 @@ void displayLoot(Player **player, Enemy *enemy, ItemDatabase *itemDB){
         }
 
         // They choose A were going to get all the items and put it in theyre inventory if they can carry it
-
         if(*userInput == 'A'){
+            // check if the enemy has already been looted
+            if(enemy->dropCount == 0){
+                printf(" [ Enemy already looted ]");
+                charFiller(1, '\n');
+                enterContinue();
+                getchar();
+            }
+
             for(int i = 0; i <= enemy->dropCount; i++){
                 // if the addItem return anything other then zero that means the player can carry it and itll just loop again
                 if(addItem((*player), getItemById(itemDB, (enemy->drop[i]))) == 0){
                     removeDrop(&enemy, enemy->drop[i]);
                 }else{
-                    printf("Couldnt additem");
+                    // Basically an erro has occured
+                    printf("Error: Couldnt additem at display loot. [Option] A");
                     getchar();
                     break;
                 }

@@ -27,63 +27,72 @@ void itemHeader(ItemArray *items){
 
 }
 
-ITEMOPTIONS *itemDisplay(Item *item, int *optionsSize){
+Options *itemDisplay(Item *item, int *optionsSize){
     
 
-    char *strWeapOpts[] = {"Equip", "Drop"};
-    ITEMOPTIONS weapOpts[] = {EQUIP, DROP};
-    int weapOptSize = sizeof(strWeapOpts)/sizeof(strWeapOpts[0]);
+    Options weaponOptions[] = {
+        {"Equip", EQUIP}, 
+        {"Drop", DROP}
+    };
+    Options armorOptions[] = {
+        {"Equip", EQUIP}, 
+        {"Drop", DROP}
+    };
+    Options potionsOptions[] = {
+        {"Use", USE}, 
+        {"Drop", DROP}
+    };
+    Options otherOptions[] = {
+        {"Drop", DROP}
+    };
 
-    char *strArmorOpts[] = {"Equip", "Drop"};
-    ITEMOPTIONS armorOpts[] = {EQUIP, DROP};
-    int armOptSize = sizeof(strArmorOpts)/sizeof(strArmorOpts[0]);
-
-    char *strPotionOpts[] = {"Use", "Drop"};
-     ITEMOPTIONS potionOpts[] = {USE, DROP, MULTIDROP};
-    int potOptSize = sizeof(strPotionOpts)/sizeof(strPotionOpts[0]);
 
     // Theyre all the exact same amount of bytes so when we malloc itemDesc we can make it universal
     // Theyre also in the order of the ITEMTYPE enum so dont change the order unless you change the order of ITEMTYPE enum
     char *typeOfDesc[] = {" Penetration:        ", " Damage Reduction:   ", " Effect:            "};
-    char *itemDesc = malloc(sizeof(char) * 21);
+    char *itemDesc;
     double itemEffect;
 
     
 
-    char **strOptions;
-    ITEMOPTIONS *options;
+    Options *options;
     switch(item->itemType){
         case WEAPON:
             itemDesc = typeOfDesc[WEAPON];
-            strOptions = strWeapOpts;
-            *optionsSize = weapOptSize;
-            options = weapOpts;
+            options = weaponOptions;
+            *optionsSize = sizeof(weaponOptions)/sizeof(weaponOptions[0]);
             itemEffect = item->effectData.penetration;
         break;
         case ARMOR:
             itemDesc = typeOfDesc[ARMOR];
-            strOptions = strArmorOpts;
-            *optionsSize = armOptSize;
-            options = armorOpts;
+            options = armorOptions;
+            *optionsSize = sizeof(armorOptions)/sizeof(armorOptions[0]);
             itemEffect = item->effectData.dmgReduction;
         case POTION:
             itemDesc = typeOfDesc[POTION];
-            strOptions = strPotionOpts;
-            *optionsSize = potOptSize;
-            options = potionOpts;
+            options = potionsOptions;
+            *optionsSize = sizeof(potionsOptions)/sizeof(potionsOptions[0]);
             itemEffect = item->effectData.effect;
         break;
         default:
+            itemDesc = "";
+            options = otherOptions;
+            *optionsSize = sizeof(otherOptions)/sizeof(otherOptions[0]);
+            itemEffect = NONE;
         break;
     }
 
-    char *strTypesArr[] = {"WEAPON", "ARMOR", "POTION", "UTILITY, ARTIFACT"};
+    char *strTypesArr[] = {"WEAPON", "ARMOR", "POTION", "UTILITY", "ARTIFACT", "MATERIAL"};
     char *itemType = strTypesArr[item->itemType];
 
     printf(" Type:              %s", itemType);
     printf("\n");
-    printf("%s%.2lf", itemDesc, itemEffect);
-    printf("\n");
+
+    if(itemEffect != NONE){
+        printf("%s%.2lf", itemDesc, itemEffect);
+        printf("\n");
+    }
+    
     printf(" Weight:            %.2lf", item->weight);
     printf("\n");
     printf(" Value:             %.2lf Gold", item->value);
@@ -92,7 +101,7 @@ ITEMOPTIONS *itemDisplay(Item *item, int *optionsSize){
     charFiller(1, '\n');
 
     for(int i = 0; i < *optionsSize; i++){
-        printf(" [ %d ] %s", (i + 1), strOptions[i]);
+        printf(" [ %d ] %s", (i + 1), options[i].name);
         printf("\n");
     }
 

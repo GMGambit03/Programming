@@ -1,4 +1,6 @@
 #include "Headers/dungeonGeneration.h"
+#include "Headers/entityStructs.h"
+#include "Headers/fileHandle.h"
 
 void enqueue(Queue *queue, DungeonNode *room, Direction parent){
     // We first make space for the struct itself
@@ -83,6 +85,10 @@ DungeonNode *createRoom(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
     room->west = NULL;
     room->south = NULL;
 
+    // initialize the isEntrance and isBossRoom false so C doesnt give it a random value
+    room->isBossRoom = false;
+    room->isEntrance = false;
+
     // we get a random enemy count between the specifc dungeons min and max enemies
     room->enemiesCount = rand() % (tmp->maxEnemyCnt - tmp->minEnemyCnt + 1) + tmp->minEnemyCnt;
 
@@ -109,6 +115,7 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
 
     //We'll first create our entrance
     DungeonNode *entrance = createRoom(dungeon, enemyDatabase);
+    entrance->isEntrance = true;
     (*dungeon)->entrance = entrance;
 
     count++;
@@ -119,7 +126,7 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
     // Now we'll go into a loop of createing each dungeon individually 
     // and adding its children to a queue and basiclly go through that queue 
     // and repeat
-    while(count <= roomCount && queue.front != NULL){
+    while(count < roomCount && queue.front != NULL){
         // We'll get the room thats in the front and make its children
         QueueEntry *current = dequeue(&queue);
 
@@ -129,6 +136,14 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
 
         free(current);
 
+        if(room->isBossRoom){
+            room->description = " BossRoom";
+
+            room->enemiesCount = 1;
+            room->enemies->enemiesCount = 1;
+            room->enemies->enemies[0] = getEnemyById((*dungeon)->dungeonBossId, enemyDatabase);
+        }
+
         // makeing an array of the different directions we can have
         Direction direction[4] = {NORTH, EAST, SOUTH, WEST};
         int dirSize = sizeof(direction)/sizeof(*direction);
@@ -136,11 +151,9 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
         // we first check if this is child of another room if so we create space for one less direction array
         Direction *direct;
         if(parent != NONE){
-            Direction *tmp = malloc(sizeof(Direction) * 3);
-            direct = tmp;
+            direct = malloc(sizeof(Direction) * 3);
         }else{
-            Direction *tmp = malloc(sizeof(Direction) * 4);
-            direct = tmp;
+            direct = malloc(sizeof(Direction) * 4);
         }
         // we then fill up the new direction array with all the valid directions
         int y = 0;
@@ -176,7 +189,7 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
             direct[ranNum] = curr;
         }
     
-        for(int i = 0; i < dirCnt && count <= roomCount; i++){
+        for(int i = 0; i < dirCnt && count < roomCount; i++){
             // we create next room equal to our shuffled array starting at 0 and going until it maxes out
             Direction nxtRoom = direct[i];
             Direction childParent;
@@ -240,7 +253,6 @@ DungeonNode *createDungeonNode(int roomCount, Dungeon **dungeon, EnemyDataBase *
 }
 
 void getDungeonNodes(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
-
     // this function we just get the max room count and set the dungeon entrance
     // And we declare the count here because in get nodes each child can change the value and it wouldnt be random
     int roomCount = (rand() + (*dungeon)->minRooms) % (*dungeon)->maxRooms + 1;

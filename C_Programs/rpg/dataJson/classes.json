@@ -3,9 +3,9 @@
         "ID": 11,
         "Class": "Barbarian",
         "Description": "Strength over subtlety. Hit first talk later",
-        "Hp": 16,
+        "Hp": 200,
         "Strength": 9,
-        "Speed": 3,
+        "Speed": 100,
         "Mana": 2,
         "WeightCap": 135,
 

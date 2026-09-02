@@ -76,7 +76,7 @@ void displayItemData(Player *player, Item *item, ItemDatabase *itemDB){
 
         // This returns the list of options there are for the item
         int optionsSize = 0;
-        ITEMOPTIONS *options = itemDisplay(item, &optionsSize);
+        Options *options = itemDisplay(item, &optionsSize);
         // We need this so we can easily compare what the user chose and corrdinate to the right option
     
         // then we'll go and get the user input
@@ -104,7 +104,7 @@ void displayItemData(Player *player, Item *item, ItemDatabase *itemDB){
         // we then get the option based on what the player number is since the options line up with eachother
         // depending on what the player chooses we'll go into the cooropsonf=ding function
         // refer to eadc function for more detail
-        ITEMOPTIONS optionChose = options[userInt - 1];
+        ITEMOPTIONS optionChose = options[userInt - 1].action;
         int dropQtc;
         switch(optionChose){
             case USE:
@@ -374,7 +374,7 @@ ITEMTYPE getItemType(char *type){
     ITEMTYPE itemType;
 
     // Eventually we dont want it hardcoded but thats a change for the future
-    char *strTypesArr[] = {"WEAPON", "ARMOR", "POTION", "UTILITY, ARTIFACT, MATERIAL"};
+    char *strTypesArr[] = {"WEAPON", "ARMOR", "POTION", "UTILITY", "ARTIFACT", "MATERIAL"};
     ITEMTYPE typesArr[] = {WEAPON, ARMOR, POTION, UTILITY, ARTIFACT, MATERIAL};
 
     for(int i = 0; i < (int)sizeof(strTypesArr)/8; i++){

@@ -134,16 +134,42 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
                 moveTo = getDirections(dungeonNode);
                 switch (moveTo) {
                     case NORTH:
-                        return enterDungeon(player, dungeonName, dungeonNode->north, DB);
+                        if(dungeonNode->north == NULL){
+                            printf(" [ You run into the wall like a mad man ]\n");
+                            enterContinue();
+                            getchar();
+                        }else{
+                            return enterDungeon(player, dungeonName, dungeonNode->north, DB);
+                        }
                     break;
                     case WEST:
-                        return enterDungeon(player, dungeonName, dungeonNode->west, DB);
+                        if(dungeonNode->west == NULL){
+                            printf(" [ You run into the wall like a mad man ]\n");
+                            enterContinue();
+                            getchar();
+                        }else{
+                            return enterDungeon(player, dungeonName, dungeonNode->west, DB);
+                        }
                     break;
                     case EAST:
-                        return enterDungeon(player, dungeonName, dungeonNode->east, DB);
+                        if(dungeonNode->east == NULL){
+                            printf(" [ You run into the wall like a mad man ]\n");
+                            enterContinue();
+                            getchar();
+                            break;
+                        }else{
+                            return enterDungeon(player, dungeonName, dungeonNode->east, DB);
+                        }
                     break;
                     case SOUTH:
-                        return enterDungeon(player, dungeonName, dungeonNode->south, DB);
+                        if(dungeonNode->south == NULL){
+                            printf(" [ You run into the wall like a mad man ]\n");
+                            enterContinue();
+                            getchar();
+                            break;
+                        }else{
+                            return enterDungeon(player, dungeonName, dungeonNode->south, DB);
+                        }
                     break;
                     default:
                     break;
