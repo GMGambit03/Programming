@@ -117,5 +117,25 @@
         "stackable": true,
         "weight": 1.2,
         "value": 18
+    },
+
+    "Deep Whisperer Brain": {
+        "itemId": 6013,
+        "itemName": "Deep Whisperer Brain",
+        "type": "MATERIAL",
+        "effectType": "NONE",
+        "stackable": false,
+        "weight": 3.0,
+        "value": 30
+    },
+
+    "Fish Scale": {
+        "itemId": 6014,
+        "itemName": "Fish Scale",
+        "type": "MATERIAL",
+        "effectType": "NONE",
+        "stackable": true,
+        "weight": 0.40,
+        "value": 15
     }
 }

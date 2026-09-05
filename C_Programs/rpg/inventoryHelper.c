@@ -180,7 +180,9 @@ void equipItem(Player *player, Item *item, ItemDatabase *itemDB){
 
     // We then check if the item is already equiped
     if(item->itemId == currEquip){
-        printf(" item is already equiped");
+        printf(" item is already equiped\n");
+        enterContinue();
+        getchar();
         return;
     }
     // if its not then we equip the newitem
@@ -201,6 +203,10 @@ void equipItem(Player *player, Item *item, ItemDatabase *itemDB){
     addItem(player, getItemById(itemDB, currEquip));
 }
 
+void unEquipItem(Player *player, Item *item, ItemDatabase *itemDB){
+    
+}
+
 int addItem(Player *player, Item *item){
 
     // We first check if the player can carry the weight if not we'll display weightoverload
@@ -214,7 +220,7 @@ int addItem(Player *player, Item *item){
     // Then we start searching for the item to see if it already in the inventory
     // If it is we just simply increase the quantity
     for(int i = 0; i < player->inventory->count; i++){
-        if(item->itemId == player->inventory->items[i].itemId){
+        if(item->itemId == player->inventory->items[i].itemId && item->stackable){
             player->inventory->items[i].quantity++;
             return 0;
         }

@@ -14,7 +14,7 @@
             1007
         ],
 
-        "BossId": 1100,
+        "BossId": 10000,
 
         "MinRooms": 5,
         "MaxRooms": 9,

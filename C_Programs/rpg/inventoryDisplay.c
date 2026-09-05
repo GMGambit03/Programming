@@ -5,18 +5,48 @@
 #include "Headers/stringHelpers.h"
 #include <stdio.h>
 
-void itemHeader(ItemArray *items){
+void itemHeader(ItemArray *items, Item *currWeapon, Item *currArmor, Player *player){
+    char wepPEN[20];
+    char armDEF[20];
+
+    sprintf(wepPEN, "PEN: %.2lf", currWeapon->effectData.penetration);
+    sprintf(armDEF, "DEF: %.2lf", currArmor->effectData.dmgReduction);
+
+    printf(" %-44s %s", "INVENTORY", "CHARACTER");
+    charFiller(60, '-');
+    printf(" ");
     charFiller(60, '-');
     printf("\n");
-    printf("%-4s %-25s %-5s %-10s\n","#", "ITEM", "QTY", "WEIGHT");
+    printf("%-4s %-25s %-5s %-10s ","#", "ITEM", "QTY", "WEIGHT");
+    printf(" %s", "Player Name");
     charFiller(60, '-');
     charFiller(1, '\n');
 
-    for(int i = 0; i < items->itemsCount; i++){
+
+    // ADD WISDOM STAT EVENTUALLY
+    ItemValue charSheet[] = {
+        {"HP", .value.number = player->health},
+        {"MANA", .value.number = player->mana},
+        {"STRENGTH", .value.number = player->strength},
+        {"SPEED", .value.number = player->speed},
+        {"WEAPON", .value.string = currWeapon->itemName},
+        {"          ", .value.string = wepPEN},
+        {"          ", .value.string = armDEF},
+        {"GOLD", .value.number = player->gold}
+    };
+
+    int charSheetLen = sizeof(charSheet)/sizeof(charSheet[0]);
+
+    for(int i = 0; i < max(items->itemsCount, charSheetLen); i++){
         Item *currItem = items->items[i];
-        printf("%-4d %-25s %-5d %-20.2lf", (i + 1), currItem->itemName, items->items[i]->quantity, currItem->weight);
+        printf("%-4d %-25s %-5d %-20.2lf ", (i + 1), currItem->itemName, items->items[i]->quantity, currItem->weight);
+        
+        if(i == 4){
+            printf("%-11s", "EQUIPPED");
+        }
         printf("\n");
     }
+
     charFiller(60, '-');
     charFiller(1, '\n');
     printf(" [ # ] SELECT ITEM");

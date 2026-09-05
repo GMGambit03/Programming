@@ -164,5 +164,21 @@
             "diceSides": 6,
             "rolls": 1
         }
+    },
+    
+    "Apprentice Spell Ring": {
+        "itemId": 1104,
+        "itemName": "Apprentice Spell Rings",
+        "type": "WEAPON",
+        "effectType": "DAMAGE",
+        "stackable": false,
+        "weight": 0.0,
+        "value": 0,
+
+        "penetration": 4,
+        "diceRoll":{
+            "diceSides": 6,
+            "rolls": 2
+        }
     }
 }

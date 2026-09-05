@@ -215,25 +215,25 @@
     "Armor": 2002
   },
 
-  "Tmp": {
-  "ID": 1100,
-  "Name": "Tmp",
+  "The Deep Whisperer": {
+  "ID": 10000,
+  "Name": "The Deep Whisperer",
   "Loot": [
     {
-      "ItemID": 6012,
-      "Chance": 38
-    },
-    {
-      "ItemID": 3001,
-      "Chance": 18
-    },
-    {
-      "ItemID": 1001,
+      "ItemID": 6013,
       "Chance": 8
     },
     {
-      "ItemID": 2002,
-      "Chance": 5
+      "ItemID": 6014,
+      "Chance": 18
+    },
+    {
+      "ItemID": 3003,
+      "Chance": 25
+    },
+    {
+      "ItemID": 3002,
+      "Chance": 25
     }
   ],
   "Health": 50.0,
