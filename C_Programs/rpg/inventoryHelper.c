@@ -4,22 +4,28 @@
 #include "Headers/itemHelper.h"
 #include "Headers/fileHandle.h"
 #include "Headers/stringHelpers.h"
+#include <stdio.h>
 #include <stdlib.h>
 void displayInventoryItems(Player *player, ItemDatabase *itemDB){
 
     while(true){
         clearScreen();
         // Just displays inventory at the top of the terminal
-        generalHeaderDisplay("Inventory", '=', 30);
+        generalHeaderDisplay("Inventory", '=', 75);
     
         // Get the weight of the the entire inventory
         double inventoryWeight = getInventoryWeight(player->inventory, itemDB);
         printf(" Weight: %.2lf / %.2lf", inventoryWeight, player->inventory->weightCap);
-        printf("\n");
+        charFiller(1, '\n');
     
         // create space for itemarray
         ItemArray *itemArray = malloc(sizeof(ItemArray));
         itemArray->itemsCount = player->inventory->count;
+
+        // get the equipped weappon and armor option number
+        const int weaponNum = itemArray->itemsCount + 1;
+        const int armorNum = itemArray->itemsCount + 2;
+
     
         // Create space for the items in the item array
         // for each item in the inventory get the id and and get the data of the item using getitembyid function
@@ -31,7 +37,7 @@ void displayInventoryItems(Player *player, ItemDatabase *itemDB){
         }
     
         // The using the itemheader we can display all the items 
-        itemHeader(itemArray);
+        itemHeader(itemArray, getItemById(itemDB, player->weapon), getItemById(itemDB, player->armorSet), player);
     
         // Next we're going to get the user input for all the items
         char userInput[3];
@@ -44,23 +50,29 @@ void displayInventoryItems(Player *player, ItemDatabase *itemDB){
 
         // Put userinput into a integer format and we can get what enemy the player chose
         int userInt = *userInput - '0';
-        if(userInt < 0 || userInt > player->inventory->count){
-            free(itemArray);
-            validOption();
-            enterContinue();
-            getchar();
-            continue;
-        }
-        
-
 
         // The based on the input if the userint is 0 then we'll go back 
         if(userInt == 0){
             return;
         }
 
-        // if its not 0 then we'll display the itemData
-        displayItemData(player, itemArray->items[userInt - 1], itemDB);
+        // First we're going to check if they selected one of the equipped items
+        if(userInt == weaponNum){
+            displayItemData(player, getItemById(itemDB, player->weapon), itemDB);
+        }else if(userInt == armorNum){
+            displayItemData(player, getItemById(itemDB, player->armorSet), itemDB);
+        }else{
+            if(userInt < 0 || userInt > player->inventory->count){
+                free(itemArray);
+                validOption();
+                enterContinue();
+                getchar();
+                continue;
+            }
+    
+            // if its not 0 then we'll display the itemData
+            displayItemData(player, itemArray->items[userInt - 1], itemDB);
+        }
     
         free(itemArray->items);
         free(itemArray);
@@ -76,7 +88,7 @@ void displayItemData(Player *player, Item *item, ItemDatabase *itemDB){
 
         // This returns the list of options there are for the item
         int optionsSize = 0;
-        Options *options = itemDisplay(item, &optionsSize);
+        ItemOptions *options = itemDisplay(item, player, &optionsSize);
         // We need this so we can easily compare what the user chose and corrdinate to the right option
     
         // then we'll go and get the user input
@@ -104,7 +116,8 @@ void displayItemData(Player *player, Item *item, ItemDatabase *itemDB){
         // we then get the option based on what the player number is since the options line up with eachother
         // depending on what the player chooses we'll go into the cooropsonf=ding function
         // refer to eadc function for more detail
-        ITEMOPTIONS optionChose = options[userInt - 1].action;
+
+        INVENTORYOPTIONS optionChose = options[userInt - 1].action;
         int dropQtc;
         switch(optionChose){
             case USE:
@@ -116,6 +129,9 @@ void displayItemData(Player *player, Item *item, ItemDatabase *itemDB){
             break;
             case EQUIP:
                 equipItem(player, item, itemDB);
+            break;
+            case UNEQUIP:
+                unEquipItem(player, item);
             break;
             case DROP:
                 dropItem(player, item->itemId, 1);
@@ -186,7 +202,6 @@ void equipItem(Player *player, Item *item, ItemDatabase *itemDB){
         return;
     }
     // if its not then we equip the newitem
-    player->weapon = item->itemId;
     switch (item->itemType) {
         case WEAPON:
             player->weapon = item->itemId;
@@ -198,12 +213,34 @@ void equipItem(Player *player, Item *item, ItemDatabase *itemDB){
         break;
     }
     // then we reomve the item from the player inventory 
-    // and add the old equiped item to the inventory
+    // if they have fist equipped then we just return
+    // else add the old equiped item to the inventory
     removeItem(player, item->itemId);
+    if(currEquip == 1000 || currEquip == 2000) return;
     addItem(player, getItemById(itemDB, currEquip));
 }
 
-void unEquipItem(Player *player, Item *item, ItemDatabase *itemDB){
+void unEquipItem(Player *player, Item *item){
+    
+    if(item->itemId == 1000 || item->itemId == 2000){
+        printf(" You have nothing equipped\n");
+        enterContinue();
+        getchar();
+        return;
+    }
+
+    addItem(player, item);
+
+    switch (item->itemType) {
+        case WEAPON:
+            player->weapon = 1000;
+        break;
+        case ARMOR:
+            player->armorSet = 2000;
+        break;
+        default:
+        break;
+    }
     
 }
 

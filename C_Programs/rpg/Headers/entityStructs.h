@@ -28,7 +28,7 @@ typedef struct Player{
     char *className;
 
     int level;
-    int gold;
+    double gold;
 
     Inventory *inventory;
 

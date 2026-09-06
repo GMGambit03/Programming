@@ -23,7 +23,7 @@
     "Health": 8.0,
     "Strength": 2.0,
     "Speed": 4.0,
-    "Weapon": 1100,
+    "Weapon": 1007,
     "Armor": 2000
   },
 
@@ -91,7 +91,7 @@
     "Health": 14.0,
     "Strength": 4.0,
     "Speed": 7.0,
-    "Weapon": 1101,
+    "Weapon": 1008,
     "Armor": 2001
   },
 
@@ -131,7 +131,7 @@
     "Health": 28.0,
     "Strength": 7.0,
     "Speed": 5.0,
-    "Weapon": 1102,
+    "Weapon": 1009,
     "Armor": 2003
   },
 
@@ -183,7 +183,7 @@
     "Health": 16.0,
     "Strength": 5.0,
     "Speed": 2.0,
-    "Weapon": 1103,
+    "Weapon": 1010,
     "Armor": 2000
   },
 

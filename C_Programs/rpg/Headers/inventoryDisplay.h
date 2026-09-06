@@ -7,8 +7,8 @@
 
 typedef struct {
     char *name;
-    ITEMOPTIONS action;
-}Options;
+    INVENTORYOPTIONS action;
+}ItemOptions;
 
 typedef struct {
     char *item;
@@ -18,8 +18,8 @@ typedef struct {
     }value;
 }ItemValue;
 
-void itemHeader(ItemArray *items);
-Options *itemDisplay(Item *item, int *optionsSize);
+void itemHeader(ItemArray *items, Item *currWeapon, Item *currArmor, Player *player);
+ItemOptions *itemDisplay(Item *item, Player *player, int *optionsSize);
 
 int dropQtcMenu();
 

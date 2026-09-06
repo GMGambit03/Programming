@@ -108,5 +108,5 @@ void intShuffler(int **array, int arraySize){
 }
 
 double max(double a, double b){
-    return (a > b) ? b : a;
+    return (a > b) ? a : b;
 }

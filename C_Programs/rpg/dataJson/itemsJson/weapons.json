@@ -1,5 +1,21 @@
 {
-    
+    "Dem Hands": {
+        "itemId": 1000,
+        "itemName": "Dem Hands",
+        "type": "WEAPON",
+        "effectType": "DAMAGE",
+        "stackable": false,
+        "weight": 0,
+        "value": 0,
+
+        
+        "penetration": 0,
+        "diceRoll": {
+            "diceSides": 4,
+            "rolls": 1
+        }
+    },
+
     "Rusty Sword": {
         "itemId": 1001,
         "itemName": "Rusty Sword",
@@ -97,10 +113,8 @@
         }
     },
 
-    
-    
     "Hollow Rat Claws":{
-        "itemId": 1100,
+        "itemId": 1007,
         "itemName": "Claws",
         "type": "WEAPON",
         "effectType": "DAMAGE",
@@ -117,7 +131,7 @@
     },
 
     "Wailer Talons":{
-        "itemId": 1101,
+        "itemId": 1008,
         "itemName": "Wailer Staff",
         "type": "WEAPON",
         "effectType": "DAMAGE",
@@ -134,7 +148,7 @@
     },
     
     "Blackwater Crawler Fangs":{
-        "itemId": 1102,
+        "itemId": 1009,
         "itemName": "Blackwater Crawler Fangs",
         "type": "WEAPON",
         "effectType": "DAMAGE",
@@ -151,7 +165,7 @@
     },
     
     "Fungal Husk Fists": {
-        "itemId": 1103,
+        "itemId": 1010,
         "itemName": "Fungal Husk Fists",
         "type": "WEAPON",
         "effectType": "DAMAGE",
@@ -167,7 +181,7 @@
     },
     
     "Apprentice Spell Ring": {
-        "itemId": 1104,
+        "itemId": 1011,
         "itemName": "Apprentice Spell Rings",
         "type": "WEAPON",
         "effectType": "DAMAGE",

@@ -215,12 +215,12 @@ void getDungeonNodes(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
     int roomCount = (rand() % ((*dungeon)->maxRooms - (*dungeon)->minRooms + 1)) + (*dungeon)->minRooms;
     (*dungeon)->entrance = createDungeonNode(roomCount, dungeon, enemyDatabase);
 
-    int count = 0;
-    int depth = 0;
+    // int count = 0;
+    // int depth = 0;
 
-    printf("%d", roomCount);
-    test((*dungeon)->entrance, &count, &depth, "Entrance");
-    getchar();
+    // printf("%d", roomCount);
+    // test((*dungeon)->entrance, &count, &depth, "Entrance");
+    // getchar();
 }
 
 DungeonNode *createRoom(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
@@ -290,7 +290,9 @@ DungeonNode  *createBossRoom(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
     }
 
     // we then based on the different enimies the dungeon can have we randomly add them to the room
-    bossRoom->enemies = getEnemyById((*dungeon)->dungeonBossId, enemyDatabase);
+    bossRoom->enemies = malloc(sizeof(EnemyDataBase));
+    bossRoom->enemies->enemies = malloc(sizeof(Enemy *));
+    bossRoom->enemies->enemies[0] = getEnemyById((*dungeon)->dungeonBossId, enemyDatabase);
     bossRoom->enemies->enemiesCount = bossRoom->enemiesCount;
 
     // eventually we'll have different descriptions for each room

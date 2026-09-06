@@ -11,9 +11,10 @@ typedef struct Enemy Enemy;
 typedef enum{
     USE,
     EQUIP,
+    UNEQUIP,
     DROP,
     MULTIDROP
-}ITEMOPTIONS;
+}INVENTORYOPTIONS;
 
 typedef enum{
     WEAPON,
@@ -85,6 +86,7 @@ void displayInventoryItems(Player *player, ItemDatabase *itemDB);
 void displayItemData(Player *player, Item *item, ItemDatabase *itemDB);
 
 void equipItem(Player *player, Item *item, ItemDatabase *itemDB);
+void unEquipItem(Player *player, Item *item);
 int useItem(Player *player, Item *item);
 
 int addItem(Player *player, Item *item);
