@@ -2,13 +2,13 @@
     "Dem Hands": {
         "itemId": 1000,
         "itemName": "Dem Hands",
+        "description": "No steel, no magic, no problem. Sometimes all you need is a good pair of hands.",
         "type": "WEAPON",
         "effectType": "DAMAGE",
         "stackable": false,
         "weight": 0,
         "value": 0,
 
-        
         "penetration": 0,
         "diceRoll": {
             "diceSides": 4,
@@ -19,13 +19,13 @@
     "Rusty Sword": {
         "itemId": 1001,
         "itemName": "Rusty Sword",
+        "description": "An old iron blade scarred by rust and neglect. The edge is poor, but it can still draw blood.",
         "type": "WEAPON",
         "effectType": "DAMAGE",
         "stackable": false,
         "weight": 4.5,
         "value": 15,
 
-        
         "penetration": 1,
         "diceRoll": {
             "diceSides": 6,
@@ -36,6 +36,7 @@
     "Iron Sword": {
         "itemId": 1002,
         "itemName": "Iron Sword",
+        "description": "A dependable iron blade with a balanced grip and sharpened edge. Nothing fancy, but built to kill.",
         "type": "WEAPON",
         "effectType": "DAMAGE",
         "stackable": false,
@@ -52,6 +53,7 @@
     "Iron Battleaxe": {
         "itemId": 1003,
         "itemName": "Iron Battleaxe",
+        "description": "A heavy iron axe made for powerful swings. Its broad head can tear through flesh and weaker armor alike.",
         "type": "WEAPON",
         "effectType": "DAMAGE",
         "stackable": false,
@@ -68,14 +70,15 @@
     "Apprentice Staff": {
         "itemId": 1004,
         "itemName": "Apprentice Staff",
+        "description": "A simple wooden staff used by novice mages to focus their magic. Weak alone, but responsive to arcane power.",
         "type": "WEAPON",
         "effectType": "DAMAGE",
         "stackable": false,
         "weight": 3.0,
         "value": 55,
-        
+
         "penetration": 0,
-         "diceRoll": {
+        "diceRoll": {
             "diceSides": 4,
             "rolls": 1
         }
@@ -84,12 +87,13 @@
     "Iron Dagger": {
         "itemId": 1005,
         "itemName": "Iron Dagger",
+        "description": "A short iron blade designed for quick strikes and finding gaps where heavier weapons cannot.",
         "type": "WEAPON",
         "effectType": "DAMAGE",
         "stackable": false,
         "weight": 1.5,
         "value": 40,
-        
+
         "penetration": 2,
         "diceRoll": {
             "diceSides": 4,
@@ -100,12 +104,13 @@
     "Wooden Club": {
         "itemId": 1006,
         "itemName": "Wooden Club",
+        "description": "A thick piece of hardwood shaped into a crude weapon. Cheap, heavy, and surprisingly effective.",
         "type": "WEAPON",
         "effectType": "DAMAGE",
         "stackable": false,
         "weight": 3.5,
         "value": 8,
-        
+
         "penetration": 0,
         "diceRoll": {
             "diceSides": 6,
@@ -113,16 +118,16 @@
         }
     },
 
-    "Hollow Rat Claws":{
+    "Hollow Rat Claws": {
         "itemId": 1007,
         "itemName": "Claws",
+        "description": "Filthy hooked claws used by Hollow Rats to rapidly tear at exposed flesh.",
         "type": "WEAPON",
         "effectType": "DAMAGE",
         "stackable": false,
         "weight": 0,
         "value": 15,
-        
-        
+
         "penetration": 0,
         "diceRoll": {
             "diceSides": 4,
@@ -130,43 +135,44 @@
         }
     },
 
-    "Wailer Talons":{
+    "Wailer Talons": {
         "itemId": 1008,
         "itemName": "Wailer Staff",
+        "description": "A twisted focus wielded by Wailers to channel their unnatural power into violent bursts of energy.",
         "type": "WEAPON",
         "effectType": "DAMAGE",
         "stackable": false,
         "weight": 4.5,
         "value": 15,
-        
-        
+
         "penetration": 0,
         "diceRoll": {
             "diceSides": 6,
             "rolls": 1
         }
     },
-    
-    "Blackwater Crawler Fangs":{
+
+    "Blackwater Crawler Fangs": {
         "itemId": 1009,
         "itemName": "Blackwater Crawler Fangs",
+        "description": "Long serrated fangs capable of sinking through flesh and biting into lightly armored prey.",
         "type": "WEAPON",
         "effectType": "DAMAGE",
         "weight": 0,
         "stackable": false,
         "value": 0,
-        
+
         "penetration": 2,
-        "diceRoll":{
+        "diceRoll": {
             "diceSides": 6,
             "rolls": 1
         }
-        
     },
-    
+
     "Fungal Husk Fists": {
         "itemId": 1010,
         "itemName": "Fungal Husk Fists",
+        "description": "Dense fungal growth has hardened the Husk's hands into heavy clubs capable of delivering crushing blows.",
         "type": "WEAPON",
         "effectType": "DAMAGE",
         "stackable": false,
@@ -174,15 +180,16 @@
         "value": 0,
 
         "penetration": 1,
-        "diceRoll":{
+        "diceRoll": {
             "diceSides": 6,
             "rolls": 1
         }
     },
-    
+
     "Apprentice Spell Ring": {
         "itemId": 1011,
         "itemName": "Apprentice Spell Rings",
+        "description": "A pair of simple arcane rings that shape raw mana into concentrated attacks. Crude, but surprisingly destructive.",
         "type": "WEAPON",
         "effectType": "DAMAGE",
         "stackable": false,
@@ -190,7 +197,7 @@
         "value": 0,
 
         "penetration": 4,
-        "diceRoll":{
+        "diceRoll": {
             "diceSides": 6,
             "rolls": 2
         }

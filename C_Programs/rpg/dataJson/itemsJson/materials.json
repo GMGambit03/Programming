@@ -2,6 +2,7 @@
     "Rat Claw": {
         "itemId": 6001,
         "itemName": "Hollow Rat Claw",
+        "description": "A sharp, dirty claw taken from a Hollow Rat. Brittle, but useful in crude crafting.",
         "type": "MATERIAL",
         "effectType": "NONE",
         "stackable": true,
@@ -12,6 +13,7 @@
     "Rat Hide": {
         "itemId": 6002,
         "itemName": "Hollow Rat Hide",
+        "description": "A patch of rough hide stripped from a Hollow Rat. Thin, flexible, and surprisingly durable.",
         "type": "MATERIAL",
         "effectType": "NONE",
         "stackable": true,
@@ -22,6 +24,7 @@
     "Cracked Iron Shard": {
         "itemId": 6003,
         "itemName": "Cracked Iron Shard",
+        "description": "A fractured piece of iron plating. Damaged, but still usable as scrap metal.",
         "type": "MATERIAL",
         "effectType": "NONE",
         "stackable": true,
@@ -32,6 +35,7 @@
     "Core Fragment": {
         "itemId": 6004,
         "itemName": "Sentinel Core Fragment",
+        "description": "A faintly warm fragment taken from the core of a Cracked Sentinel. Weak energy still pulses inside.",
         "type": "MATERIAL",
         "effectType": "NONE",
         "stackable": true,
@@ -42,6 +46,7 @@
     "Wailer Essence": {
         "itemId": 6005,
         "itemName": "Wailer Essence",
+        "description": "A cold, unstable essence left behind by a Wailer. It seems to shift when viewed directly.",
         "type": "MATERIAL",
         "effectType": "NONE",
         "stackable": true,
@@ -52,6 +57,7 @@
     "Wailer Talon": {
         "itemId": 6006,
         "itemName": "Wailer Talon",
+        "description": "A long curved talon with an unnaturally sharp edge. The surface is cold to the touch.",
         "type": "MATERIAL",
         "effectType": "NONE",
         "stackable": true,
@@ -62,6 +68,7 @@
     "Crawler Fang": {
         "itemId": 6007,
         "itemName": "Crawler Fang",
+        "description": "A heavy fang from a Blackwater Crawler. Its serrated edge remains dangerous even after removal.",
         "type": "MATERIAL",
         "effectType": "NONE",
         "stackable": true,
@@ -72,6 +79,7 @@
     "Blackwater Carapace": {
         "itemId": 6008,
         "itemName": "Blackwater Carapace",
+        "description": "A thick plate of dark shell from a Blackwater Crawler. Hard enough to turn aside weak blades.",
         "type": "MATERIAL",
         "effectType": "NONE",
         "stackable": true,
@@ -82,6 +90,7 @@
     "Deep Stalker Fang": {
         "itemId": 6009,
         "itemName": "Deep Stalker Fang",
+        "description": "A narrow fang taken from a Deep Stalker. Its point is fine enough to pierce leather with ease.",
         "type": "MATERIAL",
         "effectType": "NONE",
         "stackable": true,
@@ -92,6 +101,7 @@
     "Fungal Fiber": {
         "itemId": 6010,
         "itemName": "Fungal Fiber",
+        "description": "Tough strands harvested from Underdark fungus. Flexible fibers like these can be woven or bound together.",
         "type": "MATERIAL",
         "effectType": "NONE",
         "stackable": true,
@@ -102,6 +112,7 @@
     "Glowcap Spore": {
         "itemId": 6011,
         "itemName": "Glowcap Spore",
+        "description": "A faintly glowing fungal spore. It releases a soft blue light when disturbed.",
         "type": "MATERIAL",
         "effectType": "NONE",
         "stackable": true,
@@ -112,6 +123,7 @@
     "Darksteel Scrap": {
         "itemId": 6012,
         "itemName": "Darksteel Scrap",
+        "description": "A dense piece of dark metal scarred by countless impacts. Even damaged, it is unusually strong.",
         "type": "MATERIAL",
         "effectType": "NONE",
         "stackable": true,
@@ -122,6 +134,7 @@
     "Deep Whisperer Brain": {
         "itemId": 6013,
         "itemName": "Deep Whisperer Brain",
+        "description": "The preserved brain of a Deep Whisperer. Strange pulses move through the tissue long after death.",
         "type": "MATERIAL",
         "effectType": "NONE",
         "stackable": false,
@@ -132,6 +145,7 @@
     "Fish Scale": {
         "itemId": 6014,
         "itemName": "Fish Scale",
+        "description": "A broad, reflective scale from an underground fish. Flexible, waterproof, and tougher than it appears.",
         "type": "MATERIAL",
         "effectType": "NONE",
         "stackable": true,
