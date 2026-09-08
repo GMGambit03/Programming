@@ -290,13 +290,7 @@ DungeonNode  *createBossRoom(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
     }
 
     // we then based on the different enimies the dungeon can have we randomly add them to the room
-    // We make size for the enemy database
-    bossRoom->enemies = malloc(sizeof(EnemyDataBase));
-    // We make space for the enemies inside of the enemydatabase
-    bossRoom->enemies->enemies = malloc(sizeof(Enemy *) * bossRoom->enemiesCount);
-    // we get the enemy by using get enemy id and pass the dungeon boss through
-    bossRoom->enemies->enemies[0] = getEnemyById((*dungeon)->dungeonBossId, enemyDatabase);
-    // we set the amount of eneimies inside the enemydatabase
+    bossRoom->enemies = getEnemyById((*dungeon)->dungeonBossId, enemyDatabase);
     bossRoom->enemies->enemiesCount = bossRoom->enemiesCount;
 
     // eventually we'll have different descriptions for each room

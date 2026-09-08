@@ -58,5 +58,17 @@
         "value": 150,
         
         "dmgReduction": 12
+    },
+
+    "Glycerine Fish Scales": {
+        "itemId": 2005,
+        "itemName": "Glycerine Fish Scales",
+        "type": "ARMOR",
+        "effectType": "DEFENSE",
+        "stackable": false,
+        "weight": 10.5,
+        "value": 250,
+
+        "dmgReduction": 8
     }
 }

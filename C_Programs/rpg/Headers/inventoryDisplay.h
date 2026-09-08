@@ -7,11 +7,19 @@
 
 typedef struct {
     char *name;
-    ITEMOPTIONS action;
-}InventoryOptions;
+    INVENTORYOPTIONS action;
+}ItemOptions;
 
-void itemHeader(ItemArray *items);
-InventoryOptions *itemDisplay(Item *item, int *optionsSize);
+typedef struct {
+    char *item;
+    union{
+        char *string;
+        float number;
+    }value;
+}ItemValue;
+
+void itemHeader(ItemArray *items, Item *currWeapon, Item *currArmor, Player *player);
+ItemOptions *itemDisplay(Item *item, Player *player, int *optionsSize);
 
 int dropQtcMenu();
 

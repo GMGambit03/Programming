@@ -2,46 +2,48 @@
     "Health Potion": {
         "itemId": 3001,
         "itemName": "Health Potion",
+        "description": "A small vial of crimson liquid that closes minor wounds and restores 5 health.",
         "type": "POTION",
         "effectType": "RESTOREHP",
         "stackable": true,
         "weight": 0.5,
         "value": 15,
-        "effect": 25
+        "effect": 5
     },
 
     "Greater Health Potion": {
         "itemId": 3002,
         "itemName": "Greater Health Potion",
+        "description": "A potent crimson mixture that rapidly mends damaged flesh and restores 15 health.",
         "type": "POTION",
         "effectType": "RESTOREHP",
         "stackable": true,
         "weight": 0.75,
         "value": 40,
-        "effect": 60
+        "effect": 15
     },
 
     "Mana Potion": {
         "itemId": 3003,
         "itemName": "Mana Potion",
+        "description": "A swirling blue liquid that tingles with arcane energy and restores 5 mana.",
         "type": "POTION",
         "effectType": "RESTOREMANA",
         "stackable": true,
         "weight": 0.5,
         "value": 20,
-        "effect": 25,
-        "dmgReduction": 0.30
+        "effect": 5
     },
 
     "Strength Potion": {
         "itemId": 3004,
         "itemName": "Strength Potion",
+        "description":"A thick amber brew that fills the body with unnatural power, increasing strength Temporarily.",
         "type": "POTION",
         "effectType": "STRINCREASE",
         "stackable": true,
         "weight": 0.5,
         "value": 35,
-        "effect": 5,
-        "dmgReduction": 0.30
+        "effect": 5
     }
 }

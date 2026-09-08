@@ -1,8 +1,8 @@
 {   
-    
     "Torch": {
         "itemId": 4001,
         "itemName": "Torch",
+        "description": "A simple oil-soaked torch used to illuminate dark passages and reveal what the Underdark would rather keep hidden.",
         "type": "UTILITY",
         "effectType": "NONE",
         "stackable": true,
@@ -14,6 +14,7 @@
     "Smoke Bomb": {
         "itemId": 4002,
         "itemName": "Smoke Bomb",
+        "description": "A small ceramic charge that erupts into a cloud of thick smoke, reducing incoming damage by 30% during combat.",
         "type": "UTILITY",
         "effectType": "NONE",
         "stackable": true,
@@ -26,6 +27,7 @@
     "Lockpick": {
         "itemId": 4003,
         "itemName": "Lockpick",
+        "description": "A thin metal tool used to open locked chests, doors, and other mechanisms without their original key.",
         "type": "UTILITY",
         "effectType": "NONE",
         "stackable": true,
@@ -37,6 +39,7 @@
     "Rope": {
         "itemId": 4004,
         "itemName": "Rope",
+        "description": "A sturdy length of rope useful for reaching high ledges, descending into pits, and crossing dangerous terrain.",
         "type": "UTILITY",
         "effectType": "NONE",
         "stackable": true,
@@ -44,5 +47,4 @@
         "value": 10,
         "effect": 0
     } 
-
 }

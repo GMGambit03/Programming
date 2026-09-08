@@ -22,7 +22,6 @@ CURRENTLY WORKING
 
 KNOWN BUGS
 : When looting all sometimes it doesnt add all the items to player inventory and just leaves the last one in the array
-: Segmentation fault whenever you reach bossroom
 
 Always
 : Add comments
@@ -52,15 +51,8 @@ Items
 : Add item descriptions
 
 Loot
-: Finish percentage-based loot rolls
-: Roll each loot entry independently
-: Generate actual drops when enemy dies
-: Allow individual item looting
-: Allow Take All
-: Remove looted drops from corpse
 : Combine identical stackable drops
 : Add quantity ranges later
-: Prevent dead enemies from being repeatedly rerolled for loot
 
 Dungeon.C
 : Show "(Dead)" next to defeated enemies in room menu
@@ -184,12 +176,8 @@ Save System
 
 Testing / Debug
 : Test empty inventory
-: Test empty loot
-: Test enemy with no drops
 : Test room with zero enemies
 : Test one-room dungeon
-: Test maximum-size dungeon
-: Test all enemies dead
 : Test inventory full/overweight
 : Test malformed JSON
 : Test repeated entering/leaving rooms
