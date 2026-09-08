@@ -1,0 +1,212 @@
+PROJECT OVERVIEW
+: Terminal RPG written in C
+: Custom JSON parser
+: Random dungeon generation
+: Turn-based combat
+: Inventory / equipment / loot
+: Data-driven enemies, classes, items, and dungeons
+
+CURRENTLY WORKING
+: Class selection
+: Player creation
+: Item database
+: Enemy database
+: Random enemy generation
+: Random dungeon room generation
+: Dungeon navigation
+: Combat
+: Loot generation
+: Inventory
+: Weapon / armor calculations
+: JSON parsing
+
+KNOWN BUGS
+: When looting all sometimes it doesnt add all the items to player inventory and just leaves the last one in the array
+: Segmentation fault whenever you reach bossroom
+
+Always
+: Add comments
+: Clean up code
+: Improve variable/function names
+: Continue balancing player and enemies over time
+: Check malloc/realloc/free ownership
+: Compile with warnings enabled
+: Periodically run AddressSanitizer
+: When syncing from Moran, update launch.json to "rpg" and rebuild
+: Remove temporary debug printf/getchar calls when systems are stable
+: Check all malloc results eventually
+: Make sure every allocated object has a clear owner/free location
+
+Items
+: Implement Materials in ItemDatabase
+: Add material item type
+: Add item quantities without modifying master database Items
+: Add stackable item support
+: Add inventory weight checking
+: Add item dropping/discarding
+: Add equipment swapping
+: Add item descriptions
+: Eventually add crafting recipes
+: Eventually add shops / item value usage
+: Add player spreadsheet gui so player know when they equip or dequip
+: Add item descriptions
+
+Loot
+: Finish percentage-based loot rolls
+: Roll each loot entry independently
+: Generate actual drops when enemy dies
+: Allow individual item looting
+: Allow Take All
+: Remove looted drops from corpse
+: Combine identical stackable drops
+: Add quantity ranges later
+: Prevent dead enemies from being repeatedly rerolled for loot
+
+Dungeon.C
+: Show "(Dead)" next to defeated enemies in room menu
+: Create dungeon map / room connection display
+: Track player's current room
+: Make sure dungeon always has boss room
+: Add search-room function
+: Add interactable room objects
+: Add locked doors
+: Add torch-required areas
+: Add lockpick-required doors/chests
+: Add environmental events
+: Allow player to re-enter combat if living enemies remain
+: Prevent leaving certain encounters if appropriate
+: Add room visited state
+: Add room searched state
+: Add boss room entrance behavior
+: Add dungeon completion state
+: Add exit / retreat behavior
+: Add room descriptions from dungeon JSON
+: Eventually add loops/shortcuts between already-generated rooms
+: Free complete dungeon correctly when finished
+
+Dungeon Generation
+: Verify exact requested room count
+: Initialize every DungeonNode field
+: Clean remaining QueueEntries after generation
+: Make sure final room becomes boss room
+: Decide minimum/maximum branching
+: Prevent impossible directions
+: Add optional room types
+: Add deterministic seed/debug option eventually
+
+Combat.C
+: Improve combat UI
+: Add weapon/stat scaling
+: Example: staff uses Wisdom
+: Define damage formula clearly
+: Define armor/damage reduction clearly
+: Define penetration clearly
+: Improve dodge/evasion calculation
+: Add enemy attack descriptions
+: Add player weapon attack descriptions
+: Add critical hits if wanted
+: Add status effects later
+: Add mana/spell actions
+: Add potion/item use during combat
+: Add flee calculation
+: Add death handling
+: Add victory handling
+: Add survive-X-rooms encounter type
+: Make sure dead enemies cannot attack
+: Make target selection clear with multiple enemies
+
+Player / EntitiesStruct.C
+: Add Wisdom
+: Add Wisdom to classes
+: Decide whether Dexterity/etc. are needed before adding more stats
+: Add current/max HP distinction if not already present
+: Add current/max Mana distinction
+: Add equipped weapon
+: Add equipped armor
+: Track current dungeon / room
+: Track experience / level if progression will use levels
+: Track gold/currency if shops will exist
+
+Enemies
+: Give enemies different combat behaviors
+: Give enemies attack descriptions
+: Add boss-specific behavior
+: Add enemy resistances/weaknesses later
+: Add enemy loot tables
+: Add enemy encounter weighting
+: Balance enemy groups using difficulty/threat rather than only enemy count
+
+JSON Files
+: Fighting dialogue / encounter descriptions
+: Dungeon room-description pools
+: Enemy attack descriptions
+: Weapon attack descriptions
+: Item descriptions
+: Add Wisdom to class JSON
+: Add Materials JSON
+: Eventually add Recipes JSON
+: Add dungeon-specific possible enemies
+: Add room/interactable definitions if data-driven
+: Validate missing JSON fields safely
+
+JSON Parser
+: Finish arrays of objects reliably
+: Remove unnecessary cursor rewinding
+: Ensure parseValue only parses values
+: Objects own keys
+: Arrays contain unnamed values
+: Handle nested objects/arrays recursively
+: Add JSON null eventually if needed
+: Improve malformed JSON errors
+: Add parser cleanup/free functions
+: Test deeply nested JSON
+: Test empty arrays and objects
+
+UI
+: Standardize headers/menu formatting
+: Standardize Back/Exit option
+: Standardize invalid-input handling
+: Support more than single-digit menu choices
+: Make enemy status easier to read
+: Add HP bars/text
+: Add inventory weight display everywhere relevant
+: Make dungeon/navigation/combat menus visually distinct
+
+Save System
+: Save GameState
+: Save player stats/inventory/equipment
+: Save current location
+: Save dungeon progress if required
+: Save completed quests/dungeons
+: Save unlocked locations
+: Add load game
+: Add save version number eventually
+
+Testing / Debug
+: Test empty inventory
+: Test empty loot
+: Test enemy with no drops
+: Test room with zero enemies
+: Test one-room dungeon
+: Test maximum-size dungeon
+: Test all enemies dead
+: Test inventory full/overweight
+: Test malformed JSON
+: Test repeated entering/leaving rooms
+: Test removing array elements while iterating
+: Run with -Wall -Wextra
+: Run with AddressSanitizer periodically
+
+FUTURE
+: Crafting
+: Quests
+: NPC dialogue
+: Shops
+: Leveling / XP
+: Skills / abilities
+: Spells
+: Status effects
+: More dungeon types
+: Overworld locations
+: Save/load
+: 2D graphics later
