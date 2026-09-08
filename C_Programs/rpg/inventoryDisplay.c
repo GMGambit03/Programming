@@ -27,22 +27,22 @@ void itemHeader(ItemArray *items){
 
 }
 
-Options *itemDisplay(Item *item, int *optionsSize){
+InventoryOptions *itemDisplay(Item *item, int *optionsSize){
     
 
-    Options weaponOptions[] = {
+    InventoryOptions weaponOptions[] = {
         {"Equip", EQUIP}, 
         {"Drop", DROP}
     };
-    Options armorOptions[] = {
+    InventoryOptions armorOptions[] = {
         {"Equip", EQUIP}, 
         {"Drop", DROP}
     };
-    Options potionsOptions[] = {
+    InventoryOptions potionsOptions[] = {
         {"Use", USE}, 
         {"Drop", DROP}
     };
-    Options otherOptions[] = {
+    InventoryOptions otherOptions[] = {
         {"Drop", DROP}
     };
 
@@ -55,28 +55,28 @@ Options *itemDisplay(Item *item, int *optionsSize){
 
     
 
-    Options *options;
+    InventoryOptions *InventoryOptions;
     switch(item->itemType){
         case WEAPON:
             itemDesc = typeOfDesc[WEAPON];
-            options = weaponOptions;
+            InventoryOptions = weaponOptions;
             *optionsSize = sizeof(weaponOptions)/sizeof(weaponOptions[0]);
             itemEffect = item->effectData.penetration;
         break;
         case ARMOR:
             itemDesc = typeOfDesc[ARMOR];
-            options = armorOptions;
+            InventoryOptions = armorOptions;
             *optionsSize = sizeof(armorOptions)/sizeof(armorOptions[0]);
             itemEffect = item->effectData.dmgReduction;
         case POTION:
             itemDesc = typeOfDesc[POTION];
-            options = potionsOptions;
+            InventoryOptions = potionsOptions;
             *optionsSize = sizeof(potionsOptions)/sizeof(potionsOptions[0]);
             itemEffect = item->effectData.effect;
         break;
         default:
             itemDesc = "";
-            options = otherOptions;
+            InventoryOptions = otherOptions;
             *optionsSize = sizeof(otherOptions)/sizeof(otherOptions[0]);
             itemEffect = NONE;
         break;
@@ -101,14 +101,14 @@ Options *itemDisplay(Item *item, int *optionsSize){
     charFiller(1, '\n');
 
     for(int i = 0; i < *optionsSize; i++){
-        printf(" [ %d ] %s", (i + 1), options[i].name);
+        printf(" [ %d ] %s", (i + 1), InventoryOptions[i].name);
         printf("\n");
     }
 
     printf(" [ 0 ] Back");
     charFiller(1, '\n');
     printf(" >");
-    return options;
+    return InventoryOptions;
 }
 
 int dropQtcMenu(){

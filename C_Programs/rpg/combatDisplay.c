@@ -59,6 +59,10 @@ void lootEnemyDisplay(Player **player, EnemyDataBase **enemies, ItemDatabase *it
     
         for(int i = 0; i < (*enemies)->enemiesCount; i++){
             Enemy *curr = (*enemies)->enemies[i];
+            if(curr->isDead == false){
+                continue;
+            }
+
             if(curr->dropCount == 0){
                 printf(" [ Empty ] [ %d ]  [ %s ]", (i + 1), curr->name);
             }else{
@@ -236,13 +240,13 @@ void lootHeader(Player *player, ItemArray *items){
     printf(" >");
 }
 
-void actionsDisplay(char **strOptions, bool canRun, int optionsCount){
+void actionsDisplay(int optionsCount, ActionOptions options[], bool canRun){
     generalHeaderDisplay("ACTIONS", '-', 30);
 
     // int optionsLength = canRun == true ? sizeof(*strOptions)/4 : (sizeof(*strOptions) - 1);
 
     for(int i = 0; i < optionsCount; i++){
-            printf(" [%d] %s\n", (i + 1), strOptions[i]);
+            printf(" [%d] %s\n", (i + 1), options[i].name);
         }
         printf("\n: ");
 }

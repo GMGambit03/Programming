@@ -8,10 +8,10 @@
 typedef struct {
     char *name;
     ITEMOPTIONS action;
-}Options;
+}InventoryOptions;
 
 void itemHeader(ItemArray *items);
-Options *itemDisplay(Item *item, int *optionsSize);
+InventoryOptions *itemDisplay(Item *item, int *optionsSize);
 
 int dropQtcMenu();
 

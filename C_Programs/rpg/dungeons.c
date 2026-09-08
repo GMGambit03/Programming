@@ -36,7 +36,7 @@ DungeonReturns dungeonEntrance(GameState **gameState, Database **DB, int dungeon
         //Gets Center
         int nameLength = strlen(dungeon->dungeonName);
         charFiller(((32 + (nameLength - 2)) - 34) / 2, ' ');
-        printf(" [ 1 ] Exit        [ 2 ] Continue");
+        printf(" [ 1 ] Continue        [ 2 ] Exit");
 
         printf("\n");
         printf("\n");
@@ -51,10 +51,10 @@ DungeonReturns dungeonEntrance(GameState **gameState, Database **DB, int dungeon
         clearScreen();
         switch(*userInput){
             case '1':
-                return EXIT;
+                return enterDungeon(&(*gameState)->player, dungeon->dungeonName, dungeon->entrance, DB);
             break;
             case '2':
-                return enterDungeon(&(*gameState)->player, dungeon->dungeonName, dungeon->entrance, DB);
+                return EXIT;
             break;
             default:
                 printf("\n");
@@ -69,6 +69,7 @@ DungeonReturns dungeonEntrance(GameState **gameState, Database **DB, int dungeon
 
 DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dungeonNode, Database **DB){
     // refer to dungeonMenus for all displays and prints
+    bool dungeonCompleted = false;
     int roomsCompleted = 0;
     while(true){
         clearScreen();
@@ -93,19 +94,28 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
 
         // we're making the options char and Dungeonreturs so we can match the player input to the actual enum easier
         // same for main options
-        char *strEnemyOptions[] = {"Fight", "Inventory", "Run"};
-        DungeonReturns retEnemyOptions[] = {FIGHT, INVENTORY, RUNAWAY};
+        DungeonOptions enemyOptions[] = {
+            {"Fight", FIGHT},
+            {"Inventory", INVENTORY},
+            {"Run", RUNAWAY}
+        };
+        int enemyOptionsSize = sizeof(enemyOptions)/sizeof(enemyOptions[0]);
 
-        char *strMainOptions[] = {"Move", "Search Room", "Inventory", "Leave Dungeon"};
-        DungeonReturns retMainOptions[] = {MOVE, SEARCHROOM, INVENTORY, LEAVE};
+        DungeonOptions mainOptions[] = {
+            {"Move", MOVE},
+            {"Search Room", SEARCHROOM},
+            {"Inventory", INVENTORY},
+            {"Leave Dungeon", LEAVE}
+        };
+        int mainOptionsSize = sizeof(mainOptions)/sizeof(mainOptions[0]);
 
         DungeonReturns userInput;
         // we first check if all the enemies are dead if they are we cand display main options
         // if they arent dead we display fighting options
         if(!dungeonNode->enemiesDead && dungeonNode->enemiesCount > 0){
-            userInput = playerOptions(sizeof(strEnemyOptions)/8, strEnemyOptions, retEnemyOptions);
+            userInput = playerOptions(enemyOptionsSize, enemyOptions);
         }else{
-            userInput = playerOptions(sizeof(strMainOptions)/8, strMainOptions, retMainOptions);
+            userInput = playerOptions(mainOptionsSize, mainOptions);
         }
         
         Direction moveTo;
@@ -117,8 +127,10 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
                 enemiesDefeated = fightMenu(player, &dungeonNode->enemies, DB);
 
                 // This checks if the enemies were deafted and they wernt then that means the player either ran or died
-                if(enemiesDefeated == DIED){
+                if(enemiesDefeated == DIED || enemiesDefeated == RUNAWAY){
                     return enemiesDefeated;
+                }else if(enemiesDefeated == ENEMEYDEFEATED && dungeonNode->isBossRoom){
+                    dungeonCompleted = true;
                 }
                 dungeonNode->enemiesDead = true;
                 roomsCompleted++;
@@ -178,6 +190,12 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
             case SEARCHROOM:
                 
             break;
+            case LEAVE:
+                if(dungeonCompleted){
+                    return BOSSDEFEATED;
+                }else{
+                    return LEAVE;
+                }
             default:
             break;
         }

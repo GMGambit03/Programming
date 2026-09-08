@@ -16,6 +16,11 @@ typedef enum{
     LOOT
 }ACTIONS;
 
+typedef struct ActionOptions{
+    char *name;
+    ACTIONS option; 
+}ActionOptions;
+
 void combatHeaderDisplay();
 void generalHeaderDisplay(char *print, char character, int filler);
 void lootHeader(Player *player, ItemArray *items);
@@ -26,7 +31,7 @@ void enemyDisplay(EnemyDataBase **enemies);
 void lootEnemyDisplay(Player **player, EnemyDataBase **enemies, ItemDatabase *itemDB);
 void displayLoot(Player **player, Enemy *enemy, ItemDatabase *itemDB);
 
-void actionsDisplay(char **strOptions, bool canRun, int optionsCount);
+void actionsDisplay(int optionsCount, ActionOptions options[], bool canRun);
 void selTargetDisplay(EnemyDataBase *enemies);
 
 

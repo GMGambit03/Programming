@@ -170,7 +170,7 @@ Enemy *getEnemyById(int enemyId, EnemyDataBase **enemyDatabase){
             return enemy;
         }
     }
-    printf("Error Couldnt Find Enemy by id");
+    printf("Error Couldnt find %d in enemy database", enemyId);
     getchar();
     return NULL;
 }

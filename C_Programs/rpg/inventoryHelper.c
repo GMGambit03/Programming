@@ -76,7 +76,7 @@ void displayItemData(Player *player, Item *item, ItemDatabase *itemDB){
 
         // This returns the list of options there are for the item
         int optionsSize = 0;
-        Options *options = itemDisplay(item, &optionsSize);
+        InventoryOptions *options = itemDisplay(item, &optionsSize);
         // We need this so we can easily compare what the user chose and corrdinate to the right option
     
         // then we'll go and get the user input

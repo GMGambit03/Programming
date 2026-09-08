@@ -36,12 +36,12 @@ void printEnemies(int s, char *enimies[s]){
     }
 }
 
-char playerOptions(int optionsLength, char *options[optionsLength], DungeonReturns *retOptions){
+char playerOptions(int optionsLength, DungeonOptions options[optionsLength]){
     while(true){
         char userInput[3];
 
         for(int i = 0; i < optionsLength; i++){
-            printf(" [%d] %s\n", (i + 1), options[i]);
+            printf(" [%d] %s\n", (i + 1), options[i].name);
         }
         printf("\n >");
 
@@ -51,7 +51,7 @@ char playerOptions(int optionsLength, char *options[optionsLength], DungeonRetur
         }
 
         int userInt = *userInput - '0';
-        return retOptions[userInt - 1];
+        return options[userInt - 1].option;
 
 
     }

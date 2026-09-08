@@ -33,29 +33,18 @@ DungeonReturns fightMenu(Player **player, EnemyDataBase **enemies, Database **DB
     
         // We create strOption and actionOption exactly the same so when the player choose one option from strOptions
         // It matches the coorosponding one in actionOptions
-        char *strActions[] = {"Attack", "Inventory", "Attempt to Run", "Loot"};
-        ACTIONS actions[] = {ATTACK, USEITEM, RUNATT, LOOT};
-
-        char **strOptions;
-        ACTIONS *actionOptions;
-
-        // Based on eneimies dead, itll determine weather we include loot or not
-        int optionCount = 0;
-        if(!enemiesDead){
-            optionCount = 3;
-        }else{
-            strActions[2] = "Go Back";
-            optionCount = 4;
-        }
-
-        strOptions = malloc(sizeof(char *) * optionCount);
-        actionOptions = malloc(sizeof(ACTIONS) * optionCount);
-        for(int i = 0; i < optionCount; i++){
-            strOptions[i] = strActions[i];
-            actionOptions[i] = actions[i];
-        }
+        ActionOptions options[] = {
+            {"Attack", ATTACK},
+            {"Inventory", USEITEM},
+            {"Attempt to run", RUNATT},
+            {"Loot", LOOT}
+        };
+        int optionCount = sizeof(options)/sizeof(options[0]);
     
-        actionsDisplay(strOptions ,canRun, optionCount);
+        if(enemiesDead){
+            options[2].name = "Leave Combat";
+        }
+        actionsDisplay(optionCount, options, canRun);
     
         fgets(userInput, sizeof(userInput), stdin);
         if(!clearBuffer((int)sizeof(userInput) ,userInput)){
@@ -74,7 +63,7 @@ DungeonReturns fightMenu(Player **player, EnemyDataBase **enemies, Database **DB
         }
 
         // assign the the player action
-        ACTIONS playerAction = actionOptions[userInt - 1];
+        ACTIONS playerAction = options[userInt - 1].option;
 
         switch(playerAction){
             case ATTACK:
@@ -85,21 +74,25 @@ DungeonReturns fightMenu(Player **player, EnemyDataBase **enemies, Database **DB
             break;
             case USEITEM:
                 displayInventoryItems((*player), (*DB)->itemDB);
-                if(enemiesDead){
-                    next = ENEMEYDEFEATED;
-                }else{
                     next = FIGHT;
-                }
             break;
             case RUNATT:
+                if(canRun == false){
+                    clearScreen();
+                    printf(" You dont have anymore run attempts\n");
+                    enterContinue();
+                    getchar();
+                    break;
+                }
                 if(enemiesDead){
                     return ENEMEYDEFEATED;
                 }
-                if(runAttempts == 3){
+                else if(runAttempts == 3){
                     canRun = false;
                 }
-                // bool runAttempt = runAttempt();
-                // runAttempts++;
+                bool runAttempt = tryRun(0);
+                if(runAttempt) return RUNAWAY;
+                runAttempts++;
             break;
             case LOOT:
                 clearScreen();
@@ -116,6 +109,16 @@ DungeonReturns fightMenu(Player **player, EnemyDataBase **enemies, Database **DB
 
     return FIGHT;
 
+}
+
+bool tryRun(int mutltiplier){
+    // We're going to first subtraxt the enemy and player speed
+    int escapeDC = 10 - mutltiplier;
+    Roll escapeRoll = {D20, 1};
+
+    if(rollDice(escapeRoll) > 10){
+        return true;
+    }else{return false;}
 }
 
 DungeonReturns selectTarget(Player **player, EnemyDataBase **enemies, Database **DB){

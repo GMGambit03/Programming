@@ -16,6 +16,8 @@ DungeonReturns fightMenu(Player **player, EnemyDataBase **enemies, Database **DB
 DungeonReturns selectTarget(Player **player, EnemyDataBase **enemies, Database **DB);
 Enemy *attackTarget(Player **player, Enemy *enemy, ItemDatabase *itemDB);
 
+bool tryRun(int mutltiplier);
+
 WHO checkDead(Player **player, Enemy **enemy);
 void getEnemyDrop(Enemy **enemy);
 

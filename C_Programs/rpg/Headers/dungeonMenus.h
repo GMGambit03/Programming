@@ -7,8 +7,8 @@
 typedef struct DungeonNode DungeonNode;
 
 typedef enum{
-    EXIT,
     RUNAWAY,
+    EXIT,
     DIED,
     BOSSDEFEATED,
     FIGHT,
@@ -16,13 +16,18 @@ typedef enum{
     INVENTORY,
     MOVE,
     SEARCHROOM, 
-    ENEMEYDEFEATED
+    ENEMEYDEFEATED,
 }DungeonReturns;
+
+typedef struct DungeonOptions{
+    char *name;
+    DungeonReturns option;
+}DungeonOptions;
 
 void dungeonHeader(char *dungeonName);
 void playerStats(int health, int maxHealth, int mana, int maxMana);
 void printEnemies(int s ,char *enimies[s]);
-char playerOptions(int s, char *options[s], DungeonReturns *retOptions);
+char playerOptions(int optionsLength, DungeonOptions options[optionsLength]);
 void displayDirections(DungeonNode *dungeonNode, int length, char *strDir[]);
 #endif
 
