@@ -20,6 +20,47 @@
         "Chance": 12
       }
     ],
+    "RoomDescriptions": [
+            "The passage opens into a low cavern slick with black moisture. Pale fungi cling to the walls, casting a weak blue glow across the stone.",
+
+            "Broken columns rise from the floor like shattered ribs. Deep claw marks run across several of them, far above your head.",
+
+            "A pool of perfectly black water fills most of the chamber. Every few moments, ripples form across its surface despite the still air.",
+
+            "Thick strands of webbing cover the walls and ceiling. Several old bones and pieces of rusted equipment are tangled inside.",
+
+            "The ceiling disappears into darkness. Every sound you make returns several seconds later, distorted and from the wrong direction.",
+
+            "Clusters of luminous mushrooms surround the remains of an abandoned campsite. A cold fire pit sits at its center.",
+
+            "A narrow stone bridge stretches across a fissure whose bottom cannot be seen. Warm air rises steadily from below.",
+
+            "Strange symbols have been carved into every wall. Most are ancient and worn, but several appear disturbingly fresh.",
+
+            "Dozens of small holes cover the cavern walls. Something occasionally shifts just beyond the openings.",
+
+            "A massive stone statue has collapsed across the chamber. Its face has been deliberately smashed beyond recognition.",
+
+            "Broken weapons and damaged armor lie scattered across the floor. Some of the blood coating them is still wet.",
+
+            "Dense gray mist hangs close to the ground. Shapes seem to move within it whenever you look away.",
+
+            "An underground stream cuts through the chamber. Dark water carries fragments of bone deeper into the caves.",
+
+            "Pale roots grow through cracks in the walls and floor. They slowly expand and contract as though breathing.",
+
+            "Crude stone grave markers fill the room. Several graves appear to have been opened from the inside.",
+
+            "Purple crystals protrude from the stone and emit a faint humming sound that grows louder when approached.",
+
+            "The remains of an old wooden barricade block part of the chamber. Something powerful has smashed through it from the other side.",
+
+            "Frost covers the walls despite the humid tunnels surrounding the room. Your breath becomes visible as you enter.",
+
+            "A circular symbol has been painted across the floor using dried blood. Burned-out candles surround it.",
+
+            "The cavern is completely silent. Even your footsteps seem strangely muted."
+      ],
     "Health": 8.0,
     "Strength": 2.0,
     "Speed": 4.0,

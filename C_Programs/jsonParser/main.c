@@ -10,9 +10,16 @@ int main(){
     Parser parser = {0,0, jsonFile, jsonFile[0]};
 
     ObjectArray *myObj = searchMode(&parser);
-    Object *fungalHusk = getObject(myObj , "Fungal Husk");
+    Object *rat = getObject(myObj , "Hollow Rat");
 
-    printObj(fungalHusk);
+    printObj(rat);
+
+    JsonArray *descriptions = getMember(rat, "RoomDescriptions")->value.data.array;
+
+    for(int i = 0; i < descriptions->count; i++){
+        char *string = descriptions->values[i].data.string;
+        printf("%s ->\n", string);
+    }
 
     
 }
