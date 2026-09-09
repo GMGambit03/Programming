@@ -65,6 +65,9 @@ Dungeon *createDungeon(Object *dungeonData){
     dungeonStruct->maxRooms = getMember(dungeonData, "MaxRooms")->value.data.number;
 
     dungeonStruct->dungeonBossId = getMember(dungeonData, "BossId")->value.data.number;
+
+    // We have to get the different room descriptions
+    JsonArray 
     return dungeonStruct;
 
 }
@@ -255,7 +258,8 @@ DungeonNode *createRoom(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
     room->enemies = getRanEnemies(tmp->possibleEnemies, tmp->possEnemyCount, room->enemiesCount, enemyDatabase);
 
     // eventually we'll have different descriptions for each room
-    room->description = "We dont got anything";
+    int ranNum = rand() % ((tmp->roomDescLength - 1) + 1);
+    room->description = (*dungeon)->roomDescs[ranNum];
 
     return room;
 }

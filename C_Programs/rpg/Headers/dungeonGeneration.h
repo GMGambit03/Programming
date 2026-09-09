@@ -33,7 +33,10 @@ typedef struct DungeonNode{
 typedef struct Dungeon{
     int dungeonId;
     char *dungeonName;
+
     char *description;
+    char **roomDescs;
+    int roomDescLength;
 
     DungeonNode *entrance;
     DungeonNode *bossRoom;

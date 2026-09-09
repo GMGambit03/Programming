@@ -188,7 +188,7 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
                 }
             break;
             case SEARCHROOM:
-                
+                searchRoom();
             break;
             case LEAVE:
                 if(dungeonCompleted){
