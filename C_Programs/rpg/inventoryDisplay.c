@@ -150,25 +150,25 @@ ItemOptions *itemDisplay(Item *item, Player *player, int *optionsSize){
     switch(item->itemType){
         case WEAPON:
             itemDesc = typeOfDesc[WEAPON];
-            InventoryOptions = weaponOptions;
+            options = weaponOptions;
             *optionsSize = sizeof(weaponOptions)/sizeof(weaponOptions[0]);
             itemEffect = item->effectData.penetration;
         break;
         case ARMOR:
             itemDesc = typeOfDesc[ARMOR];
-            InventoryOptions = armorOptions;
+            options = armorOptions;
             *optionsSize = sizeof(armorOptions)/sizeof(armorOptions[0]);
             itemEffect = item->effectData.dmgReduction;
         break;
         case POTION:
             itemDesc = typeOfDesc[POTION];
-            InventoryOptions = potionsOptions;
+            options = potionsOptions;
             *optionsSize = sizeof(potionsOptions)/sizeof(potionsOptions[0]);
             itemEffect = item->effectData.effect;
         break;
         default:
             itemDesc = "";
-            InventoryOptions = otherOptions;
+            options = otherOptions;
             *optionsSize = sizeof(otherOptions)/sizeof(otherOptions[0]);
             itemEffect = NONE;
         break;
@@ -198,14 +198,14 @@ ItemOptions *itemDisplay(Item *item, Player *player, int *optionsSize){
     charFiller(1, '\n');
 
     for(int i = 0; i < *optionsSize; i++){
-        printf(" [ %d ] %s", (i + 1), InventoryOptions[i].name);
+        printf(" [ %d ] %s", (i + 1), options[i].name);
         printf("\n");
     }
 
     printf(" [ 0 ] Back");
     charFiller(1, '\n');
     printf(" >");
-    return InventoryOptions;
+    return options;
 }
 
 int dropQtcMenu(){
