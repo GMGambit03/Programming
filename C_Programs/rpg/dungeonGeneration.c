@@ -67,7 +67,10 @@ Dungeon *createDungeon(Object *dungeonData){
     dungeonStruct->dungeonBossId = getMember(dungeonData, "BossId")->value.data.number;
 
     // We have to get the different room descriptions
-    JsonArray 
+    JsonArray *dungeonDescArr = getMember(dungeonData, "RoomDescriptions")->value.data.array;
+    dungeonStruct->roomDescLength = dungeonDescArr->count;
+    dungeonStruct->roomDescs = getStringArr(dungeonDescArr, dungeonDescArr->count);
+
     return dungeonStruct;
 
 }
@@ -294,7 +297,9 @@ DungeonNode  *createBossRoom(Dungeon **dungeon, EnemyDataBase **enemyDatabase){
     }
 
     // we then based on the different enimies the dungeon can have we randomly add them to the room
-    bossRoom->enemies = getEnemyById((*dungeon)->dungeonBossId, enemyDatabase);
+    bossRoom->enemies = malloc(sizeof(EnemyDataBase *));
+    bossRoom->enemies->enemies = malloc(sizeof(Enemy *));
+    bossRoom->enemies->enemies[0] = getEnemyById((*dungeon)->dungeonBossId, enemyDatabase);
     bossRoom->enemies->enemiesCount = bossRoom->enemiesCount;
 
     // eventually we'll have different descriptions for each room

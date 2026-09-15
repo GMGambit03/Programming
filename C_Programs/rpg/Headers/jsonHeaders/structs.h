@@ -67,7 +67,10 @@ Member *getObjArrayMember(ObjectArray *objArray, char *objName, char *key);
 Object *getObject(ObjectArray *objArray, char *objName);
 int getObjectCount(ObjectArray *objArray);
 Member *getMember(Object *object, char *key);
+
+char **getStringArr(JsonArray *jsonArray, int count);
 int *getIntArr(JsonArray *jsonArray, int *count);
+
 void freeObj(Object *object);
 
 void printObj(Object *object);

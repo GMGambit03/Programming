@@ -43,6 +43,43 @@
                 "cwd": "${workspaceFolder}"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "WinBuild",
+            "type": "shell",
+            "command": "./build.bat Build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "WinRun",
+            "type": "shell",
+            "command": "./rpg.exe",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "dependsOn": "WinBuild",
+            "problemMatcher": []
+        },
+        {
+            "label": "WinRebuild",
+            "type": "shell",
+            "command": "./build.bat Rebuild",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "WinClean",
+            "type": "shell",
+            "command": "./build.bat Clean",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
         }
     ]
 }

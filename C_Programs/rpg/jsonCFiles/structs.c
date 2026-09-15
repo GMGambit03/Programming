@@ -124,6 +124,20 @@ int *getIntArr(JsonArray *jsonArray, int *count){
     return array;
 }
 
+char **getStringArr(JsonArray *jsonArray, int count){
+    char **array = malloc(sizeof(char *) * count);
+
+    for(int i = 0; i < count; i++){
+        if(jsonArray->values[i].type != STRING){
+            continue;
+        }
+        char *currString = jsonArray->values[i].data.string;
+        array[i] = currString;
+    }
+
+    return array;
+}
+
 void freeObj(Object *object){
 
     while(object->subObjs != NULL){
