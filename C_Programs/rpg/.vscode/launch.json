@@ -20,7 +20,16 @@
                 }
             ],
             "preLaunchTask": "Build",
-            "miDebuggerPath": "/usr/bin/gdb"
+            "miDebuggerPath": "/usr/bin/gdb",
+
+            "windows": {
+                "name": "Debug Win RPG",
+                "type": "cppdbg",
+                "request": "launch",
+                "program": "${workspaceFolder}/rpg.exe",
+                "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe",
+                "preLaunchTask": ""
+            }
         }
     ]
 }
