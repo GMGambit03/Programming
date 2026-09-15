@@ -75,7 +75,7 @@ DungeonReturns enterDungeon(Player **player, char *dungeonName, DungeonNode *dun
         clearScreen();
         dungeonHeader(dungeonName);
         charFiller(1, '\n');
-        printf(" You enter a %s", dungeonNode->description);
+        printf(" %s", dungeonNode->description);
         charFiller(1, '\n');
         playerStats((*player)->health, (*player)->maxHealth, (*player)->mana, (*player)->maxMana);
         charFiller(1, '\n');
