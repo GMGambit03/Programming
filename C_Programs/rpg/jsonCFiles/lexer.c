@@ -6,7 +6,7 @@ char lexer(char **file, int *cursor){
         *cursor += 1;
         char token = (*file)[*cursor];
         // we want scan every letter when we run into "{" we want to acivly continue and check until we found the string.
-        if(token == ' ' || token == '\n'){
+        if(token == ' ' || token == '\n' || token == '\r'){
             continue;
         }
 
